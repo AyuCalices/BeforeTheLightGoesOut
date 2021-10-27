@@ -9,17 +9,10 @@ namespace Features.Maze_Namespace.Tiles
     [CreateAssetMenu]
     public class TileSpriteGenerator_SO : ScriptableObject
     {
-        [SerializeField] private Image tilePrefab;
+        [SerializeField] private SpriteRenderer tilePrefab;
         [SerializeField] private TileSprite_SO[] tileSprites;
 
-        private float _tileSize;
-
-        private void OnEnable()
-        {
-            _tileSize = tilePrefab.GetComponent<RectTransform>().rect.width;
-        }
-
-        private Sprite GetTileSpriteByDirections(List<Vector2Variable> directions)
+        private TileSprite_SO GetTileSpriteByDirections(List<Vector2Variable> directions)
         {
             foreach (TileSprite_SO tileSprite in tileSprites)
             {
@@ -28,7 +21,7 @@ namespace Features.Maze_Namespace.Tiles
                 bool containsSameElements = directions.All(direction => tileSprite.directions.Contains(direction));
                 if (containsSameElements)
                 {
-                    return tileSprite.sprite;
+                    return tileSprite;
                 }
             }
 
@@ -36,11 +29,16 @@ namespace Features.Maze_Namespace.Tiles
             return null;
         }
 
-        public void InstantiateTileAt(Vector2 position, Transform parent, List<Vector2Variable> directions)
+        public void InstantiateTileAt(Vector2 position, Transform spriteParent, List<Vector2Variable> directions, Transform shadowCastParent)
         {
-            Image instantiatedTile = Instantiate(tilePrefab, parent);
-            instantiatedTile.transform.localPosition = (position * _tileSize);
-            instantiatedTile.sprite = GetTileSpriteByDirections(directions);
+            TileSprite_SO tileSprite = GetTileSpriteByDirections(directions);
+            
+            SpriteRenderer instantiatedTile = Instantiate(tilePrefab, spriteParent);
+            instantiatedTile.transform.localPosition = position;
+            instantiatedTile.sprite = tileSprite.sprite;
+            
+            GameObject shadowCaster = Instantiate(tileSprite.shadowCaster, shadowCastParent);
+            shadowCaster.transform.localPosition = position;
         }
     }
 }

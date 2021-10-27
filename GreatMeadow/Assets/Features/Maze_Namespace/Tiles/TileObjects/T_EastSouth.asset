@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: T_EastSouth
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 8408cd03ca7744b48893e4b46e3c58a8, type: 3}
+  shadowCaster: {fileID: 6169521826615969278, guid: 4e5e798df5891264faf4f561e48c1fa4, type: 3}
   directions:
   - {fileID: 11400000, guid: 7116495bcf8e90a478d81d5b031e302d, type: 2}
   - {fileID: 11400000, guid: 184ae8072c9cbb44a830c60c05b00576, type: 2}

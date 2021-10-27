@@ -8,6 +8,7 @@ namespace Features.Maze_Namespace.Tiles
     public class TileSprite_SO : ScriptableObject
     {
         public Sprite sprite;
+        public GameObject shadowCaster;
         public List<Vector2Variable> directions;
     }
 }
