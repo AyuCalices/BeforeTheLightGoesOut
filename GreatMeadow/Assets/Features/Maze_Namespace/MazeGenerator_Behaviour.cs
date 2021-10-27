@@ -17,6 +17,10 @@ namespace Features.Maze_Namespace
         [SerializeField] private IntVariable width;
         [SerializeField] private IntVariable height;
 
+        [Header("InstantiationParent")] 
+        [SerializeField] private Transform spriteTransform;
+        [SerializeField] private Transform shadowCasterTransform;
+        
         [Header("Directions")]
         [SerializeField] private Vector2Variable north;
         [SerializeField] private Vector2Variable south;
@@ -190,7 +194,7 @@ namespace Features.Maze_Namespace
                 {
                     int tilePos = y * width.intValue + x;
                     Vector2Int gridPosition = new Vector2Int(x, y);
-                    tileSprites.InstantiateTileAt(gridPosition, transform, _tiles[tilePos].directions);
+                    tileSprites.InstantiateTileAt(gridPosition, spriteTransform, _tiles[tilePos].directions, shadowCasterTransform);
                 }
             }
         }

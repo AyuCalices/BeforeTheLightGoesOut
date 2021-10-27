@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4af9a047a3a4444a550f7d7813408e, type: 3}
   m_Name: TileSpriteGenerator
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 7154868406650308721, guid: a10d841460deac54e833699770d7c9d1,
-    type: 3}
+  tilePrefab: {fileID: 3162253648217716567, guid: 9e6afb332137ce24a8158e10083b8445, type: 3}
   tileSprites:
   - {fileID: 11400000, guid: 02fa3db1020464149878e8e26524201e, type: 2}
   - {fileID: 11400000, guid: d0494a1bdbd737840b45445a0bc57c3a, type: 2}
