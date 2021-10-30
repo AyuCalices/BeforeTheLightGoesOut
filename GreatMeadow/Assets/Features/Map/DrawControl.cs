@@ -1,9 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DrawControl : MonoBehaviour
 {
+    public Map_Input inp;
+    public InputAction draw;
+
+    private InputAction erase;
+    
+    private void Awake()
+    {
+        inp = new Map_Input();
+    }
+    
+    private void OnEnable()
+    {
+        draw = inp.drawrase.drawing;
+        erase = inp.drawrase.erasing;
+        draw.Enable();
+        erase.Enable();
+
+        inp.drawrase.drawing.performed += DoDraw;
+        mapInput.drawrase.erasing.Enable();
+
+    }
+
+    private void OnDisable()
+    {
+        draw.Disable();
+        erase.Disable();
+        inp.drawrase.drawing.Disable();
+        inp.drawrase.drawing.Disable();
+    }
+
+    private void DoDraw(InputAction.CallbackContext obj)
+    {
+        Debug.Log("Drawing recognized");
+        // throw new NotImplementedException();
+    }
+
+    
     // the script utilizes the camera position to draw
     public Camera mapCam;
     // represents drawn lines on the map
