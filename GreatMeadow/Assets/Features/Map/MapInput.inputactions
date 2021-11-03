@@ -1,0 +1,33 @@
+{
+    "name": "MapInput",
+    "maps": [
+        {
+            "name": "Mouse",
+            "id": "164203bf-936b-4850-beaf-0dbd21495568",
+            "actions": [
+                {
+                    "name": "Drawing",
+                    "type": "PassThrough",
+                    "id": "75f58e7e-f666-49ed-89bf-7aaf7d32d223",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c4823f5d-f449-4bcc-83c5-a256f3c253b3",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Drawing",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
