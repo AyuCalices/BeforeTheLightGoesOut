@@ -53,14 +53,14 @@ MonoBehaviour:
   - {x: -0.5, y: -0.5, z: 0}
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5020776, y: 0.5, z: 0}
-  - {x: 0.166, y: 0.5, z: 0}
-  - {x: 0.166, y: -0.166, z: 0}
-  - {x: -0.166, y: -0.166, z: 0}
-  - {x: -0.166, y: 0.5, z: 0}
+  - {x: 0.3, y: 0.5, z: 0}
+  - {x: 0.3, y: -0.3, z: 0}
+  - {x: -0.3, y: -0.3, z: 0}
+  - {x: -0.3, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
-  m_ShapePathHash: 9658161
+  m_ShapePathHash: 2021567965
   m_Mesh: {fileID: 0}
-  m_InstanceId: 32820
+  m_InstanceId: 32148
 --- !u!1 &1274866694797738369
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,13 +1,9 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
 <<<<<<< HEAD:GreatMeadow/Assets/Features/Character_Namespace/Animations/Character_Animation_Walk Down.anim.meta
-guid: a63c1a2990493ac40af2f092387fb8ea
+guid: ce915523af41f6243bf69d34e966806b
 =======
 guid: 16ee9b69fd5885b44aab764c5ba3486a
 >>>>>>> main:GreatMeadow/Assets/Features/Character_Namespace/Animations/Character_Animation_Idle#Down.anim.meta
-=======
-guid: a63c1a2990493ac40af2f092387fb8ea
->>>>>>> main
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000
