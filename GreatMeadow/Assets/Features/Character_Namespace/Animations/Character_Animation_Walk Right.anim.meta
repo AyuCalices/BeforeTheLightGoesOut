@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD:GreatMeadow/Assets/Features/Character_Namespace/Animations/Character_Animation_Walk Right.anim.meta
 guid: 3487ab42f4b33464f9f405a084e769d0
-=======
-guid: 18d574f07e0ec4542a58d2f58ba7d000
->>>>>>> main:GreatMeadow/Assets/Features/Character_Namespace/Animations/Character_Animation_Idle#Left.anim.meta
-=======
-guid: 3487ab42f4b33464f9f405a084e769d0
->>>>>>> main
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000
