@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e93456d3572b94485e99ef4e1146f9, type: 3}
   m_Name: T_NorthWest
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: fab7786cd81827a43a1f835c7dcc9528, type: 3}
-  shadowCaster: {fileID: 3292612373864374131, guid: d439b4d9b24a5414194467913340747e, type: 3}
+  grassSprite: {fileID: 21300000, guid: 6e73936ae917bcc4dbab5a3b4f97f171, type: 3}
+  tile: {fileID: 3292612373864374131, guid: d439b4d9b24a5414194467913340747e, type: 3}
   directions:
   - {fileID: 11400000, guid: 8d775117d3b8cab4e88e7742f77c9d27, type: 2}
   - {fileID: 11400000, guid: 763bc6aa14a1b9446aad83f5407ca713, type: 2}
