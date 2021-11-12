@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:GreatMeadow/Assets/Features/Maze_Namespace/Sprites/GrassTileSprites.meta
+guid: efe40043bf717f548b52523836b897f4
+folderAsset: yes
+DefaultImporter:
+=======
 guid: 1f3a35fa26cefde429ac79c7f01deda7
 NativeFormatImporter:
+>>>>>>> 4206506 (First collisions added):GreatMeadow/Assets/Features/Maze_Namespace/Tiles/Wall_Material.physicsMaterial2D.meta
   externalObjects: {}
   mainObjectFileID: 6200000
   userData: 
