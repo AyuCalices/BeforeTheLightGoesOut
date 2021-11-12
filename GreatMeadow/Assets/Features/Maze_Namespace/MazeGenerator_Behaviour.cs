@@ -194,7 +194,7 @@ namespace Features.Maze_Namespace
                 {
                     int tilePos = y * width.intValue + x;
                     Vector2Int gridPosition = new Vector2Int(x, y);
-                    tileSprites.InstantiateTileAt(gridPosition, spriteTransform, _tiles[tilePos].directions, shadowCasterTransform);
+                    tileSprites.InstantiateTileAt(gridPosition, _tiles[tilePos].directions, shadowCasterTransform);
                 }
             }
         }
