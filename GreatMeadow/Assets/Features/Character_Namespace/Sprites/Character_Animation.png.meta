@@ -335,6 +335,42 @@ TextureImporter:
   - first:
       213: -2311306649647729475
     second: Character_Animation 110
+  - first:
+      213: -6537817121489058521
+    second: Character_Animation 111
+  - first:
+      213: -2450930901598796253
+    second: Character_Animation 112
+  - first:
+      213: -8077516152710145150
+    second: Character_Animation 113
+  - first:
+      213: 6432456152183028015
+    second: Character_Animation 114
+  - first:
+      213: -3780162379714215624
+    second: Character_Animation 115
+  - first:
+      213: 6824565279555996047
+    second: Character_Animation 116
+  - first:
+      213: 2363204045398732404
+    second: Character_Animation 117
+  - first:
+      213: -5720175091541506571
+    second: Character_Animation 118
+  - first:
+      213: -2573964734277959751
+    second: Character_Animation 119
+  - first:
+      213: -8971707309315997538
+    second: Character_Animation 120
+  - first:
+      213: 3960890957857064800
+    second: Character_Animation 121
+  - first:
+      213: -4878229580429743596
+    second: Character_Animation 122
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -2242,8 +2278,8 @@ TextureImporter:
       name: Character_Animation 87
       rect:
         serializedVersion: 2
-        x: 560
-        y: 560
+        x: 320
+        y: 240
         width: 80
         height: 80
       alignment: 0
@@ -2263,7 +2299,7 @@ TextureImporter:
       name: Character_Animation 88
       rect:
         serializedVersion: 2
-        x: 400
+        x: 640
         y: 160
         width: 80
         height: 80
@@ -2284,8 +2320,8 @@ TextureImporter:
       name: Character_Animation 89
       rect:
         serializedVersion: 2
-        x: 640
-        y: 160
+        x: 0
+        y: 80
         width: 80
         height: 80
       alignment: 0
@@ -2305,7 +2341,7 @@ TextureImporter:
       name: Character_Animation 90
       rect:
         serializedVersion: 2
-        x: 0
+        x: 80
         y: 80
         width: 80
         height: 80
@@ -2326,8 +2362,8 @@ TextureImporter:
       name: Character_Animation 91
       rect:
         serializedVersion: 2
-        x: 80
-        y: 80
+        x: 320
+        y: 240
         width: 80
         height: 80
       alignment: 0
@@ -2347,7 +2383,7 @@ TextureImporter:
       name: Character_Animation 92
       rect:
         serializedVersion: 2
-        x: 160
+        x: 80
         y: 80
         width: 80
         height: 80
@@ -2368,8 +2404,8 @@ TextureImporter:
       name: Character_Animation 93
       rect:
         serializedVersion: 2
-        x: 80
-        y: 80
+        x: 240
+        y: 320
         width: 80
         height: 80
       alignment: 0
@@ -2389,7 +2425,7 @@ TextureImporter:
       name: Character_Animation 94
       rect:
         serializedVersion: 2
-        x: 240
+        x: 160
         y: 80
         width: 80
         height: 80
@@ -2410,7 +2446,7 @@ TextureImporter:
       name: Character_Animation 95
       rect:
         serializedVersion: 2
-        x: 320
+        x: 240
         y: 80
         width: 80
         height: 80
@@ -2431,7 +2467,7 @@ TextureImporter:
       name: Character_Animation 96
       rect:
         serializedVersion: 2
-        x: 400
+        x: 320
         y: 80
         width: 80
         height: 80
@@ -2452,8 +2488,8 @@ TextureImporter:
       name: Character_Animation 97
       rect:
         serializedVersion: 2
-        x: 480
-        y: 80
+        x: 240
+        y: 320
         width: 80
         height: 80
       alignment: 0
@@ -2473,8 +2509,8 @@ TextureImporter:
       name: Character_Animation 98
       rect:
         serializedVersion: 2
-        x: 400
-        y: 160
+        x: 320
+        y: 80
         width: 80
         height: 80
       alignment: 0
@@ -2494,8 +2530,8 @@ TextureImporter:
       name: Character_Animation 99
       rect:
         serializedVersion: 2
-        x: 320
-        y: 240
+        x: 560
+        y: 560
         width: 80
         height: 80
       alignment: 0
@@ -2515,8 +2551,8 @@ TextureImporter:
       name: Character_Animation 100
       rect:
         serializedVersion: 2
-        x: 560
-        y: 80
+        x: 400
+        y: 160
         width: 80
         height: 80
       alignment: 0
@@ -2536,7 +2572,7 @@ TextureImporter:
       name: Character_Animation 101
       rect:
         serializedVersion: 2
-        x: 640
+        x: 400
         y: 80
         width: 80
         height: 80
@@ -2557,8 +2593,8 @@ TextureImporter:
       name: Character_Animation 102
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 480
+        y: 80
         width: 80
         height: 80
       alignment: 0
@@ -2578,8 +2614,8 @@ TextureImporter:
       name: Character_Animation 103
       rect:
         serializedVersion: 2
-        x: 320
-        y: 240
+        x: 560
+        y: 80
         width: 80
         height: 80
       alignment: 0
@@ -2599,8 +2635,8 @@ TextureImporter:
       name: Character_Animation 104
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 640
+        y: 80
         width: 80
         height: 80
       alignment: 0
@@ -2620,8 +2656,8 @@ TextureImporter:
       name: Character_Animation 105
       rect:
         serializedVersion: 2
-        x: 240
-        y: 320
+        x: 560
+        y: 80
         width: 80
         height: 80
       alignment: 0
@@ -2641,7 +2677,7 @@ TextureImporter:
       name: Character_Animation 106
       rect:
         serializedVersion: 2
-        x: 80
+        x: 0
         y: 0
         width: 80
         height: 80
@@ -2662,7 +2698,7 @@ TextureImporter:
       name: Character_Animation 107
       rect:
         serializedVersion: 2
-        x: 160
+        x: 80
         y: 0
         width: 80
         height: 80
@@ -2683,7 +2719,7 @@ TextureImporter:
       name: Character_Animation 108
       rect:
         serializedVersion: 2
-        x: 240
+        x: 160
         y: 0
         width: 80
         height: 80
@@ -2705,7 +2741,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 240
-        y: 320
+        y: 0
         width: 80
         height: 80
       alignment: 0
@@ -2725,7 +2761,7 @@ TextureImporter:
       name: Character_Animation 110
       rect:
         serializedVersion: 2
-        x: 240
+        x: 320
         y: 0
         width: 80
         height: 80
@@ -2738,6 +2774,258 @@ TextureImporter:
       bones: []
       spriteID: db4bfb419d69cefd0800000000000000
       internalID: -2311306649647729475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Animation 111
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7258d2387f10545a0800000000000000
+      internalID: -6537817121489058521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Animation 112
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3260d21a45b8cfdd0800000000000000
+      internalID: -2450930901598796253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Animation 113
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28b5b3a0bd5e6ef80800000000000000
+      internalID: -8077516152710145150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Animation 114
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2935203acca44950800000000000000
+      internalID: 6432456152183028015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Animation 115
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 80
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 831c6d3085a2a8bc0800000000000000
+      internalID: -3780162379714215624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Animation 116
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 80
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f894662b6f9b5be50800000000000000
+      internalID: 6824565279555996047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Animation 117
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47ee1c9fe89cbc020800000000000000
+      internalID: 2363204045398732404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Animation 118
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f581af9f0bdd90b0800000000000000
+      internalID: -5720175091541506571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Animation 119
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bfbafc26b0774cd0800000000000000
+      internalID: -2573964734277959751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Animation 120
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e90c17f7cb71e7380800000000000000
+      internalID: -8971707309315997538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Animation 121
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 560
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06780292759e7f630800000000000000
+      internalID: 3960890957857064800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Character_Animation 122
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 160
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41aaea5ea0c0d4cb0800000000000000
+      internalID: -4878229580429743596
       vertices: []
       indices: 
       edges: []
