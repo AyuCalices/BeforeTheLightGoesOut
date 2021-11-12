@@ -57,7 +57,7 @@ MonoBehaviour:
   - {x: 0.3, y: -0.5, z: 0}
   m_ShapePathHash: 176555661
   m_Mesh: {fileID: 0}
-  m_InstanceId: 34306
+  m_InstanceId: 45696
 --- !u!61 &1197536312730982458
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 787726621141321507}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1f3a35fa26cefde429ac79c7f01deda7, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   - {x: -0.5, y: -0.3, z: 0}
   m_ShapePathHash: -804666259
   m_Mesh: {fileID: 0}
-  m_InstanceId: 34312
+  m_InstanceId: 45702
 --- !u!61 &7040610065000736435
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -151,7 +151,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 787726622118975037}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1f3a35fa26cefde429ac79c7f01deda7, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
   - {x: 0.3, y: 0.5, z: 0}
   m_ShapePathHash: 249254517
   m_Mesh: {fileID: 0}
-  m_InstanceId: 34316
+  m_InstanceId: 45708
 --- !u!61 &2741196890156038423
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -235,7 +235,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 4833230729114407170}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1f3a35fa26cefde429ac79c7f01deda7, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
   - {x: -0.5, y: 0.1, z: 0}
   m_ShapePathHash: 1398834293
   m_Mesh: {fileID: 0}
-  m_InstanceId: 34326
+  m_InstanceId: 45718
 --- !u!61 &5624415087029887926
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -319,7 +319,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 8629973918492326738}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1f3a35fa26cefde429ac79c7f01deda7, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
