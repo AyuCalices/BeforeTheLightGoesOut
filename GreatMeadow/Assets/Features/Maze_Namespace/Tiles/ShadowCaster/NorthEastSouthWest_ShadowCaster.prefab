@@ -50,13 +50,13 @@ MonoBehaviour:
   m_SelfShadows: 1
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: 0.166, y: -0.166, z: 0}
-  - {x: 0.5, y: -0.166, z: 0}
+  - {x: 0.3, y: -0.3, z: 0}
+  - {x: 0.5, y: -0.3, z: 0}
   - {x: 0.5, y: -0.5, z: 0}
-  - {x: 0.16600001, y: -0.5, z: 0}
-  m_ShapePathHash: -1616315752
+  - {x: 0.3, y: -0.5, z: 0}
+  m_ShapePathHash: 176555661
   m_Mesh: {fileID: 0}
-  m_InstanceId: -125474
+  m_InstanceId: 32642
 --- !u!1 &787726622118975037
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,12 +108,12 @@ MonoBehaviour:
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
   - {x: -0.5, y: -0.5, z: 0}
-  - {x: -0.166, y: -0.5, z: 0}
-  - {x: -0.166, y: -0.16600001, z: 0}
-  - {x: -0.5, y: -0.166, z: 0}
-  m_ShapePathHash: 2132495751
+  - {x: -0.3, y: -0.5, z: 0}
+  - {x: -0.3, y: -0.3, z: 0}
+  - {x: -0.5, y: -0.3, z: 0}
+  m_ShapePathHash: -804666259
   m_Mesh: {fileID: 0}
-  m_InstanceId: -130364
+  m_InstanceId: 32648
 --- !u!1 &4833230729114407170
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,13 +164,13 @@ MonoBehaviour:
   m_SelfShadows: 1
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
-  - {x: 0.166, y: 0.166, z: 0}
-  - {x: 0.5, y: 0.166, z: 0}
+  - {x: 0.3, y: 0.1, z: 0}
+  - {x: 0.5, y: 0.1, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
-  - {x: 0.16600001, y: 0.5, z: 0}
-  m_ShapePathHash: -1616315752
+  - {x: 0.3, y: 0.5, z: 0}
+  m_ShapePathHash: 249254517
   m_Mesh: {fileID: 0}
-  m_InstanceId: -120858
+  m_InstanceId: 32650
 --- !u!1 &8629973918492326738
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,12 +222,12 @@ MonoBehaviour:
   m_ApplyToSortingLayers: 00000000
   m_ShapePath:
   - {x: -0.5, y: 0.5, z: 0}
-  - {x: -0.166, y: 0.5, z: 0}
-  - {x: -0.166, y: 0.16600001, z: 0}
-  - {x: -0.5, y: 0.166, z: 0}
-  m_ShapePathHash: 2132495751
+  - {x: -0.3, y: 0.5, z: 0}
+  - {x: -0.3, y: 0.1, z: 0}
+  - {x: -0.5, y: 0.1, z: 0}
+  m_ShapePathHash: 1398834293
   m_Mesh: {fileID: 0}
-  m_InstanceId: -89686
+  m_InstanceId: 32656
 --- !u!1 &8629973918680438567
 GameObject:
   m_ObjectHideFlags: 0
