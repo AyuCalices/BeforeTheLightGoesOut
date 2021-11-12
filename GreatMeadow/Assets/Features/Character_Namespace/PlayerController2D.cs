@@ -65,7 +65,6 @@ public class PlayerController2D : MonoBehaviour
         Vector2 playerPosition = transform.position;
         playerPosition += movement;
         transform.position = playerPosition;
-        Debug.Log(transform.position);
     }
 
     private void OnDisable()
@@ -78,7 +77,6 @@ public class PlayerController2D : MonoBehaviour
     {
         Vector2 inputMovement = context.ReadValue<Vector2>();
         storedInputMovement = new Vector2(inputMovement.x, inputMovement.y);
-        Debug.Log(inputMovement);
     }
     
     /**
