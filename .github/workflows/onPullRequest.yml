@@ -30,3 +30,4 @@ jobs:
         with:
            # discord webhook url without /github
            webhook: https://discord.com/api/webhooks/910951479794364496/xeQTZFMo_MnhDSJGPsesUk4KD8QOEASQvoh5P8rp0X2080DxU4SMtFLmRJvkZcadcxEZ
+           message: Merged to main
