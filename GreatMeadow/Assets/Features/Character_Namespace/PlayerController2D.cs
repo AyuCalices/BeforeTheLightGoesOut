@@ -15,6 +15,7 @@ public class PlayerController2D : MonoBehaviour
     public Vector2 storedInputMovement;
     private Vector2 smoothInputMovement;
     public float movementSmoothingSpeed = 1f;
+    public GameObject map;
 
 
     private void Awake()
@@ -41,6 +42,11 @@ public class PlayerController2D : MonoBehaviour
         //Hide
         //playerInputActions.Player.Hide.performed += GoHide;
         //playerInputActions.Player.Hide.Enable();
+
+       // open map
+        playerInputActions.Player.OpenMap.performed += mapActivated;
+        playerInputActions.Player.OpenMap.Enable();
+
 
     }
     
@@ -91,5 +97,19 @@ public class PlayerController2D : MonoBehaviour
         //change position from tile to tile
         
     }
+
+public void mapActivated(InputAction.CallbackContext obj) {
+
+ if (map.activeSelf)
+{
+map.SetActive(false);
+}
+else
+{
+map.SetActive(true);
+        Debug.Log("Map");
+}
+
+}
 
 }
