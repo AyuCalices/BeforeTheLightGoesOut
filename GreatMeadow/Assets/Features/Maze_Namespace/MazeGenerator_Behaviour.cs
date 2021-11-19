@@ -18,8 +18,15 @@ namespace Features.Maze_Namespace
         [SerializeField] private IntVariable height;
 
         [Header("InstantiationParent")] 
+<<<<<<< Updated upstream
         [SerializeField] private Transform spriteTransform;
         [SerializeField] private Transform shadowCasterTransform;
+=======
+        [SerializeField] private Transform grassSpriteParentTransform;
+        [SerializeField] private Transform tileParentTransform;
+
+        [SerializeField] private Transform mapParentTransform;
+>>>>>>> Stashed changes
         
         [Header("Directions")]
         [SerializeField] private Vector2Variable north;
@@ -45,6 +52,7 @@ namespace Features.Maze_Namespace
             //Generate the Maze
             KruskalAlgorithm();
             DrawTiles();
+            //DrawMapTiles();
             
             //Set tiles for later use
             tiles.SetTiles(_tiles);
@@ -198,6 +206,20 @@ namespace Features.Maze_Namespace
                 }
             }
         }
+        
+        public void DrawMapTiles() {
+            {
+                for (int y = 0; y < height.intValue; y++)
+                {
+                    for (int x =  0; x < width.intValue; x++)
+                    {
+                        int tilePos =  y * width.intValue + x;
+                        Vector2Int gridPosition = new Vector2Int(x, y);
+                        tileSprites.InstantiateMapTileAt(gridPosition, _tiles[tilePos].directions, mapParentTransform);
+                    }
+                }
+            }
+        }
 
         [System.Serializable]
         public class Edge
@@ -210,6 +232,8 @@ namespace Features.Maze_Namespace
             }
         }
     }
+    
+    
 
     [System.Serializable]
     public class Tile

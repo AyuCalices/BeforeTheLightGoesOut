@@ -40,5 +40,13 @@ namespace Features.Maze_Namespace.Tiles
             GameObject shadowCaster = Instantiate(tileSprite.shadowCaster, shadowCastParent);
             shadowCaster.transform.localPosition = position;
         }
+public void InstantiateMapTileAt(Vector2 position, List<Vector2Variable> directions, Transform tileParent)
+        {
+            TileSprite_SO tileSprite = GetTileSpriteByDirections(directions);  
+            GameObject tile = Instantiate(tileSprite.tile, tileParent);
+            tile.transform.localPosition = position;
+        }
+
     }
+
 }
