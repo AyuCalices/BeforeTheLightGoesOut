@@ -3,7 +3,18 @@ guid: 9780737292e0967449ec373debf88b16
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - tile: {instanceID: 0}
+  - width: {fileID: 11400000, guid: 306648929f97aa3408cb9fdef1697e0e, type: 2}
+  - height: {fileID: 11400000, guid: a3e52cf95d2671542b5ca4005cb572ff, type: 2}
+  - grassSpriteParentTransform: {instanceID: 0}
+  - tileParentTransform: {instanceID: 0}
+  - north: {fileID: 11400000, guid: 8d775117d3b8cab4e88e7742f77c9d27, type: 2}
+  - south: {fileID: 11400000, guid: 184ae8072c9cbb44a830c60c05b00576, type: 2}
+  - east: {fileID: 11400000, guid: 7116495bcf8e90a478d81d5b031e302d, type: 2}
+  - west: {fileID: 11400000, guid: 763bc6aa14a1b9446aad83f5407ca713, type: 2}
+  - tiles: {instanceID: 0}
+  - playerSpawnPos: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
