@@ -46,7 +46,7 @@ namespace Features.Maze_Namespace
         public void Start()
         {
             // randomize player starting position
-            playerSpawnPos.vec2Value = new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f));
+            playerSpawnPos.vec2Value = new Vector2(Random.Range(0f, 0f), Random.Range(0f, 0f));
             
             // maze Seed Generation
             int seed = randomizeSeed ? Random.Range(int.MinValue, int.MaxValue) : setSeed;
