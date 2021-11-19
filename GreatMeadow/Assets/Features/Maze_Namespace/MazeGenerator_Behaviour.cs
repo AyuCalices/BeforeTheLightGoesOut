@@ -14,7 +14,7 @@ namespace Features.Maze_Namespace
         [SerializeField] private bool randomizeSeed;
 
         [Header("Appearance")] 
-        [SerializeField] private TileSpriteGenerator_SO tileSprites;
+        [SerializeField] private MazeTileGenerator_SO tile;
         [Tooltip("Width of generated maze in number of tiles (x-axis).")]
         [SerializeField] private IntVariable width;
         [Tooltip("Height of generated maze in number of tiles (y-axis).")]
@@ -45,16 +45,15 @@ namespace Features.Maze_Namespace
 
         public void Start()
         {
-           
-            // randomize player starting position
-            playerSpawnPos.vec2Value = new Vector2(Mathf.Round(Random.Range(0f, width.intValue)), Mathf.Round(Random.Range(0f, height.intValue)));
-            
             // maze Seed Generation
             int seed = randomizeSeed ? Random.Range(int.MinValue, int.MaxValue) : setSeed;
             Random.InitState(seed);
             Debug.Log($"The used seed is: {seed.ToString()}" +
                       $"  |  Copy the seed into the setSeed field of the MazeGenerator and put the randomizeSeed boolean to false. " +
                       $"By that you get the same maze. Stop the game before though - else it wont save your changes inside the MazeGenerator!");
+            
+            // randomize player starting position
+            playerSpawnPos.vec2Value = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
 
             // generate the Maze
             KruskalAlgorithm();
@@ -211,7 +210,7 @@ namespace Features.Maze_Namespace
                 {
                     int tilePos = y * width.intValue + x;
                     Vector2Int gridPosition = new Vector2Int(x, y);
-                    tileSprites.InstantiateTileAt(gridPosition, _tiles[tilePos].directions, tileParentTransform, grassSpriteParentTransform);
+                    tile.InstantiateTileAt(gridPosition, tileParentTransform, grassSpriteParentTransform);
                 }
             }
         }
