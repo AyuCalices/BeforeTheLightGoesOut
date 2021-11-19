@@ -8,17 +8,22 @@ namespace Features.Maze_Namespace
     public class MazeGenerator_Behaviour : MonoBehaviour
     {
         [Header("Seed")]
+        [Tooltip("Chosen Seed.")]
         [SerializeField] private int setSeed = 12345;
-        [Tooltip("If put to false it will use the setSeed value above. Else it will randomly generate a seed.")]
+        [Tooltip("If put to false it will use the setSeed value above. Else, it will randomly generate a seed.")]
         [SerializeField] private bool randomizeSeed;
 
         [Header("Appearance")] 
         [SerializeField] private TileSpriteGenerator_SO tileSprites;
+        [Tooltip("Width of generated maze in number of tiles (x-axis).")]
         [SerializeField] private IntVariable width;
+        [Tooltip("Height of generated maze in number of tiles (y-axis).")]
         [SerializeField] private IntVariable height;
 
         [Header("InstantiationParent")] 
+        [Tooltip("Transform parent of all generated grass sprites.")]
         [SerializeField] private Transform grassSpriteParentTransform;
+        [Tooltip("Transform parent of all generated tile sprites.")]
         [SerializeField] private Transform tileParentTransform;
         
         [Header("Directions")]
@@ -28,13 +33,19 @@ namespace Features.Maze_Namespace
         [SerializeField] private Vector2Variable west;
 
         [Header("Tiles")]
+        [Tooltip("List of tiles to be spawned.")]
         [SerializeField] private TileList_SO tiles;
+        
+        [Header("Spawning")]
+        [Tooltip("Variable for .")]
+        [SerializeField] private Vector2Variable playerSpawnPos;
 
         private Tile[] _tiles;
         private List<Edge> _edges;
 
         public void Start()
         {
+            playerSpawnPos.vec2Value = new Vector2(Random.Range(-100f, 100f), Random.Range(-100f, 100f));
             //Maze Seed Generation
             int seed = randomizeSeed ? Random.Range(int.MinValue, int.MaxValue) : setSeed;
             Random.InitState(seed);
@@ -48,6 +59,7 @@ namespace Features.Maze_Namespace
             
             //Set tiles for later use
             tiles.SetTiles(_tiles);
+
         }
 
         #region Kruskal Algorithm
