@@ -1,15 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
 using Utils.Variables_Namespace;
 using Random = UnityEngine.Random;
+using Scene = UnityEditor.SearchService.Scene;
 
 public class PlayerController2D : MonoBehaviour
 {
     [SerializeField] private Vector2Variable spawnPosition;
+    [SerializeField] public LoadSceneMode mapScene;
     private PlayerInputActions playerInputActions;
     private InputAction movement;
     private Vector2 direction = Vector2.zero;
@@ -26,6 +30,8 @@ public class PlayerController2D : MonoBehaviour
         transform.position = spawnPosition.GetVariableValue();
         playerInputActions = new PlayerInputActions();
         playerInputActions.Enable();
+
+        
         
         //walk
         playerInputActions.Player.Movement.performed += OnMovement;
@@ -59,6 +65,7 @@ public class PlayerController2D : MonoBehaviour
     {
         CalculateMovementInputSmoothing();
         UpdatePlayerMovement();
+        optimizeRendering();
     }
 
     //Input's Axes values are raw
@@ -75,7 +82,7 @@ public class PlayerController2D : MonoBehaviour
         Vector2 playerPosition = transform.position;
         playerPosition += movement;
         transform.position = playerPosition;
-        Debug.Log(transform.position);
+        //Debug.Log(transform.position);
     }
 
     private void OnDisable()
@@ -104,8 +111,10 @@ public class PlayerController2D : MonoBehaviour
         
     }
 
-public void mapActivated(InputAction.CallbackContext obj) {
-
+public void mapActivated(InputAction.CallbackContext obj)
+{
+    
+    
  if (map.activeSelf)
 {
 map.SetActive(false);
@@ -113,9 +122,13 @@ map.SetActive(false);
 else
 {
 map.SetActive(true);
-        Debug.Log("Map");
 }
 
+}
+
+public void optimizeRendering()
+{
+    
 }
 
 }
