@@ -37,7 +37,7 @@ namespace Features.Maze_Namespace
         [SerializeField] private TileList_SO tiles;
         
         [Header("Spawning")]
-        [Tooltip("Variable for .")]
+        [Tooltip("Variable for player spawn position.")]
         [SerializeField] private Vector2Variable playerSpawnPos;
 
         private Tile[] _tiles;
@@ -45,19 +45,23 @@ namespace Features.Maze_Namespace
 
         public void Start()
         {
-            playerSpawnPos.vec2Value = new Vector2(Random.Range(-100f, 100f), Random.Range(-100f, 100f));
-            //Maze Seed Generation
+            // randomize player starting position
+            playerSpawnPos.vec2Value = new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f));
+            
+            // maze Seed Generation
             int seed = randomizeSeed ? Random.Range(int.MinValue, int.MaxValue) : setSeed;
             Random.InitState(seed);
             Debug.Log($"The used seed is: {seed.ToString()}" +
                       $"  |  Copy the seed into the setSeed field of the MazeGenerator and put the randomizeSeed boolean to false. " +
                       $"By that you get the same maze. Stop the game before though - else it wont save your changes inside the MazeGenerator!");
 
-            //Generate the Maze
+            // generate the Maze
             KruskalAlgorithm();
+            
+            // draw the maze (tile objects)
             DrawTiles();
             
-            //Set tiles for later use
+            // Set tiles for later use
             tiles.SetTiles(_tiles);
 
         }
