@@ -65,7 +65,7 @@ public class PlayerController2D : MonoBehaviour
     {
         CalculateMovementInputSmoothing();
         UpdatePlayerMovement();
-        optimizeRendering();
+        //optimizeRendering();
     }
 
     //Input's Axes values are raw
@@ -113,16 +113,7 @@ public class PlayerController2D : MonoBehaviour
 
 public void mapActivated(InputAction.CallbackContext obj)
 {
-    
-    
- if (map.activeSelf)
-{
-map.SetActive(false);
-}
-else
-{
-map.SetActive(true);
-}
+
 
 }
 

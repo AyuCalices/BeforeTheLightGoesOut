@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: T_NorthSouth
   m_EditorClassIdentifier: 
   grassSprite: {fileID: 21300000, guid: ade21375fe168d24cab12f2ae16ef1c8, type: 3}
+  miniMapSprite: {fileID: 21300000, guid: 6be68fa2bc573ee438ba828ae733027f, type: 3}
   tile: {fileID: 610560299724575479, guid: 693be0cf1d2126e458668c5c56fd7599, type: 3}
   directions:
   - {fileID: 11400000, guid: 8d775117d3b8cab4e88e7742f77c9d27, type: 2}
