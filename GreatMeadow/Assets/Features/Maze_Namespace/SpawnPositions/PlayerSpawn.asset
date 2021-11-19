@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99da1432dd362394186c857ca5ef0315, type: 3}
   m_Name: PlayerSpawn
   m_EditorClassIdentifier: 
-  vec2Value: {x: 0, y: 0}
+  vec2Value: {x: 99.216415, y: 46.954678}

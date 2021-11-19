@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &320212783
 Transform:
   m_ObjectHideFlags: 0
@@ -347,6 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5b407fbba25b547afaf643691f4a9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnPosition: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
   speed: 0.3
   playerRB: {fileID: 344043542}
   storedInputMovement: {x: 0, y: 0}
