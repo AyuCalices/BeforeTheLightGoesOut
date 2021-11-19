@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
+using Utils.Variables_Namespace;
+using Random = UnityEngine.Random;
 
 public class PlayerController2D : MonoBehaviour
 {
+    [SerializeField] private Vector2Variable spawnPosition;
     private PlayerInputActions playerInputActions;
     private InputAction movement;
     private Vector2 direction = Vector2.zero;
@@ -20,6 +23,7 @@ public class PlayerController2D : MonoBehaviour
 
     private void Awake()
     {
+        transform.position = spawnPosition.GetVariableValue();
         playerInputActions = new PlayerInputActions();
         playerInputActions.Enable();
         
