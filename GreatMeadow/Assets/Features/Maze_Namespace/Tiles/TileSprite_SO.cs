@@ -7,8 +7,8 @@ namespace Features.Maze_Namespace.Tiles
     [CreateAssetMenu]
     public class TileSprite_SO : ScriptableObject
     {
-        public Sprite sprite;
-        public GameObject shadowCaster;
+        public Sprite grassSprite;
+        public GameObject tile;
         public List<Vector2Variable> directions;
     }
 }

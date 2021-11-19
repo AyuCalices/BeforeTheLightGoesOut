@@ -29,24 +29,16 @@ namespace Features.Maze_Namespace.Tiles
             return null;
         }
 
-        public void InstantiateTileAt(Vector2 position, Transform spriteParent, List<Vector2Variable> directions, Transform shadowCastParent)
+        public void InstantiateTileAt(Vector2 position, List<Vector2Variable> directions, Transform tileParent, Transform grassSpriteParent)
         {
             TileSprite_SO tileSprite = GetTileSpriteByDirections(directions);
             
-            SpriteRenderer instantiatedTile = Instantiate(tilePrefab, spriteParent);
-            instantiatedTile.transform.localPosition = position;
-            instantiatedTile.sprite = tileSprite.sprite;
+            SpriteRenderer grassSprite = Instantiate(tilePrefab, grassSpriteParent);
+            grassSprite.transform.localPosition = position;
+            grassSprite.sprite = tileSprite.grassSprite;
             
-            GameObject shadowCaster = Instantiate(tileSprite.shadowCaster, shadowCastParent);
-            shadowCaster.transform.localPosition = position;
-        }
-public void InstantiateMapTileAt(Vector2 position, List<Vector2Variable> directions, Transform tileParent)
-        {
-            TileSprite_SO tileSprite = GetTileSpriteByDirections(directions);  
             GameObject tile = Instantiate(tileSprite.tile, tileParent);
             tile.transform.localPosition = position;
         }
-
     }
-
 }
