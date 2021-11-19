@@ -15,6 +15,8 @@ public class PlayerController2D : MonoBehaviour
     public Vector2 storedInputMovement;
     private Vector2 smoothInputMovement;
     public float movementSmoothingSpeed = 1f;
+    public Animator animator;
+    private Vector2 inputMovement;
 
 
     private void Awake()
@@ -54,9 +56,7 @@ public class PlayerController2D : MonoBehaviour
     //Input's Axes values are raw
     void CalculateMovementInputSmoothing()
     {
-        
         smoothInputMovement = Vector2.Lerp(smoothInputMovement, storedInputMovement, Time.deltaTime * movementSmoothingSpeed);
-
     }
 
     void UpdatePlayerMovement()
@@ -65,6 +65,11 @@ public class PlayerController2D : MonoBehaviour
         Vector2 playerPosition = transform.position;
         playerPosition += movement;
         transform.position = playerPosition;
+        //Set animation to movement
+        animator.SetFloat("Time", Time.deltaTime );
+        animator.SetFloat("Horizontal", getInputMovement().x);
+        animator.SetFloat("Vertical", getInputMovement().y);
+        animator.SetFloat("Speed", getInputMovement().sqrMagnitude);
     }
 
     private void OnDisable()
@@ -75,8 +80,13 @@ public class PlayerController2D : MonoBehaviour
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-        Vector2 inputMovement = context.ReadValue<Vector2>();
+        inputMovement = context.ReadValue<Vector2>();
         storedInputMovement = new Vector2(inputMovement.x, inputMovement.y);
+    }
+
+    private Vector2 getInputMovement()
+    {
+        return inputMovement;
     }
     
     /**

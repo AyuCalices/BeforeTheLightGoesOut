@@ -267,6 +267,7 @@ MonoBehaviour:
   playerRB: {fileID: 344043542}
   storedInputMovement: {x: 0, y: 0}
   movementSmoothingSpeed: 10
+  animator: {fileID: 344043539}
 --- !u!61 &344043544
 BoxCollider2D:
   m_ObjectHideFlags: 0
