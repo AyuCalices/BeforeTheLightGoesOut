@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -219,12 +219,12 @@ MonoBehaviour:
   height: {fileID: 11400000, guid: a3e52cf95d2671542b5ca4005cb572ff, type: 2}
   grassSpriteParentTransform: {fileID: 344095227}
   tileParentTransform: {fileID: 545921218}
-  mapParentTransform: {fileID: 1415943928}
   north: {fileID: 11400000, guid: 8d775117d3b8cab4e88e7742f77c9d27, type: 2}
   south: {fileID: 11400000, guid: 184ae8072c9cbb44a830c60c05b00576, type: 2}
   east: {fileID: 11400000, guid: 7116495bcf8e90a478d81d5b031e302d, type: 2}
   west: {fileID: 11400000, guid: 763bc6aa14a1b9446aad83f5407ca713, type: 2}
   tiles: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}
+  playerSpawnPos: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
 --- !u!4 &666877538
 Transform:
   m_ObjectHideFlags: 0
