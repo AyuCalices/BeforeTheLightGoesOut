@@ -12,7 +12,7 @@ using Scene = UnityEditor.SearchService.Scene;
 
 public class PlayerController2D : MonoBehaviour
 {
-    [SerializeField] private Vector2Variable spawnPosition;
+    [SerializeField] private Vector2Variable playerPosition;
     [SerializeField] public LoadSceneMode mapScene;
     private PlayerInputActions playerInputActions;
     private InputAction movement;
@@ -27,7 +27,7 @@ public class PlayerController2D : MonoBehaviour
 
     private void Awake()
     {
-        transform.position = spawnPosition.GetVariableValue();
+        transform.position = playerPosition.GetVariableValue();
         playerInputActions = new PlayerInputActions();
         playerInputActions.Enable();
 
@@ -63,9 +63,11 @@ public class PlayerController2D : MonoBehaviour
     //Update Loop - Used for calculating frame-based data
     void Update()
     {
+       // playerPosition.vec2Value = transform.position;
         CalculateMovementInputSmoothing();
         UpdatePlayerMovement();
         //optimizeRendering();
+        
     }
 
     //Input's Axes values are raw

@@ -29,25 +29,18 @@ public class MapController : MonoBehaviour
         {
             for (int x = 0; x < width.intValue; x++)
             {
-              
                 Vector2Int gridPosition = new Vector2Int(x, y);
                 mapTile.InstantiateTileAt(gridPosition, mapCanv);
             }
         }
     }
     
-    private void Awake()
+    private void Start()
     {
         DrawTiles();
 
     }
 
-    private void OnEnable()
-    {
-
-
-
-    }
     
     void Update()
     {

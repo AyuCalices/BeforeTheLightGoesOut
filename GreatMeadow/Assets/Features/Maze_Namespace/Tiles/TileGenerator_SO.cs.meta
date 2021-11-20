@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - tileList: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}
+  - tileList: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

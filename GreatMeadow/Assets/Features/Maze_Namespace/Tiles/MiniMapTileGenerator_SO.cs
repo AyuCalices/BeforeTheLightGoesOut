@@ -25,7 +25,7 @@ namespace Features.Maze_Namespace.Tiles
             Rect imagePrefabRect = imagePrefab.GetComponent<RectTransform>().rect;
 
             // place sprite at correct position
-            //grassSprite.transform.localPosition = new Vector3(position.x * imagePrefabRect.width, position.y * imagePrefabRect.height); 
+            grassSprite.transform.localPosition = new Vector3(position.x * imagePrefabRect.width, position.y * imagePrefabRect.height); 
            
             // load fitting minimap sprite
             grassSprite.sprite = tileSprite.miniMapSprite;
