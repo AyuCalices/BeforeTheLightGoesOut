@@ -22,6 +22,11 @@ public class MapController : MonoBehaviour
 
     [SerializeField] private Transform mapCanv;
     [SerializeField] private MiniMapTileGenerator_SO mapTile;
+    [SerializeField]private GameObject child;
+    
+    private PlayerInputActions playerInputActions;
+    private InputAction mapHandling;
+
     
     private void DrawTiles()
     {
@@ -41,15 +46,45 @@ public class MapController : MonoBehaviour
 
     }
 
+    private void Awake()
+    {
+        playerInputActions = new PlayerInputActions();
+        playerInputActions.Enable();
+        
+    }
+
     
     void Update()
     {
 
     }
-    
+
+    private void OnEnable()
+    {
+        // open map
+        playerInputActions.Player.OpenMap.performed += mapActivated;
+        playerInputActions.Player.OpenMap.Enable();
+    }
+
 
     private void OnDisable()
     {
+
+    }
+
+    public void mapActivated(InputAction.CallbackContext obj)
+    {
+        Debug.Log("map");
+
+
+        if (this.child.activeSelf == true)
+        {
+            this.child.SetActive(false);
+        }
+        else
+        {
+            this.child.SetActive(true);
+        }
 
     }
 
