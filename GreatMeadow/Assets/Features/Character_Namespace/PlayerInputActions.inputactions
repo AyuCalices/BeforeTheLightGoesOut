@@ -28,6 +28,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Open Map",
+                    "type": "Button",
+                    "id": "b5068150-f111-47ef-a692-11a74244d1ea",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -138,6 +146,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Hide",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04bbe5b0-1531-468b-a9b9-8b41415b8ba4",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Open Map",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

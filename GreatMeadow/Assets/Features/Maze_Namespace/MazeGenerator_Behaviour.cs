@@ -8,17 +8,22 @@ namespace Features.Maze_Namespace
     public class MazeGenerator_Behaviour : MonoBehaviour
     {
         [Header("Seed")]
+        [Tooltip("Chosen Seed.")]
         [SerializeField] private int setSeed = 12345;
-        [Tooltip("If put to false it will use the setSeed value above. Else it will randomly generate a seed.")]
+        [Tooltip("If put to false it will use the setSeed value above. Else, it will randomly generate a seed.")]
         [SerializeField] private bool randomizeSeed;
 
         [Header("Appearance")] 
-        [SerializeField] private TileSpriteGenerator_SO tileSprites;
+        [SerializeField] private MazeTileGenerator_SO tile;
+        [Tooltip("Width of generated maze in number of tiles (x-axis).")]
         [SerializeField] private IntVariable width;
+        [Tooltip("Height of generated maze in number of tiles (y-axis).")]
         [SerializeField] private IntVariable height;
 
         [Header("InstantiationParent")] 
+        [Tooltip("Transform parent of all generated grass sprites.")]
         [SerializeField] private Transform grassSpriteParentTransform;
+        [Tooltip("Transform parent of all generated tile sprites.")]
         [SerializeField] private Transform tileParentTransform;
         
         [Header("Directions")]
@@ -28,26 +33,39 @@ namespace Features.Maze_Namespace
         [SerializeField] private Vector2Variable west;
 
         [Header("Tiles")]
+        [Tooltip("List of tiles to be spawned.")]
         [SerializeField] private TileList_SO tiles;
+        
+        [Header("Spawning")]
+        [Tooltip("Variable for player spawn position.")]
+        [SerializeField] private Vector2Variable playerSpawnPos;
 
         private Tile[] _tiles;
         private List<Edge> _edges;
 
-        public void Start()
+        public void Awake()
         {
-            //Maze Seed Generation
+            // maze Seed Generation
             int seed = randomizeSeed ? Random.Range(int.MinValue, int.MaxValue) : setSeed;
             Random.InitState(seed);
             Debug.Log($"The used seed is: {seed.ToString()}" +
                       $"  |  Copy the seed into the setSeed field of the MazeGenerator and put the randomizeSeed boolean to false. " +
                       $"By that you get the same maze. Stop the game before though - else it wont save your changes inside the MazeGenerator!");
+            
+            // randomize player starting position
+            playerSpawnPos.vec2Value = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
 
-            //Generate the Maze
+            // generate the Maze
             KruskalAlgorithm();
+            
+            // Set tiles for global use
+            tiles.SetTiles(_tiles);
+            
+            // draw the maze (tile objects)
             DrawTiles();
             
-            //Set tiles for later use
-            tiles.SetTiles(_tiles);
+            
+
         }
 
         #region Kruskal Algorithm
@@ -192,9 +210,8 @@ namespace Features.Maze_Namespace
             {
                 for (int x = 0; x < width.intValue; x++)
                 {
-                    int tilePos = y * width.intValue + x;
                     Vector2Int gridPosition = new Vector2Int(x, y);
-                    tileSprites.InstantiateTileAt(gridPosition, _tiles[tilePos].directions, tileParentTransform, grassSpriteParentTransform);
+                    tile.InstantiateTileAt(gridPosition, tileParentTransform, grassSpriteParentTransform);
                 }
             }
         }

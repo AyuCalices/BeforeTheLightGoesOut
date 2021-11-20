@@ -41,9 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: drawing
+  - name: UI
     uniqueID: 387471321
     locked: 0
-  - name: erasing
-    uniqueID: 3157316679
+  - name: OverUI
+    uniqueID: 34507055
     locked: 0

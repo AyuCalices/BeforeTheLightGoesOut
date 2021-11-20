@@ -1,12 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
+using Utils.Variables_Namespace;
+using Random = UnityEngine.Random;
+using Scene = UnityEditor.SearchService.Scene;
 
 public class PlayerController2D : MonoBehaviour
 {
+    [SerializeField] private Vector2Variable playerPosition;
     private PlayerInputActions playerInputActions;
     private InputAction movement;
     private Vector2 direction = Vector2.zero;
@@ -19,6 +25,7 @@ public class PlayerController2D : MonoBehaviour
 
     private void Awake()
     {
+        transform.position = playerPosition.GetVariableValue();
         playerInputActions = new PlayerInputActions();
         playerInputActions.Enable();
         
@@ -41,7 +48,6 @@ public class PlayerController2D : MonoBehaviour
         //Hide
         //playerInputActions.Player.Hide.performed += GoHide;
         //playerInputActions.Player.Hide.Enable();
-
     }
     
     //Update Loop - Used for calculating frame-based data
@@ -65,6 +71,7 @@ public class PlayerController2D : MonoBehaviour
         Vector2 playerPosition = transform.position;
         playerPosition += movement;
         transform.position = playerPosition;
+        //Debug.Log(transform.position);
     }
 
     private void OnDisable()
@@ -77,6 +84,7 @@ public class PlayerController2D : MonoBehaviour
     {
         Vector2 inputMovement = context.ReadValue<Vector2>();
         storedInputMovement = new Vector2(inputMovement.x, inputMovement.y);
+        Debug.Log(inputMovement);
     }
     
     /**

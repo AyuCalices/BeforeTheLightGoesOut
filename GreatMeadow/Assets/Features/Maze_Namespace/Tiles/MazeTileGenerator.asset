@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f4af9a047a3a4444a550f7d7813408e, type: 3}
-  m_Name: TileSpriteGenerator
+  m_Script: {fileID: 11500000, guid: f40b3790df7479b48b22287ee7b95185, type: 3}
+  m_Name: MazeTileGenerator
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 3162253648217716567, guid: 9e6afb332137ce24a8158e10083b8445, type: 3}
   tileSprites:
   - {fileID: 11400000, guid: 02fa3db1020464149878e8e26524201e, type: 2}
   - {fileID: 11400000, guid: d0494a1bdbd737840b45445a0bc57c3a, type: 2}
@@ -29,3 +28,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cf0949be62d19f24e9a6021ed86705ac, type: 2}
   - {fileID: 11400000, guid: 1860d23f2799369418f894b12a54b184, type: 2}
   - {fileID: 11400000, guid: eb9da1c7c7bc6d14ebebef9d3e7ffab1, type: 2}
+  tileList: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}
+  tilePrefab: {fileID: 3162253648217716567, guid: 9e6afb332137ce24a8158e10083b8445, type: 3}
