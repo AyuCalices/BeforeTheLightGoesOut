@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+<<<<<<< Updated upstream
+    <list default="true" id="b0e1834f-e31c-4222-8a27-0e6b3f742f9f" name="Changes" comment="" />
+=======
+    <list default="true" id="b0e1834f-e31c-4222-8a27-0e6b3f742f9f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Features/Character_Namespace/PlayerController2D.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Features/Character_Namespace/PlayerController2D.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Features/Character_Namespace/PlayerInputActions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Features/Character_Namespace/PlayerInputActions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Features/Character_Namespace/PlayerInputActions.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Features/Character_Namespace/PlayerInputActions.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Features/Maze_Namespace/MazeGenerator_Behaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Features/Maze_Namespace/MazeGenerator_Behaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Features/Maze_Namespace/Tiles/TileSpriteGenerator_SO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Features/Maze_Namespace/Tiles/TileSpriteGenerator_SO.cs" afterDir="false" />
+    </list>
+>>>>>>> Stashed changes
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+<<<<<<< Updated upstream
+    <setting file="file://$PROJECT_DIR$/Features/Maze_Namespace/Tiles/TileSpriteGenerator_SO.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Features/Maze_Namespace/Tiles/TileList_SO.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Features/Character_Namespace/PlayerController2D.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Features/Maze_Namespace/Tiles/TileSprite_SO.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Features/Character_Namespace/PlayerInputActions.cs" root0="SKIP_HIGHLIGHTING" />
+=======
+    <setting file="file://$PROJECT_DIR$/Features/Maze_Namespace/Tiles/TileSpriteGenerator_SO.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Features/Maze_Namespace/Tiles/TileList_SO.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Features/Character_Namespace/PlayerController2D.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Features/Maze_Namespace/Tiles/TileSprite_SO.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Features/Character_Namespace/PlayerInputActions.cs" root0="FORCE_HIGHLIGHTING" />
+>>>>>>> Stashed changes
+    <setting file="file://$PROJECT_DIR$/Features/Maze_Namespace/MazeGenerator_Behaviour.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectId" id="20oyEgXrNjhH3SHGJxr89XBYXqK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< Updated upstream
+=======
+    <property name="settings.editor.selected.configurable" value="preferences.build.unityPlugin" />
+>>>>>>> Stashed changes
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b0e1834f-e31c-4222-8a27-0e6b3f742f9f" name="Changes" comment="" />
+      <created>1636725146270</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1636725146270</updated>
+<<<<<<< Updated upstream
+      <workItem from="1636725146273" duration="2590000" />
+=======
+      <workItem from="1636725146273" duration="3494000" />
+      <workItem from="1637311014948" duration="6016000" />
+>>>>>>> Stashed changes
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
+<<<<<<< Updated upstream
+  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+=======
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+>>>>>>> Stashed changes
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+<<<<<<< Updated upstream
+=======
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Features/Maze_Namespace/Tiles/TileSpriteGenerator_SO.cs</url>
+          <line>50</line>
+          <properties documentPath="C:\Users\Lukas\Documents\GitHub\GreatMeadow\GreatMeadow\Assets\Features\Maze_Namespace\Tiles\TileSpriteGenerator_SO.cs" initialLine="50" isMultiMethodBreakpoint="true">
+            <option name="multiMethodBreakpoint" value="true" />
+            <startOffsets>
+              <option value="-1" />
+            </startOffsets>
+            <endOffsets>
+              <option value="-1" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+>>>>>>> Stashed changes
+</project>
