@@ -43,7 +43,7 @@ namespace Features.Maze_Namespace
         private Tile[] _tiles;
         private List<Edge> _edges;
 
-        public void Start()
+        public void Awake()
         {
             // maze Seed Generation
             int seed = randomizeSeed ? Random.Range(int.MinValue, int.MaxValue) : setSeed;
@@ -58,11 +58,13 @@ namespace Features.Maze_Namespace
             // generate the Maze
             KruskalAlgorithm();
             
+            // Set tiles for global use
+            tiles.SetTiles(_tiles);
+            
             // draw the maze (tile objects)
             DrawTiles();
             
-            // Set tiles for later use
-            tiles.SetTiles(_tiles);
+            
 
         }
 
@@ -208,7 +210,6 @@ namespace Features.Maze_Namespace
             {
                 for (int x = 0; x < width.intValue; x++)
                 {
-                    int tilePos = y * width.intValue + x;
                     Vector2Int gridPosition = new Vector2Int(x, y);
                     tile.InstantiateTileAt(gridPosition, tileParentTransform, grassSpriteParentTransform);
                 }

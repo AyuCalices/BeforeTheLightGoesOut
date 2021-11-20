@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5b407fbba25b547afaf643691f4a9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPosition: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
+  playerPosition: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
   mapScene: 0
   speed: 0.3
   playerRB: {fileID: 344043542}
