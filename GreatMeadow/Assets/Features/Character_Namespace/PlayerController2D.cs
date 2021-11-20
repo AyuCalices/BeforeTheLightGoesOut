@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
@@ -23,7 +24,7 @@ public class PlayerController2D : MonoBehaviour
     {
         playerInputActions = new PlayerInputActions();
         playerInputActions.Enable();
-        
+
         //walk
         playerInputActions.Player.Movement.performed += OnMovement;
         playerInputActions.Player.Movement.started += OnMovement;
@@ -69,6 +70,10 @@ public class PlayerController2D : MonoBehaviour
         animator.SetFloat("Time", Time.deltaTime );
         animator.SetFloat("Horizontal", getInputMovement().x);
         animator.SetFloat("Vertical", getInputMovement().y);
+        //fill array with last two positions, remove. if zero gets hit, get the last number back
+        
+        //animator.SetFloat("DirectionHorizontal", getInputMovement().y);
+        //animator.SetFloat("DirectionVertical", getInputMovement().y);
         animator.SetFloat("Speed", getInputMovement().sqrMagnitude);
     }
 
