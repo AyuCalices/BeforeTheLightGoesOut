@@ -13,7 +13,6 @@ using Scene = UnityEditor.SearchService.Scene;
 public class PlayerController2D : MonoBehaviour
 {
     [SerializeField] private Vector2Variable playerPosition;
-    [SerializeField] public LoadSceneMode mapScene;
     private PlayerInputActions playerInputActions;
     private InputAction movement;
     private Vector2 direction = Vector2.zero;
@@ -22,7 +21,6 @@ public class PlayerController2D : MonoBehaviour
     public Vector2 storedInputMovement;
     private Vector2 smoothInputMovement;
     public float movementSmoothingSpeed = 1f;
-    public GameObject map;
 
 
     private void Awake()
@@ -30,8 +28,6 @@ public class PlayerController2D : MonoBehaviour
         transform.position = playerPosition.GetVariableValue();
         playerInputActions = new PlayerInputActions();
         playerInputActions.Enable();
-
-        
         
         //walk
         playerInputActions.Player.Movement.performed += OnMovement;
@@ -52,22 +48,13 @@ public class PlayerController2D : MonoBehaviour
         //Hide
         //playerInputActions.Player.Hide.performed += GoHide;
         //playerInputActions.Player.Hide.Enable();
-
-       // open map
-        playerInputActions.Player.OpenMap.performed += mapActivated;
-        playerInputActions.Player.OpenMap.Enable();
-
-
     }
     
     //Update Loop - Used for calculating frame-based data
     void Update()
     {
-       // playerPosition.vec2Value = transform.position;
         CalculateMovementInputSmoothing();
         UpdatePlayerMovement();
-        //optimizeRendering();
-        
     }
 
     //Input's Axes values are raw
@@ -112,16 +99,5 @@ public class PlayerController2D : MonoBehaviour
         //change position from tile to tile
         
     }
-
-public void mapActivated(InputAction.CallbackContext obj)
-{
-
-
-}
-
-public void optimizeRendering()
-{
-    
-}
 
 }
