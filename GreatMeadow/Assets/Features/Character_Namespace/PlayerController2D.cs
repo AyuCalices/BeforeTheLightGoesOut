@@ -1,103 +1,112 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.PlayerLoop;
-using UnityEngine.SceneManagement;
 using Utils.Variables_Namespace;
-using Random = UnityEngine.Random;
-using Scene = UnityEditor.SearchService.Scene;
 
-public class PlayerController2D : MonoBehaviour
+namespace Features.Character_Namespace
 {
-    [SerializeField] private Vector2Variable playerPosition;
-    private PlayerInputActions playerInputActions;
-    private InputAction movement;
-    private Vector2 direction = Vector2.zero;
-    public float speed = 0.01f;
-    public Rigidbody2D playerRB;
-    public Vector2 storedInputMovement;
-    private Vector2 smoothInputMovement;
-    public float movementSmoothingSpeed = 1f;
-
-
-    private void Awake()
+    public class PlayerController2D : MonoBehaviour
     {
-        transform.position = playerPosition.GetVariableValue();
-        playerInputActions = new PlayerInputActions();
-        playerInputActions.Enable();
-        
-        //walk
-        playerInputActions.Player.Movement.performed += OnMovement;
-        playerInputActions.Player.Movement.started += OnMovement;
-        playerInputActions.Player.Movement.canceled += OnMovement;
-    }
+        [SerializeField] private Vector2Variable playerPosition;
+        [SerializeField] private float speed = 0.01f;
+        [SerializeField] private Vector2 storedInputMovement;
+        [SerializeField] private float movementSmoothingSpeed = 1f;
+        private PlayerInputActions playerInputActions;
+        private InputAction movement;
+        private Vector2 smoothInputMovement;
+        private Animator animator;
+        private Vector2 inputMovement;
+        private static readonly int HorizontalMovement = Animator.StringToHash("Horizontal");
+        private static readonly int VerticalMovement = Animator.StringToHash("Vertical");
+        private static readonly int Speed = Animator.StringToHash("Speed");
+        private static readonly int LastMoveX = Animator.StringToHash("LastMoveX");
+        private static readonly int LastMoveY = Animator.StringToHash("LastMoveY");
 
-    private void OnEnable()
-    {
-        //Move
-        movement = playerInputActions.Player.Movement;
-        movement.Enable();
-        
-        //Pick Up
-        playerInputActions.Player.PickUp.performed += PickItUp;
-        playerInputActions.Player.PickUp.Enable();
 
-        //Hide
-        //playerInputActions.Player.Hide.performed += GoHide;
-        //playerInputActions.Player.Hide.Enable();
-    }
+        private void Awake()
+        {
+            transform.position = playerPosition.GetVariableValue();
+            playerInputActions = new PlayerInputActions();
+            playerInputActions.Enable();
+            animator = GetComponent<Animator>();
+
+            //walk
+            playerInputActions.Player.Movement.performed += OnMovement;
+            playerInputActions.Player.Movement.started += OnMovement;
+            playerInputActions.Player.Movement.canceled += OnMovement;
+        }
+
+        private void OnEnable()
+        {
+            //Move
+            movement = playerInputActions.Player.Movement;
+            movement.Enable();
+        
+            //Pick Up
+            playerInputActions.Player.PickUp.performed += PickItUp;
+            playerInputActions.Player.PickUp.Enable();
+
+            //Hide
+            //playerInputActions.Player.Hide.performed += GoHide;
+            //playerInputActions.Player.Hide.Enable();
+        }
     
-    //Update Loop - Used for calculating frame-based data
-    void Update()
-    {
-        CalculateMovementInputSmoothing();
-        UpdatePlayerMovement();
-    }
+        //Update Loop - Used for calculating frame-based data
+        private void Update()
+        {
+            CalculateMovementInputSmoothing();
+            UpdatePlayerMovement();
+        }
 
-    //Input's Axes values are raw
-    void CalculateMovementInputSmoothing()
-    {
+        //Input's Axes values are raw
+        private void CalculateMovementInputSmoothing()
+        {
+            smoothInputMovement = Vector2.Lerp(smoothInputMovement, storedInputMovement, Time.deltaTime * movementSmoothingSpeed);
+        }
+
+        private void UpdatePlayerMovement()
+        {
+            Vector2 movement = smoothInputMovement * speed * Time.deltaTime;
+            Vector2 playerPosition = transform.position;
+            playerPosition += movement;
+            transform.position = playerPosition;
         
-        smoothInputMovement = Vector2.Lerp(smoothInputMovement, storedInputMovement, Time.deltaTime * movementSmoothingSpeed);
+            //Set animation to movement
+            animator.SetFloat(HorizontalMovement, GetInputMovement().x);
+            animator.SetFloat(VerticalMovement, GetInputMovement().y);
+            animator.SetFloat(Speed, GetInputMovement().sqrMagnitude);
+            //Get into idle position
+            if (GetInputMovement().x == 1 || GetInputMovement().x == -1 || GetInputMovement().y == 1 || GetInputMovement().y == -1)
+            {
+                animator.SetFloat(LastMoveX, GetInputMovement().x);
+                animator.SetFloat(LastMoveY, GetInputMovement().y);
+            }
+        }
 
-    }
+        private void OnDisable()
+        {
+            movement.Disable();
+            playerInputActions.Player.PickUp.Disable();
+        }
 
-    void UpdatePlayerMovement()
-    {
-        Vector2 movement = smoothInputMovement * speed * Time.deltaTime;
-        Vector2 playerPosition = transform.position;
-        playerPosition += movement;
-        transform.position = playerPosition;
-        //Debug.Log(transform.position);
-    }
+        private void OnMovement(InputAction.CallbackContext context)
+        {
+            inputMovement = context.ReadValue<Vector2>();
+            storedInputMovement = new Vector2(inputMovement.x, inputMovement.y);
+        }
 
-    private void OnDisable()
-    {
-        movement.Disable();
-        playerInputActions.Player.PickUp.Disable();
-    }
-
-    public void OnMovement(InputAction.CallbackContext context)
-    {
-        Vector2 inputMovement = context.ReadValue<Vector2>();
-        storedInputMovement = new Vector2(inputMovement.x, inputMovement.y);
-        Debug.Log(inputMovement);
-    }
+        private Vector2 GetInputMovement()
+        {
+            return inputMovement;
+        }
     
-    /**
+        /**
      * Method for item pick up
      */
-    public void PickItUp(InputAction.CallbackContext obj)
-    {
-        Debug.Log("PICK UP");
-        //Add life to health bar
-        LeanTween.moveLocal(gameObject, new Vector2(0, 0),5f);
-        //current position > determine which direction she can move to
-        //change position from tile to tile
-        
-    }
+        private void PickItUp(InputAction.CallbackContext obj)
+        {
+            Debug.Log("Pick Up not implemented yet");
+            //Add life to health bar when picking up items
+        }
 
+    }
 }
