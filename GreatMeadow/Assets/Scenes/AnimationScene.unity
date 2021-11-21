@@ -347,13 +347,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPosition: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
-  mapScene: 0
   speed: 0.3
-  playerRB: {fileID: 344043542}
+  playerRb: {fileID: 0}
   storedInputMovement: {x: 0, y: 0}
   movementSmoothingSpeed: 10
-  animator: {fileID: 344043539}
-  map: {fileID: 320212782}
 --- !u!61 &344043544
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -18,11 +18,11 @@ public class PlayerController2D : MonoBehaviour
     private InputAction movement;
     private Vector2 direction = Vector2.zero;
     public float speed = 0.01f;
-    public Rigidbody2D playerRB;
+    public Rigidbody2D playerRb;
     public Vector2 storedInputMovement;
     private Vector2 smoothInputMovement;
     public float movementSmoothingSpeed = 1f;
-    public Animator animator;
+    private Animator animator;
     private Vector2 inputMovement;
 
 
@@ -31,6 +31,7 @@ public class PlayerController2D : MonoBehaviour
         transform.position = playerPosition.GetVariableValue();
         playerInputActions = new PlayerInputActions();
         playerInputActions.Enable();
+        animator = GetComponent<Animator>();
 
         //walk
         playerInputActions.Player.Movement.performed += OnMovement;
@@ -72,16 +73,18 @@ public class PlayerController2D : MonoBehaviour
         Vector2 playerPosition = transform.position;
         playerPosition += movement;
         transform.position = playerPosition;
+        
         //Set animation to movement
         animator.SetFloat("Time", Time.deltaTime );
         animator.SetFloat("Horizontal", getInputMovement().x);
         animator.SetFloat("Vertical", getInputMovement().y);
-        //fill array with last two positions, remove. if zero gets hit, get the last number back
-        
-        //animator.SetFloat("DirectionHorizontal", getInputMovement().y);
-        //animator.SetFloat("DirectionVertical", getInputMovement().y);
         animator.SetFloat("Speed", getInputMovement().sqrMagnitude);
-        //Debug.Log(transform.position);
+        //Get into idle position
+        if (getInputMovement().x == 1 || getInputMovement().x == -1 || getInputMovement().y == 1 || getInputMovement().y == -1)
+        {
+            animator.SetFloat("LastMoveX", getInputMovement().x);
+            animator.SetFloat("LastMoveY", getInputMovement().y);
+        }
     }
 
     private void OnDisable()
@@ -94,7 +97,6 @@ public class PlayerController2D : MonoBehaviour
     {
         inputMovement = context.ReadValue<Vector2>();
         storedInputMovement = new Vector2(inputMovement.x, inputMovement.y);
-        Debug.Log(inputMovement);
     }
 
     private Vector2 getInputMovement()
