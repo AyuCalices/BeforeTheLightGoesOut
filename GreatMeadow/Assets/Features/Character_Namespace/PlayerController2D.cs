@@ -105,7 +105,7 @@ namespace Features.Character_Namespace
         private void PickItUp(InputAction.CallbackContext obj)
         {
             Debug.Log("Pick Up not implemented yet");
-            LeanTween.moveLocal(gameObject, new Vector2(0, 0),5f);
+            //LeanTween.moveLocal(gameObject, new Vector2(0, 0),5f);
             //Add life to health bar when picking up items
         }
 
