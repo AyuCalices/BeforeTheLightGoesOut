@@ -53,12 +53,6 @@ public class MapController : MonoBehaviour
         
     }
 
-    
-    void Update()
-    {
-
-    }
-
     private void OnEnable()
     {
         // open map
@@ -66,17 +60,8 @@ public class MapController : MonoBehaviour
         playerInputActions.Player.OpenMap.Enable();
     }
 
-
-    private void OnDisable()
-    {
-
-    }
-
     public void mapActivated(InputAction.CallbackContext obj)
     {
-        Debug.Log("map");
-
-
         if (this.child.activeSelf == true)
         {
             this.child.SetActive(false);
