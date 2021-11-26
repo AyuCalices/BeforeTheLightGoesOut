@@ -22,20 +22,20 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Hide",
-                    "type": "Button",
-                    "id": "f288c0d2-6b47-4593-b37d-24200e02af30",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Open Map",
                     "type": "Button",
                     "id": "b5068150-f111-47ef-a692-11a74244d1ea",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "6e562cc8-aa07-4f41-8ecb-703dd5b7fcf8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
@@ -129,34 +129,23 @@
                 },
                 {
                     "name": "",
-                    "id": "f49cc3bc-2960-4d82-a50e-175f9b982bde",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Hide",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "509541c2-6735-44d2-9483-89b1945945bc",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Hide",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "04bbe5b0-1531-468b-a9b9-8b41415b8ba4",
                     "path": "<Keyboard>/m",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Open Map",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1b8f0863-c8db-4eaa-a9ea-c4962319a8f4",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

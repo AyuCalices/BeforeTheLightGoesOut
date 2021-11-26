@@ -12,6 +12,8 @@ namespace Features.Character_Namespace
         [SerializeField] private float movementSmoothingSpeed = 1f;
         private PlayerInputActions playerInputActions;
         private InputAction movement;
+        private InputAction sprinting; //TODO remove?
+        private bool isRunning;
         private Vector2 smoothInputMovement;
         private Animator animator;
         private Vector2 inputMovement;
@@ -33,6 +35,11 @@ namespace Features.Character_Namespace
             playerInputActions.Player.Movement.performed += OnMovement;
             playerInputActions.Player.Movement.started += OnMovement;
             playerInputActions.Player.Movement.canceled += OnMovement;
+            
+            //run
+            playerInputActions.Player.Run.performed += OnRun;
+            playerInputActions.Player.Run.started += OnRun;
+            playerInputActions.Player.Run.canceled += OnRun;
         }
 
         private void OnEnable()
@@ -40,14 +47,14 @@ namespace Features.Character_Namespace
             //Move
             movement = playerInputActions.Player.Movement;
             movement.Enable();
-        
+
+            //Run
+            sprinting = playerInputActions.Player.Run;
+            sprinting.Enable();
+            
             //Pick Up
             playerInputActions.Player.PickUp.performed += PickItUp;
             playerInputActions.Player.PickUp.Enable();
-
-            //Hide
-            //playerInputActions.Player.Hide.performed += GoHide;
-            //playerInputActions.Player.Hide.Enable();
         }
     
         //Update Loop - Used for calculating frame-based data
@@ -69,19 +76,30 @@ namespace Features.Character_Namespace
             Vector2 playerPosition = transform.position;
             playerPosition += movement;
             transform.position = playerPosition;
-        
-            //Set animation to movement
-            animator.SetFloat(HorizontalMovement, GetInputMovement().x);
-            animator.SetFloat(VerticalMovement, GetInputMovement().y);
-            animator.SetFloat(Speed, GetInputMovement().sqrMagnitude);
-            //Get into idle position
-            if (GetInputMovement().x == 1 || GetInputMovement().x == -1 || GetInputMovement().y == 1 || GetInputMovement().y == -1)
+            SetAnimationMovement();
+            
+            //TODO: Set animation to sprinting
+            if (isRunning)
             {
-                animator.SetFloat(LastMoveX, GetInputMovement().x);
-                animator.SetFloat(LastMoveY, GetInputMovement().y);
+                speed = 0.8f;
             }
+            else
+            {
+                Debug.Log("isRunning is false 0.4");
+                speed = 0.4f;
+                isRunning = false;
+                
+            }
+           
+                //Timer timer = new Timer()
+                //timer.start
+                //if (timer = 0 or sprinting.released) { speed = 0.4 }
+                //if(sprinting.triggered) {timer.start}
+               
+                //TODO: pick up item to boost timer time
         }
 
+        //Unused method
         private void OnDisable()
         {
             movement.Disable();
@@ -94,20 +112,41 @@ namespace Features.Character_Namespace
             storedInputMovement = new Vector2(inputMovement.x, inputMovement.y);
         }
 
+        private void OnRun(InputAction.CallbackContext context)
+        {
+            isRunning = true;
+        }
+
         private Vector2 GetInputMovement()
         {
             return inputMovement;
         }
+        
+       
+
+        private void SetAnimationMovement()
+        {
+            //Set animation to movement
+            animator.SetFloat(HorizontalMovement, GetInputMovement().x);
+            animator.SetFloat(VerticalMovement, GetInputMovement().y);
+            animator.SetFloat(Speed, GetInputMovement().sqrMagnitude);
+            //Get into idle position
+            if (GetInputMovement().x == 1 || GetInputMovement().x == -1 || GetInputMovement().y == 1 || GetInputMovement().y == -1)
+            {
+                animator.SetFloat(LastMoveX, GetInputMovement().x);
+                animator.SetFloat(LastMoveY, GetInputMovement().y);
+            }
+        } 
+        
     
         /**
-     * Method for item pick up
-     */
+        * Method for picking up items
+        */
         private void PickItUp(InputAction.CallbackContext obj)
         {
             Debug.Log("Pick Up not implemented yet");
             //LeanTween.moveLocal(gameObject, new Vector2(0, 0),5f);
             //Add life to health bar when picking up items
         }
-
     }
 }

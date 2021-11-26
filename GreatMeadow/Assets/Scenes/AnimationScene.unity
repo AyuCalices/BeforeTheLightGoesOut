@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPosition: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
-  speed: 0.3
+  speed: 0.4
   storedInputMovement: {x: 0, y: 0}
   movementSmoothingSpeed: 10
 --- !u!61 &344043544
