@@ -25,6 +25,7 @@ namespace Features.Character_Namespace
         private void Awake()
         {
             transform.position = playerPosition.GetVariableValue();
+            //Debug.Log("player pos variable value: " + playerPosition.GetVariableValue());
             playerInputActions = new PlayerInputActions();
             playerInputActions.Enable();
             animator = GetComponent<Animator>();
@@ -98,7 +99,7 @@ namespace Features.Character_Namespace
         {
             return inputMovement;
         }
-    
+
         /**
      * Method for item pick up
      */
