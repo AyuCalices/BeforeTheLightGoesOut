@@ -26,6 +26,8 @@ public class MapController : MonoBehaviour
     
     private PlayerInputActions playerInputActions;
     private InputAction mapHandling;
+    public List<GameObject> shownTiles;
+    [SerializeField] private IntVariable tilePos;
 
     
     private void DrawTiles()
@@ -34,16 +36,29 @@ public class MapController : MonoBehaviour
         {
             for (int x = 0; x < width.intValue; x++)
             {
+                int pos = y * width.intValue + x;
                 Vector2Int gridPosition = new Vector2Int(x, y);
                 mapTile.InstantiateTileAt(gridPosition, mapCanv);
+                shownTiles.Add(mapCanv.GetChild(pos).gameObject);
             }
         }
     }
     
     private void Start()
     {
+        shownTiles = new List<GameObject>();
+
         DrawTiles();
 
+        for (int n = 0; n < width.intValue*height.intValue; n++)
+        {
+        shownTiles[n].SetActive(false);
+        }
+    }
+
+    private void Update()
+    {
+        shownTiles[tilePos.intValue].SetActive(true);
     }
 
     private void Awake()

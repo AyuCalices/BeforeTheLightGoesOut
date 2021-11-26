@@ -241,6 +241,8 @@ MonoBehaviour:
   mapCanv: {fileID: 1585842945}
   mapTile: {fileID: 11400000, guid: a776cdb10003d9f4d9528a765c36f756, type: 2}
   child: {fileID: 1585842944}
+  shownTiles: []
+  tilePos: {fileID: 11400000, guid: f6327b936cbdba94e9e5df1c002016bc, type: 2}
 --- !u!1 &1585842944
 GameObject:
   m_ObjectHideFlags: 0

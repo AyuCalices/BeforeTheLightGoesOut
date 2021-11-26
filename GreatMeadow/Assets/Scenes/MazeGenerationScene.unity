@@ -225,6 +225,9 @@ MonoBehaviour:
   west: {fileID: 11400000, guid: 763bc6aa14a1b9446aad83f5407ca713, type: 2}
   tiles: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}
   playerSpawnPos: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
+  tilePos: {fileID: 11400000, guid: f6327b936cbdba94e9e5df1c002016bc, type: 2}
+  spawnTiles: []
+  renderSize: 2
 --- !u!4 &666877538
 Transform:
   m_ObjectHideFlags: 0

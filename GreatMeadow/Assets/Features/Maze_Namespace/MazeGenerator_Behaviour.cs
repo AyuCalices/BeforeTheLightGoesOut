@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Features.Maze_Namespace.Tiles;
 using UnityEngine;
 using Utils.Variables_Namespace;
+using Random = UnityEngine.Random;
 
 namespace Features.Maze_Namespace
 {
@@ -36,12 +38,17 @@ namespace Features.Maze_Namespace
         [Tooltip("List of tiles to be spawned.")]
         [SerializeField] private TileList_SO tiles;
         
-        [Header("Spawning")]
-        [Tooltip("Variable for player spawn position.")]
+        [Header("Positioning")]
+        [Tooltip("Variable for spawning player and working with player position.")]
         [SerializeField] private Vector2Variable playerSpawnPos;
+        [Tooltip("Variable for player position in tile.")]
+        [SerializeField] private IntVariable tilePos;
+
 
         private Tile[] _tiles;
         private List<Edge> _edges;
+        public List<GameObject> spawnTiles;
+        [SerializeField] private int renderSize = 2;
 
         public void Awake()
         {
@@ -55,18 +62,31 @@ namespace Features.Maze_Namespace
             // randomize player starting position
             playerSpawnPos.vec2Value = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
 
+            tilePos.intValue = (int) (playerSpawnPos.vec2Value.y + 0.5) * width.intValue + (int) (playerSpawnPos.vec2Value.x + 0.5);
+            
             // generate the Maze
             KruskalAlgorithm();
             
             // Set tiles for global use
             tiles.SetTiles(_tiles);
             
+            spawnTiles = new List<GameObject>();
+            
             // draw the maze (tile objects)
             DrawTiles();
             
+            for (int n = 0; n < width.intValue*height.intValue; n++)
+            {
+                spawnTiles[n].SetActive(false);
+            }
             
-
         }
+
+        public void Update()
+        {
+            tilePos.intValue = (int) (playerSpawnPos.vec2Value.y + 0.5) * width.intValue + (int) (playerSpawnPos.vec2Value.x + 0.5);
+            OptimizeRender();
+        } 
 
         #region Kruskal Algorithm
     
@@ -92,7 +112,9 @@ namespace Features.Maze_Namespace
             _edges = new List<Edge>();
             GenerateEdgesVertical();
             GenerateEdgesHorizontal();
-        
+
+            
+            
             //Some Kruskal-Magic
             int loopNum = _edges.Count;
             for (int i = 0; i < loopNum; i++)
@@ -210,10 +232,41 @@ namespace Features.Maze_Namespace
             {
                 for (int x = 0; x < width.intValue; x++)
                 {
+                    int pos = y * width.intValue + x;
+                    
                     Vector2Int gridPosition = new Vector2Int(x, y);
                     tile.InstantiateTileAt(gridPosition, tileParentTransform, grassSpriteParentTransform);
+                    spawnTiles.Add(tileParentTransform.GetChild(pos).gameObject);
                 }
             }
+        }
+
+        private void OptimizeRender()
+        {
+            //Debug.Log((int) tilePos.vec2Value.x + "  /" + (int) tilePos.vec2Value.y);
+            
+            for (int x = -renderSize; x <= renderSize; x++)
+            {
+                for (int y = -renderSize; y <= renderSize; y++)
+                {
+                    int renderPos = tilePos.intValue + x + y * width.intValue;
+                    
+                    if (renderPos >= 0 && renderPos <= width.intValue*height.intValue)
+                    {
+                        spawnTiles[renderPos].gameObject.SetActive(true);
+                        if (renderPos >= 1 && renderPos <= width.intValue * height.intValue-width.intValue)
+                        {
+                            if (x == -renderSize) spawnTiles[renderPos - 1].gameObject.SetActive(false);
+                            if (x == renderSize) spawnTiles[renderPos + 1].gameObject.SetActive(false);
+                            if (y == -renderSize)
+                                spawnTiles[renderPos - (1 * width.intValue)].gameObject.SetActive(false);
+                            if (y == renderSize) spawnTiles[renderPos + (1 * width.intValue)].gameObject.SetActive(false);
+                        }
+                    }
+                    
+                }
+            }
+            
         }
 
         [System.Serializable]
