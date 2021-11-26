@@ -11,8 +11,6 @@ using Random = UnityEngine.Random;
 using Scene = UnityEditor.SearchService.Scene;
 using Features.Maze_Namespace.Tiles;
 
-
-
 public class MapController : MonoBehaviour
 {
     [Tooltip("Width of generated maze in number of tiles (x-axis).")]
@@ -20,13 +18,19 @@ public class MapController : MonoBehaviour
     [Tooltip("Height of generated maze in number of tiles (y-axis).")]
     [SerializeField] private IntVariable height;
 
-    [SerializeField] private Transform mapCanv;
-    [SerializeField] private MiniMapTileGenerator_SO mapTile;
-    [SerializeField]private GameObject child;
+    [Tooltip("Parent transform of all map tiles children.")]
+    [SerializeField] private Transform mapParent;
     
+    [Tooltip("Grants access to the generation of the map.")]
+    [SerializeField] private MiniMapTileGenerator_SO mapTile;
+
     private PlayerInputActions playerInputActions;
     private InputAction mapHandling;
-    public List<GameObject> shownTiles;
+    
+    // list to access game object (de-)activation as part of map progression
+    private List<GameObject> shownTiles;
+    
+    // access to the player positions' tile number
     [SerializeField] private IntVariable tilePos;
 
     
@@ -36,10 +40,17 @@ public class MapController : MonoBehaviour
         {
             for (int x = 0; x < width.intValue; x++)
             {
+                // store position to access child index later
                 int pos = y * width.intValue + x;
+                
+                //
                 Vector2Int gridPosition = new Vector2Int(x, y);
-                mapTile.InstantiateTileAt(gridPosition, mapCanv);
-                shownTiles.Add(mapCanv.GetChild(pos).gameObject);
+                
+                // instantiate map tile at fitting position as child of the map canvas
+                mapTile.InstantiateTileAt(gridPosition, mapParent);
+                
+                // add the
+                shownTiles.Add(mapParent.GetChild(pos).gameObject);
             }
         }
     }
@@ -77,13 +88,13 @@ public class MapController : MonoBehaviour
 
     public void mapActivated(InputAction.CallbackContext obj)
     {
-        if (this.child.activeSelf == true)
+        if (mapParent.gameObject.activeSelf == true)
         {
-            this.child.SetActive(false);
+            mapParent.gameObject.SetActive(false);
         }
         else
         {
-            this.child.SetActive(true);
+            mapParent.gameObject.SetActive(true);
         }
 
     }

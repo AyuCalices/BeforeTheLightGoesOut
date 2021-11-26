@@ -48,6 +48,7 @@ namespace Features.Maze_Namespace
         private Tile[] _tiles;
         private List<Edge> _edges;
         public List<GameObject> spawnTiles;
+        public List<GameObject> grassTiles;
         [SerializeField] private int renderSize = 2;
 
         public void Awake()
@@ -78,6 +79,7 @@ namespace Features.Maze_Namespace
             for (int n = 0; n < width.intValue*height.intValue; n++)
             {
                 spawnTiles[n].SetActive(false);
+                grassTiles[n].SetActive(false);
             }
             
         }
@@ -148,8 +150,7 @@ namespace Features.Maze_Namespace
                 edgeIndex++;
             }
         }
-    
-    
+        
         /// <summary>
         ///   ________
         ///   | Tile |
@@ -237,6 +238,7 @@ namespace Features.Maze_Namespace
                     Vector2Int gridPosition = new Vector2Int(x, y);
                     tile.InstantiateTileAt(gridPosition, tileParentTransform, grassSpriteParentTransform);
                     spawnTiles.Add(tileParentTransform.GetChild(pos).gameObject);
+                    grassTiles.Add(grassSpriteParentTransform.GetChild(pos).gameObject);
                 }
             }
         }
@@ -254,6 +256,9 @@ namespace Features.Maze_Namespace
                     if (renderPos >= 0 && renderPos <= width.intValue*height.intValue)
                     {
                         spawnTiles[renderPos].gameObject.SetActive(true);
+                        grassTiles[renderPos].gameObject.SetActive(true);
+                        
+                        /*
                         if (renderPos >= 1 && renderPos <= width.intValue * height.intValue-width.intValue)
                         {
                             if (x == -renderSize) spawnTiles[renderPos - 1].gameObject.SetActive(false);
@@ -262,6 +267,7 @@ namespace Features.Maze_Namespace
                                 spawnTiles[renderPos - (1 * width.intValue)].gameObject.SetActive(false);
                             if (y == renderSize) spawnTiles[renderPos + (1 * width.intValue)].gameObject.SetActive(false);
                         }
+                        */
                     }
                     
                 }
