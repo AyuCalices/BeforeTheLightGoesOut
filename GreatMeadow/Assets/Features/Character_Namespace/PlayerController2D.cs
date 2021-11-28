@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utils.Event_Namespace;
 using Utils.Variables_Namespace;
 
 namespace Features.Character_Namespace
@@ -20,11 +22,15 @@ namespace Features.Character_Namespace
         private static readonly int Speed = Animator.StringToHash("Speed");
         private static readonly int LastMoveX = Animator.StringToHash("LastMoveX");
         private static readonly int LastMoveY = Animator.StringToHash("LastMoveY");
-
+        
+        public void SetPlayerPosition()
+        {
+            transform.position = playerPosition.GetVariableValue();
+        }
 
         private void Awake()
         {
-            transform.position = playerPosition.GetVariableValue();
+            //Debug.Log("player pos variable value: " + playerPosition.GetVariableValue());
             playerInputActions = new PlayerInputActions();
             playerInputActions.Enable();
             animator = GetComponent<Animator>();
@@ -98,7 +104,7 @@ namespace Features.Character_Namespace
         {
             return inputMovement;
         }
-    
+
         /**
      * Method for item pick up
      */
