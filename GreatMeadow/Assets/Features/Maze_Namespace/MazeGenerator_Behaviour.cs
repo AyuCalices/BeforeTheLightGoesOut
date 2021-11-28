@@ -2,6 +2,7 @@
 using Features.Character_Namespace;
 using Features.Maze_Namespace.Tiles;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utils.Event_Namespace;
 using Utils.Variables_Namespace;
 
@@ -42,7 +43,8 @@ namespace Features.Maze_Namespace
         [Tooltip("Variable for player spawn position.")]
         [SerializeField] private Vector2Variable playerSpawnPos;
 
-        [SerializeField] private GameEvent onMazeGenerationComplete;
+        [SerializeField] private GameEvent onPlaceCharacter;
+        [SerializeField] private GameEvent onPlaceHatch;
         
 
         private Tile[] _tiles;
@@ -71,7 +73,8 @@ namespace Features.Maze_Namespace
             // draw the maze (tile objects)
             DrawTiles();
             
-            onMazeGenerationComplete.Raise();
+            onPlaceCharacter.Raise();
+            onPlaceHatch.Raise();
         }
 
         #region Kruskal Algorithm

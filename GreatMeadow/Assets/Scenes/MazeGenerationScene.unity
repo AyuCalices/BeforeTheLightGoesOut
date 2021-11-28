@@ -225,7 +225,8 @@ MonoBehaviour:
   west: {fileID: 11400000, guid: 763bc6aa14a1b9446aad83f5407ca713, type: 2}
   tiles: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}
   playerSpawnPos: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
-  onMazeGenerationComplete: {fileID: 11400000, guid: ed0c1fc5e16792143aecbfb50ac51873, type: 2}
+  onPlaceCharacter: {fileID: 11400000, guid: ed0c1fc5e16792143aecbfb50ac51873, type: 2}
+  onPlaceHatch: {fileID: 11400000, guid: 52c84aa8dbc68864bb1c8addd8f0da7d, type: 2}
 --- !u!4 &666877538
 Transform:
   m_ObjectHideFlags: 0

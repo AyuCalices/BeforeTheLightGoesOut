@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class MazeGoal : MonoBehaviour
     [SerializeField] private Vector2Variable playerSpawnPos;
     [SerializeField] private IntVariable width;
     [SerializeField] private IntVariable height;
+
 
     /**
     * Set the Hatch Position at the opposite of the starting position.
