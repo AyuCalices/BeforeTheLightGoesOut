@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Features.Character_Namespace;
 using UnityEngine;
 using Utils.Variables_Namespace;
 
-public class MazeGoal : MonoBehaviour
+public class MazeGoal : InteractableBehaviour
 {
     [SerializeField] private Vector2Variable hatchPosition;
     [SerializeField] private Vector2Variable hatchSpawnPos;
@@ -23,8 +24,18 @@ public class MazeGoal : MonoBehaviour
         int endX = width.intValue - startX; 
         int endY = height.intValue - startY;
 
+        //hatchSpawnPos.vec2Value = playerSpawnPos.vec2Value;
         hatchSpawnPos.vec2Value = new Vector2(endX, endY);
         Debug.Log("hatch pos variable value: " + hatchSpawnPos.GetVariableValue());
         transform.position = hatchPosition.vec2Value;
+    }
+
+    public override void Interact(PlayerController2D playerController)
+    {
+        //that happens when you interact with the hatch!
+        throw new NotImplementedException();
+        //play animation
+        //show win screen
+        //maybe play sound
     }
 }

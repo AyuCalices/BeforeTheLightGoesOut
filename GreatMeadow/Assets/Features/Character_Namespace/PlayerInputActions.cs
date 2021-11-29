@@ -27,7 +27,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Pick Up"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""bb34e452-212e-4428-a137-891432db52e2"",
                     ""expectedControlType"": ""Button"",
@@ -121,11 +121,11 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""614e37da-168d-4da7-abc7-fd1102166379"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pick Up"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -136,7 +136,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pick Up"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -181,7 +181,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_PickUp = m_Player.FindAction("Pick Up", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Hide = m_Player.FindAction("Hide", throwIfNotFound: true);
         m_Player_OpenMap = m_Player.FindAction("Open Map", throwIfNotFound: true);
     }
@@ -234,7 +234,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_PickUp;
+    private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Hide;
     private readonly InputAction m_Player_OpenMap;
     public struct PlayerActions
@@ -242,7 +242,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @Hide => m_Wrapper.m_Player_Hide;
         public InputAction @OpenMap => m_Wrapper.m_Player_OpenMap;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -257,9 +257,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @PickUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickUp;
-                @PickUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickUp;
-                @PickUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickUp;
+                @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Hide.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHide;
                 @Hide.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHide;
                 @Hide.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHide;
@@ -273,9 +273,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
-                @PickUp.started += instance.OnPickUp;
-                @PickUp.performed += instance.OnPickUp;
-                @PickUp.canceled += instance.OnPickUp;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
                 @Hide.started += instance.OnHide;
                 @Hide.performed += instance.OnHide;
                 @Hide.canceled += instance.OnHide;
@@ -289,7 +289,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnPickUp(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
         void OnHide(InputAction.CallbackContext context);
         void OnOpenMap(InputAction.CallbackContext context);
     }

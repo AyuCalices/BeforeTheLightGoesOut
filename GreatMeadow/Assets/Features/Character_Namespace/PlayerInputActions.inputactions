@@ -14,7 +14,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Pick Up",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "bb34e452-212e-4428-a137-891432db52e2",
                     "expectedControlType": "Button",
@@ -108,11 +108,11 @@
                 {
                     "name": "",
                     "id": "614e37da-168d-4da7-abc7-fd1102166379",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pick Up",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -123,7 +123,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pick Up",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

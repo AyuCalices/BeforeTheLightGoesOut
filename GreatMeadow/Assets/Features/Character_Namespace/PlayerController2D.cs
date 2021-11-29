@@ -22,6 +22,7 @@ namespace Features.Character_Namespace
         private static readonly int Speed = Animator.StringToHash("Speed");
         private static readonly int LastMoveX = Animator.StringToHash("LastMoveX");
         private static readonly int LastMoveY = Animator.StringToHash("LastMoveY");
+        private InteractableBehaviour currentInteractable;
         
         public void SetPlayerPosition()
         {
@@ -48,8 +49,8 @@ namespace Features.Character_Namespace
             movement.Enable();
         
             //Pick Up
-            playerInputActions.Player.PickUp.performed += PickItUp;
-            playerInputActions.Player.PickUp.Enable();
+            playerInputActions.Player.Interact.performed += Interact;
+            playerInputActions.Player.Interact.Enable();
 
             //Hide
             //playerInputActions.Player.Hide.performed += GoHide;
@@ -91,7 +92,7 @@ namespace Features.Character_Namespace
         private void OnDisable()
         {
             movement.Disable();
-            playerInputActions.Player.PickUp.Disable();
+            playerInputActions.Player.Interact.Disable();
         }
 
         private void OnMovement(InputAction.CallbackContext context)
@@ -104,15 +105,45 @@ namespace Features.Character_Namespace
         {
             return inputMovement;
         }
+        
+        /**
+         * Trigger event when player gets near the hatch.
+         */
+        private void OnTriggerEnter2D(Collider2D collider)
+        {
+            currentInteractable = collider.GetComponent<InteractableBehaviour>();
+            if (currentInteractable != null)
+            {
+                Debug.Log(collider.gameObject.name + " Enter");
+                playerInputActions.Player.Interact.performed += OnPerformInteraction;
+            }
+            
+        }
+        
+        private void OnTriggerExit2D(Collider2D collider)
+        {
+            if (currentInteractable != null)
+            {
+                Debug.Log(collider.gameObject.name + " Exit");
+                playerInputActions.Player.Interact.performed -= OnPerformInteraction;
+                currentInteractable = null;
+            }
+        }
 
         /**
-     * Method for item pick up
-     */
-        private void PickItUp(InputAction.CallbackContext obj)
+        * Interact with various items.
+        */
+        private void Interact(InputAction.CallbackContext obj)
         {
-            Debug.Log("Pick Up not implemented yet");
-            //LeanTween.moveLocal(gameObject, new Vector2(0, 0),5f);
-            //Add life to health bar when picking up items
+            Debug.Log("Interact not implemented yet");
+        }
+
+        /**
+         * 
+         */
+        public void OnPerformInteraction(InputAction.CallbackContext context)
+        {
+            currentInteractable.Interact(this);
         }
 
     }
