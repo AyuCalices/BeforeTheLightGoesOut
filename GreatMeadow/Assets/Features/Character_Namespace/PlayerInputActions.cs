@@ -49,6 +49,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""TestButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""809100c4-6774-4055-8deb-564728312dec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -172,6 +180,17 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""action"": ""Open Map"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f66fb8f-2233-4650-a2c2-c4f5de80890b"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TestButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -184,6 +203,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player_PickUp = m_Player.FindAction("Pick Up", throwIfNotFound: true);
         m_Player_Hide = m_Player.FindAction("Hide", throwIfNotFound: true);
         m_Player_OpenMap = m_Player.FindAction("Open Map", throwIfNotFound: true);
+        m_Player_TestButton = m_Player.FindAction("TestButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -237,6 +257,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_PickUp;
     private readonly InputAction m_Player_Hide;
     private readonly InputAction m_Player_OpenMap;
+    private readonly InputAction m_Player_TestButton;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -245,6 +266,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @PickUp => m_Wrapper.m_Player_PickUp;
         public InputAction @Hide => m_Wrapper.m_Player_Hide;
         public InputAction @OpenMap => m_Wrapper.m_Player_OpenMap;
+        public InputAction @TestButton => m_Wrapper.m_Player_TestButton;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -266,6 +288,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @OpenMap.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMap;
                 @OpenMap.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMap;
                 @OpenMap.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMap;
+                @TestButton.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTestButton;
+                @TestButton.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTestButton;
+                @TestButton.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTestButton;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -282,6 +307,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @OpenMap.started += instance.OnOpenMap;
                 @OpenMap.performed += instance.OnOpenMap;
                 @OpenMap.canceled += instance.OnOpenMap;
+                @TestButton.started += instance.OnTestButton;
+                @TestButton.performed += instance.OnTestButton;
+                @TestButton.canceled += instance.OnTestButton;
             }
         }
     }
@@ -292,5 +320,6 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnPickUp(InputAction.CallbackContext context);
         void OnHide(InputAction.CallbackContext context);
         void OnOpenMap(InputAction.CallbackContext context);
+        void OnTestButton(InputAction.CallbackContext context);
     }
 }
