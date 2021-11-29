@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Features.Character_Namespace;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 using Utils.Variables_Namespace;
 
 public class MazeGoal : InteractableBehaviour
@@ -12,6 +13,8 @@ public class MazeGoal : InteractableBehaviour
     [SerializeField] private Vector2Variable playerSpawnPos;
     [SerializeField] private IntVariable width;
     [SerializeField] private IntVariable height;
+    private Animator animator;
+    private static readonly int JumpInHatch = Animator.StringToHash("JumpInHatch");
 
 
     /**
@@ -24,17 +27,22 @@ public class MazeGoal : InteractableBehaviour
         int endX = width.intValue - startX; 
         int endY = height.intValue - startY;
 
-        //hatchSpawnPos.vec2Value = playerSpawnPos.vec2Value;
-        hatchSpawnPos.vec2Value = new Vector2(endX, endY);
+        hatchSpawnPos.vec2Value = playerSpawnPos.vec2Value;
+        //hatchSpawnPos.vec2Value = new Vector2(endX, endY);
         Debug.Log("hatch pos variable value: " + hatchSpawnPos.GetVariableValue());
         transform.position = hatchPosition.vec2Value;
     }
 
     public override void Interact(PlayerController2D playerController)
     {
-        //that happens when you interact with the hatch!
-        throw new NotImplementedException();
-        //play animation
+        Debug.Log("Jump in hatch");
+        animator = GetComponent<Animator>();
+        animator.SetTrigger(JumpInHatch);
+        playerController.GetComponent<SpriteRenderer>().enabled = false; //remove character sprite
+        //fackel radius kleiner
+        playerController.GetComponentInChildren<Light2D>().pointLightOuterRadius -= 0.1f * Time.deltaTime;
+        
+        
         //show win screen
         //maybe play sound
     }

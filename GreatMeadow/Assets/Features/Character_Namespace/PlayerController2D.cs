@@ -109,15 +109,14 @@ namespace Features.Character_Namespace
         /**
          * Trigger event when player gets near the hatch.
          */
-        private void OnTriggerEnter2D(Collider2D collider)
+        private void OnTriggerEnter2D(Collider2D collider2D)
         {
-            currentInteractable = collider.GetComponent<InteractableBehaviour>();
+            currentInteractable = collider2D.GetComponent<InteractableBehaviour>();
             if (currentInteractable != null)
             {
-                Debug.Log(collider.gameObject.name + " Enter");
+                Debug.Log(collider2D.gameObject.name + " Enter");
                 playerInputActions.Player.Interact.performed += OnPerformInteraction;
             }
-            
         }
         
         private void OnTriggerExit2D(Collider2D collider)
@@ -129,22 +128,17 @@ namespace Features.Character_Namespace
                 currentInteractable = null;
             }
         }
-
         /**
-        * Interact with various items.
-        */
-        private void Interact(InputAction.CallbackContext obj)
-        {
-            Debug.Log("Interact not implemented yet");
-        }
-
-        /**
-         * 
+         * If E is pressed, player interacts with object.
          */
         public void OnPerformInteraction(InputAction.CallbackContext context)
         {
             currentInteractable.Interact(this);
         }
-
+        
+        private void Interact(InputAction.CallbackContext obj)
+        {
+            Debug.Log("Interact not implemented yet");
+        }
     }
 }
