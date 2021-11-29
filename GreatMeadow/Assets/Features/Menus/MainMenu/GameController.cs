@@ -1,35 +1,75 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Utils.Event_Namespace;
 
 // Source: www.youtube.com/watch?v=zc8ac_qUXQY&t=643s
 
 public class GameController : MonoBehaviour
 {
+  [SerializeField] private CanvasManager canvasManager;
+  [SerializeField] private GameEvent onFadeComplete;
+  [SerializeField] private GameEvent onLoadGameScenesComplete;
+  [SerializeField] private CanvasGroup fadeMenu;
+  [SerializeField] private float fadeTime = 1f;
   
-List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
+  private List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
 
-// If "Quit" is pressed, the game will not start and we will see a message in the console that we quit the game
-  // if build is used, the game will quit
+  private void HideFadeMenu(Action onfadeCompleteAction = null)
+  {
+    LeanTween.alphaCanvas(fadeMenu, 0f, fadeTime).setOnComplete(() =>
+    {
+      fadeMenu.gameObject.SetActive(false);
+      onfadeCompleteAction?.Invoke();
+    });
+  }
+  
+  private void ShowFadeMenu(Action onCompleteAction = null)
+  {
+    fadeMenu.gameObject.SetActive(true);
+    LeanTween.alphaCanvas(fadeMenu, 1f, fadeTime).setOnComplete(onCompleteAction);
+  }
+
   public void Quit()
   {
     Debug.Log("Game Quit!");
     Application.Quit();
   }
+  
   public void LoadGameScenes()
   {
-    scenesToLoad.Add(SceneManager.LoadSceneAsync("AnimationScene",LoadSceneMode.Additive));
-    scenesToLoad.Add(SceneManager.LoadSceneAsync("MazeGenerationScene",LoadSceneMode.Additive));
-    scenesToLoad.Add(SceneManager.LoadSceneAsync("Music",LoadSceneMode.Additive));
-    scenesToLoad.Add(SceneManager.LoadSceneAsync("MapScene",LoadSceneMode.Additive));
+    ShowFadeMenu(() =>
+    {
+      canvasManager.CloseCanvas();
+      
+      scenesToLoad.Add(SceneManager.LoadSceneAsync("Music",LoadSceneMode.Additive));
+      scenesToLoad.Add(SceneManager.LoadSceneAsync("AnimationScene",LoadSceneMode.Additive));
+      scenesToLoad.Add(SceneManager.LoadSceneAsync("MazeGenerationScene",LoadSceneMode.Additive));
+      scenesToLoad.Add(SceneManager.LoadSceneAsync("MapScene",LoadSceneMode.Additive));
+
+      scenesToLoad[scenesToLoad.Count - 1].completed +=  _ =>
+      {
+        onLoadGameScenesComplete.Raise();
+        HideFadeMenu(() => onFadeComplete.Raise());
+      };
+    });
   }
+
   public void UnloadGameScenes()
   {
-    scenesToLoad.Remove(SceneManager.UnloadSceneAsync("AnimationScene"));
-    scenesToLoad.Remove(SceneManager.UnloadSceneAsync("MazeGenerationScene"));
-    scenesToLoad.Remove(SceneManager.UnloadSceneAsync("Music"));
-    scenesToLoad.Remove(SceneManager.UnloadSceneAsync("MapScene"));
+    ShowFadeMenu(() =>
+    {
+      SceneManager.UnloadSceneAsync("Music");
+      SceneManager.UnloadSceneAsync("AnimationScene");
+      SceneManager.UnloadSceneAsync("MazeGenerationScene");
+      SceneManager.UnloadSceneAsync("MapScene");
+    
+      scenesToLoad[scenesToLoad.Count - 1].completed += _ =>
+      {
+        HideFadeMenu();
+        scenesToLoad.Clear();
+      };
+    });
   }
 }
