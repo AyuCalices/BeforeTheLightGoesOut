@@ -1,7 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using Features.Character_Namespace;
 using Features.Maze_Namespace.Tiles;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Utils.Event_Namespace;
 using Utils.Variables_Namespace;
 using Random = UnityEngine.Random;
 
@@ -38,12 +41,16 @@ namespace Features.Maze_Namespace
         [Tooltip("List of tiles to be spawned.")]
         [SerializeField] private TileList_SO tiles;
         
-        [Header("Positioning")]
+        [Header("Spawning Player Start Position")]
         [Tooltip("Variable for spawning player and working with player position.")]
         [SerializeField] private Vector2Variable playerSpawnPos;
         [Tooltip("Variable for player position in tile.")]
         [SerializeField] private IntVariable tilePos;
 
+
+        [SerializeField] private GameEvent onPlaceCharacter;
+        [SerializeField] private GameEvent onPlaceHatch;
+        
 
         private Tile[] _tiles;
         private List<Edge> _edges;
@@ -76,19 +83,21 @@ namespace Features.Maze_Namespace
             // draw the maze (tile objects)
             DrawTiles();
             
+            onPlaceCharacter.Raise();
+            onPlaceHatch.Raise();
+            
             for (int n = 0; n < width.intValue*height.intValue; n++)
             {
                 spawnTiles[n].SetActive(false);
                 grassTiles[n].SetActive(false);
             }
-            
         }
 
         public void Update()
         {
             tilePos.intValue = (int) (playerSpawnPos.vec2Value.y + 0.5) * width.intValue + (int) (playerSpawnPos.vec2Value.x + 0.5);
             OptimizeRender();
-        } 
+        }
 
         #region Kruskal Algorithm
     
