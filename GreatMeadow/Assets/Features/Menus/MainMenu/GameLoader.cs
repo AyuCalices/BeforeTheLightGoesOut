@@ -6,11 +6,16 @@ using Utils.Event_Namespace;
 
 // Source: www.youtube.com/watch?v=zc8ac_qUXQY&t=643s
 
-public class GameController : MonoBehaviour
+public class GameLoader : MonoBehaviour
 {
-  [SerializeField] private CanvasManager canvasManager;
+  [SerializeField] private bool loadScenes;
+  
+  [Header("Events")]
   [SerializeField] private GameEvent onFadeComplete;
   [SerializeField] private GameEvent onLoadGameScenesComplete;
+  
+  [Header("Canvas")]
+  [SerializeField] private CanvasManager canvasManager;
   [SerializeField] private CanvasGroup fadeMenu;
   [SerializeField] private float fadeTime = 1f;
   
@@ -39,12 +44,19 @@ public class GameController : MonoBehaviour
   
   public void LoadGameScenes()
   {
+    if (!loadScenes)
+    {
+      canvasManager.CloseCanvas();
+      return;
+    }
+    
     ShowFadeMenu(() =>
     {
       canvasManager.CloseCanvas();
       
       scenesToLoad.Add(SceneManager.LoadSceneAsync("Music",LoadSceneMode.Additive));
       scenesToLoad.Add(SceneManager.LoadSceneAsync("AnimationScene",LoadSceneMode.Additive));
+      scenesToLoad.Add(SceneManager.LoadSceneAsync("HatchScene",LoadSceneMode.Additive));
       scenesToLoad.Add(SceneManager.LoadSceneAsync("MazeGenerationScene",LoadSceneMode.Additive));
       scenesToLoad.Add(SceneManager.LoadSceneAsync("MapScene",LoadSceneMode.Additive));
 
@@ -62,6 +74,7 @@ public class GameController : MonoBehaviour
     {
       SceneManager.UnloadSceneAsync("Music");
       SceneManager.UnloadSceneAsync("AnimationScene");
+      SceneManager.UnloadSceneAsync("HatchScene");
       SceneManager.UnloadSceneAsync("MazeGenerationScene");
       SceneManager.UnloadSceneAsync("MapScene");
     
