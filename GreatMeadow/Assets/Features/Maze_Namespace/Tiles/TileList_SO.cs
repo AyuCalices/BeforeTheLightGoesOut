@@ -16,7 +16,7 @@ namespace Features.Maze_Namespace.Tiles
             _tiles = tiles;
         }
 
-        public Tile GetTileAt(int position)
+        public Tile GetPosition(int position)
         {
             return _tiles[position];
         }

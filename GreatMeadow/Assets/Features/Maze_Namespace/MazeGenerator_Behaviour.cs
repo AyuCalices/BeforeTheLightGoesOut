@@ -57,6 +57,7 @@ namespace Features.Maze_Namespace
         public List<GameObject> spawnTiles;
         public List<GameObject> grassTiles;
         [SerializeField] private int renderSize = 2;
+        [SerializeField] private PositionController posControl;
 
         public void Awake()
         {
@@ -254,8 +255,24 @@ namespace Features.Maze_Namespace
 
         private void OptimizeRender()
         {
+            
+            // get a list of tiles to be rendered at the current position
+            List<Tile> tilesToRender = posControl.GetPaths(tiles.GetPosition(tilePos.intValue), renderSize);
+
+            // go through the list of tiles to be rendered
+            for (int n = 0; n <= tilesToRender.Count; n++)
+            {
+                // get the position of the tile to be rendered
+                int renderPos = tilesToRender[n].position.y * width.intValue + tilesToRender[n].position.x;
+                
+                // render the tile at the given position
+                spawnTiles[renderPos].gameObject.SetActive(true);
+
+            }
+            
             //Debug.Log((int) tilePos.vec2Value.x + "  /" + (int) tilePos.vec2Value.y);
             
+            /*
             for (int x = -renderSize; x <= renderSize; x++)
             {
                 for (int y = -renderSize; y <= renderSize; y++)
@@ -267,6 +284,7 @@ namespace Features.Maze_Namespace
                         spawnTiles[renderPos].gameObject.SetActive(true);
                         grassTiles[renderPos].gameObject.SetActive(true);
                         
+                        
                         /*
                         if (renderPos >= 1 && renderPos <= width.intValue * height.intValue-width.intValue)
                         {
@@ -277,11 +295,8 @@ namespace Features.Maze_Namespace
                             if (y == renderSize) spawnTiles[renderPos + (1 * width.intValue)].gameObject.SetActive(false);
                         }
                         */
-                    }
-                    
-                }
-            }
-            
+
+
         }
 
         [System.Serializable]
