@@ -46,12 +46,10 @@ namespace Features.Maze_Namespace
         [SerializeField] private Vector2Variable playerSpawnPos;
         [Tooltip("Variable for player position in tile.")]
         [SerializeField] private IntVariable tilePos;
-
-
+        
         [SerializeField] private GameEvent onPlaceCharacter;
         [SerializeField] private GameEvent onPlaceHatch;
         
-
         private Tile[] _tiles;
         private List<Edge> _edges;
         public List<GameObject> spawnTiles;
@@ -260,7 +258,7 @@ namespace Features.Maze_Namespace
             List<Tile> tilesToRender = posControl.GetPaths(tiles.GetPosition(tilePos.intValue), renderSize);
 
             // go through the list of tiles to be rendered
-            for (int n = 0; n <= tilesToRender.Count; n++)
+            for (int n = 0; n < tilesToRender.Count; n++)
             {
                 // get the position of the tile to be rendered
                 int renderPos = tilesToRender[n].position.y * width.intValue + tilesToRender[n].position.x;
@@ -269,33 +267,6 @@ namespace Features.Maze_Namespace
                 spawnTiles[renderPos].gameObject.SetActive(true);
 
             }
-            
-            //Debug.Log((int) tilePos.vec2Value.x + "  /" + (int) tilePos.vec2Value.y);
-            
-            /*
-            for (int x = -renderSize; x <= renderSize; x++)
-            {
-                for (int y = -renderSize; y <= renderSize; y++)
-                {
-                    int renderPos = tilePos.intValue + x + y * width.intValue;
-                    
-                    if (renderPos >= 0 && renderPos <= width.intValue*height.intValue)
-                    {
-                        spawnTiles[renderPos].gameObject.SetActive(true);
-                        grassTiles[renderPos].gameObject.SetActive(true);
-                        
-                        
-                        /*
-                        if (renderPos >= 1 && renderPos <= width.intValue * height.intValue-width.intValue)
-                        {
-                            if (x == -renderSize) spawnTiles[renderPos - 1].gameObject.SetActive(false);
-                            if (x == renderSize) spawnTiles[renderPos + 1].gameObject.SetActive(false);
-                            if (y == -renderSize)
-                                spawnTiles[renderPos - (1 * width.intValue)].gameObject.SetActive(false);
-                            if (y == renderSize) spawnTiles[renderPos + (1 * width.intValue)].gameObject.SetActive(false);
-                        }
-                        */
-
 
         }
 

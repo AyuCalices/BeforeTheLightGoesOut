@@ -23,8 +23,11 @@ namespace Features.Maze_Namespace.Tiles
             // create list of all directions of current tile
             List<Vector2Variable> tileDirections = tile.directions;
             
+            // add current tile to list
+            connectedTiles.Add(tiles.GetTileAt(tile.position.x, tile.position.y));
+            
             // go through the list of vec2s (connected floors) of the given tile
-            for (int n = 0; n <= tileDirections.Count; n++)
+            for (int n = 0; n < tileDirections.Count; n++)
             {
                 // memorize neighboring tile from given direction
                 Vector2Int neighborTile = new Vector2Int((int) (tile.position.x + tile.directions[n].vec2Value.x),
@@ -33,8 +36,6 @@ namespace Features.Maze_Namespace.Tiles
                 // add connected tile to list of connections
                 connectedTiles.Add(tiles.GetTileAt(neighborTile.x, neighborTile.y));
             }
-
-          
             
             return connectedTiles;
 
