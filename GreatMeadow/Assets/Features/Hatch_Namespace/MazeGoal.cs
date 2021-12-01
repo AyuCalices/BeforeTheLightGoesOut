@@ -1,16 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Features.Character_Namespace;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
+using Utils.Event_Namespace;
 using Utils.Variables_Namespace;
 
-public class MazeGoal : MonoBehaviour
+public class MazeGoal : InteractableBehaviour
 {
     [SerializeField] private Vector2Variable hatchPosition;
     [SerializeField] private Vector2Variable hatchSpawnPos;
     [SerializeField] private Vector2Variable playerSpawnPos;
     [SerializeField] private IntVariable width;
     [SerializeField] private IntVariable height;
+    [SerializeField] private GameEvent onLoadWinMenu;
+    private Animator animator;
+    private static readonly int JumpInHatch = Animator.StringToHash("JumpInHatch");
 
 
     /**
@@ -23,8 +29,20 @@ public class MazeGoal : MonoBehaviour
         int endX = width.intValue - startX; 
         int endY = height.intValue - startY;
 
+        //hatchSpawnPos.vec2Value = playerSpawnPos.vec2Value; //for testing
         hatchSpawnPos.vec2Value = new Vector2(endX, endY);
-        Debug.Log("hatch pos variable value: " + hatchSpawnPos.GetVariableValue());
         transform.position = hatchPosition.vec2Value;
+    }
+
+    public override void Interact(PlayerController2D playerController)
+    {
+        animator = GetComponent<Animator>();
+        animator.SetTrigger(JumpInHatch);
+        playerController.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    public void LoadWinMenu()
+    {
+        onLoadWinMenu.Raise();
     }
 }
