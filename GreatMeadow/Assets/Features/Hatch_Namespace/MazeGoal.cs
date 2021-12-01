@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Features.Character_Namespace;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using Utils.Event_Namespace;
 using Utils.Variables_Namespace;
 
 public class MazeGoal : InteractableBehaviour
@@ -13,6 +14,7 @@ public class MazeGoal : InteractableBehaviour
     [SerializeField] private Vector2Variable playerSpawnPos;
     [SerializeField] private IntVariable width;
     [SerializeField] private IntVariable height;
+    [SerializeField] private GameEvent onLoadWinMenu;
     private Animator animator;
     private static readonly int JumpInHatch = Animator.StringToHash("JumpInHatch");
 
@@ -27,23 +29,20 @@ public class MazeGoal : InteractableBehaviour
         int endX = width.intValue - startX; 
         int endY = height.intValue - startY;
 
-        hatchSpawnPos.vec2Value = playerSpawnPos.vec2Value;
-        //hatchSpawnPos.vec2Value = new Vector2(endX, endY);
-        Debug.Log("hatch pos variable value: " + hatchSpawnPos.GetVariableValue());
+        //hatchSpawnPos.vec2Value = playerSpawnPos.vec2Value; //for testing
+        hatchSpawnPos.vec2Value = new Vector2(endX, endY);
         transform.position = hatchPosition.vec2Value;
     }
 
     public override void Interact(PlayerController2D playerController)
     {
-        Debug.Log("Jump in hatch");
         animator = GetComponent<Animator>();
         animator.SetTrigger(JumpInHatch);
-        playerController.GetComponent<SpriteRenderer>().enabled = false; //remove character sprite
-        //fackel radius kleiner
-        playerController.GetComponentInChildren<Light2D>().pointLightOuterRadius -= 0.1f * Time.deltaTime;
-        
-        
-        //show win screen
-        //maybe play sound
+        playerController.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    public void LoadWinMenu()
+    {
+        onLoadWinMenu.Raise();
     }
 }

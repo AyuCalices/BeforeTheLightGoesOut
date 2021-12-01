@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils.Event_Namespace;
@@ -68,20 +69,25 @@ public class GameLoader : MonoBehaviour
     });
   }
 
-  public void UnloadGameScenes()
+  public void UnloadGameScenes(MenuType_SO menuToBeOpened)
   {
+    if (!loadScenes)
+    {
+      return;
+    }
+    
     ShowFadeMenu(() =>
     {
+      canvasManager.SwitchCanvas(menuToBeOpened);
       SceneManager.UnloadSceneAsync("Music");
       SceneManager.UnloadSceneAsync("AnimationScene");
       SceneManager.UnloadSceneAsync("HatchScene");
       SceneManager.UnloadSceneAsync("MazeGenerationScene");
       SceneManager.UnloadSceneAsync("MapScene");
-    
+      
       scenesToLoad[scenesToLoad.Count - 1].completed += _ =>
       {
-        HideFadeMenu();
-        scenesToLoad.Clear();
+        HideFadeMenu((() => scenesToLoad.Clear()));
       };
     });
   }

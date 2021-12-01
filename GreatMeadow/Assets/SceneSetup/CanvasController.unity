@@ -1009,7 +1009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e891d329728404db79b59f6bcd3c4cd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadScenes: 0
+  loadScenes: 1
   onFadeComplete: {fileID: 11400000, guid: 48684b487d3b08c48867f929348bb4ad, type: 2}
   onLoadGameScenesComplete: {fileID: 11400000, guid: 24d8377e8ebb2de488e7ce24ecad8a1c, type: 2}
   canvasManager: {fileID: 1664194535}
@@ -1045,25 +1045,13 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1664194535}
-        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
-        m_MethodName: SwitchCanvas
+      - m_Target: {fileID: 504220829}
+        m_TargetAssemblyTypeName: GameLoader, Assembly-CSharp
+        m_MethodName: UnloadGameScenes
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 1b7a6ce8e3fbe4ebfb782ac0bef0950f, type: 2}
           m_ObjectArgumentAssemblyTypeName: MenuType_SO, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 504220829}
-        m_TargetAssemblyTypeName: GameLoader, Assembly-CSharp
-        m_MethodName: UnloadGameScenes
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1085,25 +1073,13 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1664194535}
-        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
-        m_MethodName: SwitchCanvas
+      - m_Target: {fileID: 504220829}
+        m_TargetAssemblyTypeName: GameLoader, Assembly-CSharp
+        m_MethodName: UnloadGameScenes
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 7291ef442acf94970aaefc0f89117214, type: 2}
           m_ObjectArgumentAssemblyTypeName: MenuType_SO, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 504220829}
-        m_TargetAssemblyTypeName: GameLoader, Assembly-CSharp
-        m_MethodName: UnloadGameScenes
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
