@@ -7,7 +7,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 using Utils.Event_Namespace;
 using Utils.Variables_Namespace;
 
-public class MazeGoal : InteractableBehaviour
+public class Hatch : InteractableBehaviour
 {
     [SerializeField] private Vector2Variable hatchPosition;
     [SerializeField] private Vector2Variable hatchSpawnPos;

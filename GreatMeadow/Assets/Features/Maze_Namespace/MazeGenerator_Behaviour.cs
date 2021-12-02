@@ -39,12 +39,15 @@ namespace Features.Maze_Namespace
         [Tooltip("List of tiles to be spawned.")]
         [SerializeField] private TileList_SO tiles;
         
-        [Header("Spawning Player Start Position")]
+        [Header("Spawning Start Positions")]
         [Tooltip("Variable for player spawn position.")]
         [SerializeField] private Vector2Variable playerSpawnPos;
-
+        [Tooltip("Game Event for player spawn position.")]
         [SerializeField] private GameEvent onPlaceCharacter;
+        [Tooltip("Game Event for hatch spawn position.")]
         [SerializeField] private GameEvent onPlaceHatch;
+        [Tooltip("Game Event for torches spawn position.")]
+        [SerializeField] private GameEvent onPlaceTorches;
         
 
         private Tile[] _tiles;
@@ -61,9 +64,8 @@ namespace Features.Maze_Namespace
             
             // randomize player starting position
             playerSpawnPos.vec2Value = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
-            Debug.Log("player pos variable value: " + playerSpawnPos.GetVariableValue());
+            //Debug.Log("player pos variable value: " + playerSpawnPos.GetVariableValue());
             
-           
             // generate the Maze
             KruskalAlgorithm();
             
@@ -75,6 +77,7 @@ namespace Features.Maze_Namespace
             
             onPlaceCharacter.Raise();
             onPlaceHatch.Raise();
+            onPlaceTorches.Raise();
         }
 
         #region Kruskal Algorithm

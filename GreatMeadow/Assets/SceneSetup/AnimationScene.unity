@@ -351,7 +351,6 @@ MonoBehaviour:
   speed: 0.4
   storedInputMovement: {x: 0, y: 0}
   movementSmoothingSpeed: 10
-  onMazeGenerationComplete: {fileID: 11400000, guid: ed0c1fc5e16792143aecbfb50ac51873, type: 2}
 --- !u!61 &344043544
 BoxCollider2D:
   m_ObjectHideFlags: 0
