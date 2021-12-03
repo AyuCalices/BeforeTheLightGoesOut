@@ -200,6 +200,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3611683906383126892, guid: 4d101b51a86b6794bbebc121608b350e, type: 3}
+      propertyPath: torchLight
+      value: 
+      objectReference: {fileID: 3611683906515872460}
     - target: {fileID: 3611683906383126893, guid: 4d101b51a86b6794bbebc121608b350e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -248,5 +252,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Torch
       objectReference: {fileID: 0}
+    - target: {fileID: 3611683907312456987, guid: 4d101b51a86b6794bbebc121608b350e, type: 3}
+      propertyPath: m_Intensity
+      value: 0.66
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d101b51a86b6794bbebc121608b350e, type: 3}
+--- !u!114 &3611683906515872460 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3611683907312456987, guid: 4d101b51a86b6794bbebc121608b350e, type: 3}
+  m_PrefabInstance: {fileID: 3611683906515872459}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

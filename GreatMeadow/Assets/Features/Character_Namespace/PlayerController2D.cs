@@ -49,12 +49,8 @@ namespace Features.Character_Namespace
             movement.Enable();
         
             //Pick Up
-            playerInputActions.Player.Interact.performed += Interact;
-            playerInputActions.Player.Interact.Enable();
-
-            //Hide
-            //playerInputActions.Player.Hide.performed += GoHide;
-            //playerInputActions.Player.Hide.Enable();
+            //playerInputActions.Player.Interact.performed += Interact;
+            //playerInputActions.Player.Interact.Enable();
         }
     
         //Update Loop - Used for calculating frame-based data

@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 344043542}
   - component: {fileID: 344043544}
   - component: {fileID: 344043545}
+  - component: {fileID: 344043546}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -390,6 +391,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraDistance: -2
+--- !u!114 &344043546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344043538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4efa15223c2abc74ea176456593ac315, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTorchDurability: 1
+  maxTorchDurability: 1
+  highestTorchBrightness: 1.3
+  lowestTorchBrighness: 0.66
+  torchBrightness: 1.3
+  torchLight: {fileID: 883852547}
+  onLoadLoseMenu: {fileID: 11400000, guid: b91f0df70583c40ba94d8ea2c213ae9f, type: 2}
 --- !u!1001 &536856420
 PrefabInstance:
   m_ObjectHideFlags: 0
