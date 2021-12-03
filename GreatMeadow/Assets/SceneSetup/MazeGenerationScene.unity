@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -224,10 +224,13 @@ MonoBehaviour:
   east: {fileID: 11400000, guid: 7116495bcf8e90a478d81d5b031e302d, type: 2}
   west: {fileID: 11400000, guid: 763bc6aa14a1b9446aad83f5407ca713, type: 2}
   tiles: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}
-  playerSpawnPos: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
+  playerPos: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
+  tilePos: {fileID: 11400000, guid: f6327b936cbdba94e9e5df1c002016bc, type: 2}
   onPlaceCharacter: {fileID: 11400000, guid: ed0c1fc5e16792143aecbfb50ac51873, type: 2}
   onPlaceHatch: {fileID: 11400000, guid: 52c84aa8dbc68864bb1c8addd8f0da7d, type: 2}
   onPlaceTorches: {fileID: 11400000, guid: fe05a7664a96476489bcdef317ff8d60, type: 2}
+  renderSize: 2
+  posControl: {fileID: 11400000, guid: 8d4e9a1ecebcb0b4880ab439c106118e, type: 2}
 --- !u!4 &666877538
 Transform:
   m_ObjectHideFlags: 0
@@ -241,39 +244,8 @@ Transform:
   m_Children:
   - {fileID: 545921218}
   - {fileID: 344095227}
-  - {fileID: 1415943928}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1415943927
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1415943928}
-  m_Layer: 5
-  m_Name: MapParent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1415943928
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1415943927}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 666877538}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!850595691 &1419021143
 LightingSettings:
