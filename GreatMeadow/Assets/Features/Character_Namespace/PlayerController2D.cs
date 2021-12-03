@@ -62,6 +62,9 @@ namespace Features.Character_Namespace
         {
             CalculateMovementInputSmoothing();
             UpdatePlayerMovement();
+            playerPosition.vec2Value = this.transform.position;
+            
+            
         }
 
         //Input's Axes values are raw
