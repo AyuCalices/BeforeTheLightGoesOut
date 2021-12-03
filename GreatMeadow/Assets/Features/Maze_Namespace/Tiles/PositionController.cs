@@ -19,26 +19,33 @@ namespace Features.Maze_Namespace.Tiles
         {
             // create list for saving all connected floors to the given length
             List<Tile> connectedTiles = new List<Tile>();
-            
-            // create list of all directions of current tile
-            List<Vector2Variable> tileDirections = tile.directions;
-            
+
             // add current tile to list
-            connectedTiles.Add(tiles.GetTileAt(tile.position.x, tile.position.y));
+            connectedTiles.Add(tile);
             
             // go through the list of vec2s (connected floors) of the given tile
-            for (int n = 0; n < tileDirections.Count; n++)
+            for (int n = 0; n < tile.directions.Count; n++)
             {
-                // memorize neighboring tile from given direction
-                Vector2Int neighborTile = new Vector2Int((int) (tile.position.x + tile.directions[n].vec2Value.x),
-                    (int) (tile.position.y + tile.directions[n].vec2Value.y));
-                
+                // get neighboring tile position from given direction
+                Vector2 neighborTile = tile.position;
+                neighborTile += new Vector2(tile.directions[n].vec2Value.y, tile.directions[n].vec2Value.x);
+
                 // add connected tile to list of connections
-                connectedTiles.Add(tiles.GetTileAt(neighborTile.x, neighborTile.y));
+                connectedTiles.Add(tiles.GetTileAt((int) neighborTile.x, (int) neighborTile.y));
+            }
+            
+            // VARIABLE RENDER SIZE BY RECURSION WIP
+            
+            length = -1;
+            
+            if (length >= 0) {
+                foreach(Tile extraTile in connectedTiles)
+                {
+                    connectedTiles.AddRange(GetPaths(tile, length));
+                }
             }
             
             return connectedTiles;
-
         }
 
         public void GetNeighbors()

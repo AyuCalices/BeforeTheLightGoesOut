@@ -40,22 +40,32 @@ namespace Features.Maze_Namespace
         [Header("Tiles")]
         [Tooltip("List of tiles to be spawned.")]
         [SerializeField] private TileList_SO tiles;
+        [Tooltip("Determine the number of neighbor tiles to be rendered.")]
+        [SerializeField] private int renderSize = 2;
         
-        [Header("Spawning Player Start Position")]
+        [Tooltip("Grants access to the neighbor tiles' information.")]
+        [SerializeField] private PositionController posControl;
+        
+        [Header("Position tracking")]
         [Tooltip("Variable for spawning player and working with player position.")]
-        [SerializeField] private Vector2Variable playerSpawnPos;
+        [SerializeField] private Vector2Variable playerPos;
         [Tooltip("Variable for player position in tile.")]
         [SerializeField] private IntVariable tilePos;
         
+        [Header("Events")]
         [SerializeField] private GameEvent onPlaceCharacter;
         [SerializeField] private GameEvent onPlaceHatch;
-        
+
+        //
         private Tile[] _tiles;
+        //
         private List<Edge> _edges;
-        public List<GameObject> spawnTiles;
-        public List<GameObject> grassTiles;
-        [SerializeField] private int renderSize = 2;
-        [SerializeField] private PositionController posControl;
+        // list of tiles to be spawned
+        private List<GameObject> spawnTiles;
+        // list of grass art to be spawned
+        private List<GameObject> grassTiles;
+
+        private bool updateStarted;
 
         public void Awake()
         {
@@ -65,12 +75,7 @@ namespace Features.Maze_Namespace
             Debug.Log($"The used seed is: {seed.ToString()}" +
                       $"  |  Copy the seed into the setSeed field of the MazeGenerator and put the randomizeSeed boolean to false. " +
                       $"By that you get the same maze. Stop the game before though - else it wont save your changes inside the MazeGenerator!");
-            
-            // randomize player starting position
-            playerSpawnPos.vec2Value = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
 
-            tilePos.intValue = (int) (playerSpawnPos.vec2Value.y + 0.5) * width.intValue + (int) (playerSpawnPos.vec2Value.x + 0.5);
-            
             // generate the Maze
             KruskalAlgorithm();
             
@@ -78,24 +83,39 @@ namespace Features.Maze_Namespace
             tiles.SetTiles(_tiles);
             
             spawnTiles = new List<GameObject>();
+            grassTiles = new List<GameObject>();
             
             // draw the maze (tile objects)
             DrawTiles();
             
+            // randomize player starting position
+            playerPos.vec2Value = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
+
+            // initialize current tile position to be the player spawn's position
+            tilePos.intValue = (int) (playerPos.vec2Value.y + 0.5) * width.intValue + (int) (playerPos.vec2Value.x + 0.5);
+            
+            // initialize events
             onPlaceCharacter.Raise();
             onPlaceHatch.Raise();
             
+            // start with unrendered tiles & grass art to save performance
             for (int n = 0; n < width.intValue*height.intValue; n++)
             {
                 spawnTiles[n].SetActive(false);
                 grassTiles[n].SetActive(false);
             }
+
+            updateStarted = true;
         }
 
         public void Update()
         {
-            tilePos.intValue = (int) (playerSpawnPos.vec2Value.y + 0.5) * width.intValue + (int) (playerSpawnPos.vec2Value.x + 0.5);
+            //  WIP (implement only optimizeRender when player location tile changed)
+            
+            if (updateStarted) {
+            tilePos.intValue = (int) (playerPos.vec2Value.y + 0.5) * width.intValue + (int) (playerPos.vec2Value.x + 0.5);
             OptimizeRender();
+            }
         }
 
         #region Kruskal Algorithm
@@ -122,8 +142,6 @@ namespace Features.Maze_Namespace
             _edges = new List<Edge>();
             GenerateEdgesVertical();
             GenerateEdgesHorizontal();
-
-            
             
             //Some Kruskal-Magic
             int loopNum = _edges.Count;
@@ -237,15 +255,24 @@ namespace Features.Maze_Namespace
         /// </summary>
         private void DrawTiles()
         {
+            // for all tiles to be generated according to chosen height & width
             for (int y = 0; y < height.intValue; y++)
             {
                 for (int x = 0; x < width.intValue; x++)
                 {
+                    // save position of the tile
                     int pos = y * width.intValue + x;
                     
+                    // create position grid with current tile position in loop
                     Vector2Int gridPosition = new Vector2Int(x, y);
+                    
+                    // instantiate the current tile & art at position as children of the determined parent transforms
                     tile.InstantiateTileAt(gridPosition, tileParentTransform, grassSpriteParentTransform);
+                    
+                    // add generated tile to list of objects to be (de)-spawned
                     spawnTiles.Add(tileParentTransform.GetChild(pos).gameObject);
+                    
+                    // add generated grass art to list of objects to be (de)-spawned
                     grassTiles.Add(grassSpriteParentTransform.GetChild(pos).gameObject);
                 }
             }
@@ -253,19 +280,39 @@ namespace Features.Maze_Namespace
 
         private void OptimizeRender()
         {
+            // initialize tiles to be rendered
+            List<Tile> tilesToRender = new List<Tile>();
             
             // get a list of tiles to be rendered at the current position
-            List<Tile> tilesToRender = posControl.GetPaths(tiles.GetPosition(tilePos.intValue), renderSize);
+            tilesToRender = posControl.GetPaths(tiles.GetPosition(tilePos.intValue), renderSize);
+
+            // save tile currently occupied by character
+            Tile currentTile = tilesToRender[0];
+            
+            // check the borders of the render kernel around the character
+            for (int x = -renderSize; x <= renderSize; x++) {
+                for (int y = -renderSize; y <= renderSize; y++) {
+                    // if border is reached
+                    if (Mathf.Abs(x) == renderSize || Mathf.Abs(y) == y) {
+                        // get position of tile outside of render zone and unrender it
+                        int pos = (currentTile.position.y + y) * width.intValue + (currentTile.position.x + x);
+                        
+                        // avoid out of bounds error
+                        if (pos >= 0 && pos <= width.intValue * height.intValue-1) {
+                        spawnTiles[pos].SetActive(false);
+                        }
+                    }
+                }
+            }
 
             // go through the list of tiles to be rendered
-            for (int n = 0; n < tilesToRender.Count; n++)
+            foreach(Tile renderedTile in tilesToRender)
             {
                 // get the position of the tile to be rendered
-                int renderPos = tilesToRender[n].position.y * width.intValue + tilesToRender[n].position.x;
-                
-                // render the tile at the given position
-                spawnTiles[renderPos].gameObject.SetActive(true);
+                int renderPos = renderedTile.position.y  * width.intValue + renderedTile.position.x;
 
+                // render the tile at the given position
+                tileParentTransform.GetChild(renderPos).gameObject.SetActive(true);
             }
 
         }
