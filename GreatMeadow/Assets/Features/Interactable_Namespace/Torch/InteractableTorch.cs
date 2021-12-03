@@ -30,7 +30,7 @@ public class InteractableTorch : InteractableBehaviour
         Debug.Log("Pick up");
         animator = GetComponent<Animator>();
         animator.SetTrigger(PickUpTorch);
-        //torchLight.intesity = 0f;
+        torchLight.intensity = 0f;
         playerController.GetComponentInChildren<PlayerTorch>().RefillTorch();
     }
 }

@@ -31,8 +31,7 @@ public class PlayerTorch : MonoBehaviour
         Debug.Log("torchDurabilityInPercent: " + torchDurabilityInPercent);
         torchBrightness = Mathf.Max(lowestTorchBrighness, torchDurabilityInPercent * highestTorchBrightness);
         Debug.Log("torchBrightness: " + torchBrightness);
-        //torchLight.intensity = torchBrightness;
-        //Debug.Log("intensity: " + GetComponentInChildren<Light2D>().intensity);
+        torchLight.intensity = torchBrightness;
         if (currentTorchDurability <= 0)
         {
             LoadLoseMenu();
