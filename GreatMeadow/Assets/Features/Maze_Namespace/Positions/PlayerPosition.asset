@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99da1432dd362394186c857ca5ef0315, type: 3}
-  m_Name: PlayerSpawn
+  m_Name: PlayerPosition
   m_EditorClassIdentifier: 
   vec2Value: {x: 99.216415, y: 46.954678}
