@@ -47,12 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c244c10ba10a629488ecf6c74ce1493b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpawnPos: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
   torchSpawnPos: {fileID: 11400000, guid: 154130d6c4ccffe49b5a582f66a0365b, type: 2}
   torchPosition: {fileID: 11400000, guid: 154130d6c4ccffe49b5a582f66a0365b, type: 2}
-  width: {fileID: 11400000, guid: 306648929f97aa3408cb9fdef1697e0e, type: 2}
-  height: {fileID: 11400000, guid: a3e52cf95d2671542b5ca4005cb572ff, type: 2}
-  onLoadLoseMenu: {fileID: 11400000, guid: b91f0df70583c40ba94d8ea2c213ae9f, type: 2}
+  torchLight: {fileID: 3611683907312456987}
 --- !u!212 &3611683906383126882
 SpriteRenderer:
   m_ObjectHideFlags: 0

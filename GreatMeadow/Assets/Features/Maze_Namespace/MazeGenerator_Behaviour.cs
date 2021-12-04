@@ -340,9 +340,9 @@ namespace Features.Maze_Namespace
             for (int torchNr = 0; torchNr < torchesToPlace.Length; torchNr++)
             {
                 Vector2 torchPosition = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
-                torchesToPlace[torchNr] = torchPosition;
                 if (!torchesToPlace.Contains(torchPosition))
                 {
+                    torchesToPlace[torchNr] = torchPosition;
                     Debug.Log("Torch position: " + torchPosition);
                     torch.InstantiateTorchAt(torchPosition, torchParentTransform);
                 }
