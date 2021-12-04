@@ -182,8 +182,23 @@ PrefabInstance:
       propertyPath: onLoadWinMenu
       value: 
       objectReference: {fileID: 11400000, guid: a25398a19a1664e4783964386a73a579, type: 2}
+    - target: {fileID: 5297076239829641630, guid: 6d4b64186a9addb47ae3aee1d202f6cc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d4b64186a9addb47ae3aee1d202f6cc, type: 3}
+--- !u!114 &83200681 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5297076239829641629, guid: 6d4b64186a9addb47ae3aee1d202f6cc, type: 3}
+  m_PrefabInstance: {fileID: 83200680}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044605201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea0f3ab8f50b3348b088e77abaf6911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1738130390
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,8 +246,8 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2044605203}
-        m_TargetAssemblyTypeName: MazeGoal, Assembly-CSharp
+      - m_Target: {fileID: 83200681}
+        m_TargetAssemblyTypeName: Hatch, Assembly-CSharp
         m_MethodName: SetHatchPosition
         m_Mode: 1
         m_Arguments:
@@ -261,17 +276,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hatchSound: {fileID: 2044605204}
---- !u!114 &2044605203 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5297076239829641629, guid: 6d4b64186a9addb47ae3aee1d202f6cc, type: 3}
-  m_PrefabInstance: {fileID: 83200680}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2044605201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ea0f3ab8f50b3348b088e77abaf6911, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &2044605204
 AudioSource:
   m_ObjectHideFlags: 0

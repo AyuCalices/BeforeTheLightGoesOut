@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SceneSetup/AnimationScene.unity
     guid: d4eb0fd44130f8a43b653f159e84f612
+  - enabled: 0
+    path: Assets/SceneSetup/TorchScene.unity
+    guid: 394f91564ea36f8439b2f576673ba1e8
   - enabled: 1
     path: Assets/SceneSetup/HatchScene.unity
     guid: 1e63046920e4a4e4f8a7da9eac0b46e4

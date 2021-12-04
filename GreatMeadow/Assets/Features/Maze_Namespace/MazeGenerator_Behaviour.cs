@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
-using Features.Character_Namespace;
+using System.Linq;
 using Features.Maze_Namespace.Tiles;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utils.Event_Namespace;
 using Utils.Variables_Namespace;
 using Random = UnityEngine.Random;
@@ -42,7 +40,6 @@ namespace Features.Maze_Namespace
         [SerializeField] private TileList_SO tiles;
         [Tooltip("Determine the number of neighbor tiles to be rendered.")]
         [SerializeField] private int renderSize = 2;
-        
         [Tooltip("Grants access to the neighbor tiles' information.")]
         [SerializeField] private PositionController posControl;
         
@@ -53,8 +50,17 @@ namespace Features.Maze_Namespace
         [SerializeField] private IntVariable tilePos;
         
         [Header("Events")]
+        [Tooltip("Game Event for player spawn position.")]
         [SerializeField] private GameEvent onPlaceCharacter;
+        [Tooltip("Game Event for hatch spawn position.")]
         [SerializeField] private GameEvent onPlaceHatch;
+
+        [Header("Places Interaction objects")]
+        [Tooltip("Transform parent of all generated torches.")]
+        [SerializeField] private Transform torchParentTransform;
+        [SerializeField] private TorchGenerator_SO torch;
+        [SerializeField] private Vector2Variable hatchPosition;
+        
 
         //
         private Tile[] _tiles;
@@ -75,6 +81,9 @@ namespace Features.Maze_Namespace
             Debug.Log($"The used seed is: {seed.ToString()}" +
                       $"  |  Copy the seed into the setSeed field of the MazeGenerator and put the randomizeSeed boolean to false. " +
                       $"By that you get the same maze. Stop the game before though - else it wont save your changes inside the MazeGenerator!");
+            
+            // randomize player starting position
+            //playerPos.vec2Value = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
 
             // generate the Maze
             KruskalAlgorithm();
@@ -93,11 +102,7 @@ namespace Features.Maze_Namespace
 
             // initialize current tile position to be the player spawn's position
             tilePos.intValue = (int) (playerPos.vec2Value.y + 0.5) * width.intValue + (int) (playerPos.vec2Value.x + 0.5);
-            
-            // initialize events
-            onPlaceCharacter.Raise();
-            onPlaceHatch.Raise();
-            
+
             // start with unrendered tiles & grass art to save performance
             for (int n = 0; n < width.intValue*height.intValue; n++)
             {
@@ -106,6 +111,11 @@ namespace Features.Maze_Namespace
             }
 
             updateStarted = true;
+            
+            // initialize events
+            onPlaceCharacter.Raise();
+            onPlaceHatch.Raise();
+            PlaceTorchesInMaze();
         }
 
         public void Update()
@@ -113,8 +123,8 @@ namespace Features.Maze_Namespace
             //  WIP (implement only optimizeRender when player location tile changed)
             
             if (updateStarted) {
-            tilePos.intValue = (int) (playerPos.vec2Value.y + 0.5) * width.intValue + (int) (playerPos.vec2Value.x + 0.5);
-            OptimizeRender();
+                tilePos.intValue = (int) (playerPos.vec2Value.y + 0.5) * width.intValue + (int) (playerPos.vec2Value.x + 0.5);
+                OptimizeRender();
             }
         }
 
@@ -299,7 +309,7 @@ namespace Features.Maze_Namespace
                         
                         // avoid out of bounds error
                         if (pos >= 0 && pos <= width.intValue * height.intValue-1) {
-                        spawnTiles[pos].SetActive(false);
+                            spawnTiles[pos].SetActive(false);
                         }
                     }
                 }
@@ -314,7 +324,23 @@ namespace Features.Maze_Namespace
                 // render the tile at the given position
                 tileParentTransform.GetChild(renderPos).gameObject.SetActive(true);
             }
+        }
 
+        private void PlaceTorchesInMaze()
+        {
+            //calculate percentage of torch placement
+            int amountOfTorches = Mathf.RoundToInt((height.intValue * width.intValue) * .10f);
+            Vector2[] torchesToPlace = new Vector2[amountOfTorches];
+
+            for (int torchNr = 0; torchNr < torchesToPlace.Length; torchNr++)
+            {
+                Vector2 torchPosition = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
+                if (!torchesToPlace.Contains(torchPosition) && torchPosition != playerPos.vec2Value && torchPosition != hatchPosition.vec2Value )
+                {
+                    torchesToPlace[torchNr] = torchPosition;
+                    torch.InstantiateTorchAt(torchPosition, torchParentTransform);
+                }
+            }
         }
 
         [System.Serializable]
