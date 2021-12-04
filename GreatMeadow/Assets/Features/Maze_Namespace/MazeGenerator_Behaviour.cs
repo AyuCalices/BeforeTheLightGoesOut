@@ -1,10 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Features.Character_Namespace;
 using Features.Maze_Namespace.Tiles;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utils.Event_Namespace;
 using Utils.Variables_Namespace;
 using Random = UnityEngine.Random;
@@ -62,6 +59,7 @@ namespace Features.Maze_Namespace
         [Tooltip("Transform parent of all generated torches.")]
         [SerializeField] private Transform torchParentTransform;
         [SerializeField] private TorchGenerator_SO torch;
+        [SerializeField] private Vector2Variable hatchPosition;
         
 
         //
@@ -117,7 +115,6 @@ namespace Features.Maze_Namespace
             // initialize events
             onPlaceCharacter.Raise();
             onPlaceHatch.Raise();
-            //onPlaceTorches.Raise();
             PlaceTorchesInMaze();
         }
 
@@ -126,8 +123,8 @@ namespace Features.Maze_Namespace
             //  WIP (implement only optimizeRender when player location tile changed)
             
             if (updateStarted) {
-            tilePos.intValue = (int) (playerPos.vec2Value.y + 0.5) * width.intValue + (int) (playerPos.vec2Value.x + 0.5);
-            OptimizeRender();
+                tilePos.intValue = (int) (playerPos.vec2Value.y + 0.5) * width.intValue + (int) (playerPos.vec2Value.x + 0.5);
+                OptimizeRender();
             }
         }
 
@@ -312,7 +309,7 @@ namespace Features.Maze_Namespace
                         
                         // avoid out of bounds error
                         if (pos >= 0 && pos <= width.intValue * height.intValue-1) {
-                        spawnTiles[pos].SetActive(false);
+                            spawnTiles[pos].SetActive(false);
                         }
                     }
                 }
@@ -332,18 +329,15 @@ namespace Features.Maze_Namespace
         private void PlaceTorchesInMaze()
         {
             //calculate percentage of torch placement
-            int amountOfTorches = Mathf.RoundToInt((height.intValue * width.intValue) * .25f);
-            Debug.Log("Height: " + height.intValue + " and width: " + width.intValue + " Amount of torches: " + amountOfTorches);
+            int amountOfTorches = Mathf.RoundToInt((height.intValue * width.intValue) * .10f);
             Vector2[] torchesToPlace = new Vector2[amountOfTorches];
-            //list instead?
-            
+
             for (int torchNr = 0; torchNr < torchesToPlace.Length; torchNr++)
             {
                 Vector2 torchPosition = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
-                if (!torchesToPlace.Contains(torchPosition))
+                if (!torchesToPlace.Contains(torchPosition) && torchPosition != playerPos.vec2Value && torchPosition != hatchPosition.vec2Value )
                 {
                     torchesToPlace[torchNr] = torchPosition;
-                    Debug.Log("Torch position: " + torchPosition);
                     torch.InstantiateTorchAt(torchPosition, torchParentTransform);
                 }
             }

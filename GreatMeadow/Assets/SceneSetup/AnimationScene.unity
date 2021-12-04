@@ -403,10 +403,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efa15223c2abc74ea176456593ac315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTorchDurability: 1
-  maxTorchDurability: 1
+  startTorchDuration: 30
   highestTorchBrightness: 1.3
-  lowestTorchBrighness: 0.66
+  lowestTorchBrightness: 0.1
   torchBrightness: 1.3
   torchLight: {fileID: 883852547}
   onLoadLoseMenu: {fileID: 11400000, guid: b91f0df70583c40ba94d8ea2c213ae9f, type: 2}
@@ -507,7 +506,7 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
-  m_Color: {r: 0.7176471, g: 0.7019608, b: 0.5921569, a: 1}
+  m_Color: {r: 1, g: 0.9117989, b: 0.8160377, a: 1}
   m_Intensity: 1.4
   m_LightVolumeOpacity: 0
   m_ApplyToSortingLayers: 00000000
@@ -537,7 +536,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883852546}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.071, y: -0.049, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 344043541}

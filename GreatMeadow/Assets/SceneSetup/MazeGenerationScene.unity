@@ -230,12 +230,9 @@ MonoBehaviour:
   tilePos: {fileID: 11400000, guid: f6327b936cbdba94e9e5df1c002016bc, type: 2}
   onPlaceCharacter: {fileID: 11400000, guid: ed0c1fc5e16792143aecbfb50ac51873, type: 2}
   onPlaceHatch: {fileID: 11400000, guid: 52c84aa8dbc68864bb1c8addd8f0da7d, type: 2}
-  onPlaceTorches: {fileID: 11400000, guid: fe05a7664a96476489bcdef317ff8d60, type: 2}
-  torchPrefab: {fileID: 1824810129}
-  torchPosition: {fileID: 11400000, guid: 2908cb49b88e2d9439ad54d12622ea10, type: 2}
   torchParentTransform: {fileID: 678705236}
-  interactableTorch: {fileID: 0}
   torch: {fileID: 11400000, guid: 9ea34282c30db4a438e31901630e7c88, type: 2}
+  hatchPosition: {fileID: 11400000, guid: a84034803e3a5394986a52f13e3cbcaf, type: 2}
 --- !u!4 &666877538
 Transform:
   m_ObjectHideFlags: 0
@@ -347,7 +344,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3611683906383126892, guid: 4d101b51a86b6794bbebc121608b350e, type: 3}
   m_PrefabInstance: {fileID: 3611683906515872459}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824810129}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c244c10ba10a629488ecf6c74ce1493b, type: 3}
@@ -414,11 +411,6 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaDirect: 0.5
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
---- !u!1 &1824810129 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3611683906383126894, guid: 4d101b51a86b6794bbebc121608b350e, type: 3}
-  m_PrefabInstance: {fileID: 3611683906515872459}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1858952320
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Utils.Event_Namespace;
 using Utils.Variables_Namespace;
 
 namespace Features.Character_Namespace
@@ -31,7 +29,6 @@ namespace Features.Character_Namespace
 
         private void Awake()
         {
-            //Debug.Log("player pos variable value: " + playerPosition.GetVariableValue());
             playerInputActions = new PlayerInputActions();
             playerInputActions.Enable();
             animator = GetComponent<Animator>();
@@ -47,10 +44,6 @@ namespace Features.Character_Namespace
             //Move
             movement = playerInputActions.Player.Movement;
             movement.Enable();
-        
-            //Pick Up
-            //playerInputActions.Player.Interact.performed += Interact;
-            //playerInputActions.Player.Interact.Enable();
         }
     
         //Update Loop - Used for calculating frame-based data
@@ -59,8 +52,6 @@ namespace Features.Character_Namespace
             CalculateMovementInputSmoothing();
             UpdatePlayerMovement();
             playerPosition.vec2Value = this.transform.position;
-            
-            
         }
 
         //Input's Axes values are raw
@@ -106,27 +97,29 @@ namespace Features.Character_Namespace
         }
         
         /**
-         * Trigger event when player gets near the hatch.
+         * Trigger event when player gets near the interactable object.
          */
-        private void OnTriggerEnter2D(Collider2D collider2D)
+        private void OnTriggerEnter2D(Collider2D collider)
         {
-            currentInteractable = collider2D.GetComponent<InteractableBehaviour>();
+            currentInteractable = collider.GetComponent<InteractableBehaviour>();
             if (currentInteractable != null)
             {
-                Debug.Log(collider2D.gameObject.name + " Enter");
                 playerInputActions.Player.Interact.performed += OnPerformInteraction;
             }
         }
         
+        /**
+         * Triggers event when player moves away from the interactable object.
+         */
         private void OnTriggerExit2D(Collider2D collider)
         {
             if (currentInteractable != null)
             {
-                Debug.Log(collider.gameObject.name + " Exit");
                 playerInputActions.Player.Interact.performed -= OnPerformInteraction;
                 currentInteractable = null;
             }
         }
+        
         /**
          * If E is pressed, player interacts with object.
          */

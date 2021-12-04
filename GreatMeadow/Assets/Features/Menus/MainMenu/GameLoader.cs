@@ -57,7 +57,6 @@ public class GameLoader : MonoBehaviour
       
       scenesToLoad.Add(SceneManager.LoadSceneAsync("Music",LoadSceneMode.Additive));
       scenesToLoad.Add(SceneManager.LoadSceneAsync("AnimationScene",LoadSceneMode.Additive));
-      scenesToLoad.Add(SceneManager.LoadSceneAsync("TorchScene",LoadSceneMode.Additive));
       scenesToLoad.Add(SceneManager.LoadSceneAsync("HatchScene",LoadSceneMode.Additive));
       scenesToLoad.Add(SceneManager.LoadSceneAsync("MazeGenerationScene",LoadSceneMode.Additive));
       scenesToLoad.Add(SceneManager.LoadSceneAsync("MapScene",LoadSceneMode.Additive));
@@ -82,7 +81,6 @@ public class GameLoader : MonoBehaviour
       canvasManager.SwitchCanvas(menuToBeOpened);
       SceneManager.UnloadSceneAsync("Music");
       SceneManager.UnloadSceneAsync("AnimationScene");
-      SceneManager.UnloadSceneAsync("TorchScene");
       SceneManager.UnloadSceneAsync("HatchScene");
       SceneManager.UnloadSceneAsync("MazeGenerationScene");
       SceneManager.UnloadSceneAsync("MapScene");

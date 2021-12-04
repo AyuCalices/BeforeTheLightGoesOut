@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Features.Character_Namespace;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
 using Utils.Event_Namespace;
 using Utils.Variables_Namespace;
 
@@ -18,7 +14,6 @@ public class Hatch : InteractableBehaviour
     private Animator animator;
     private static readonly int JumpInHatch = Animator.StringToHash("JumpInHatch");
 
-
     /**
     * Set the Hatch Position at the opposite of the starting position.
     */
@@ -32,11 +27,6 @@ public class Hatch : InteractableBehaviour
         //hatchSpawnPos.vec2Value = playerSpawnPos.vec2Value; //for testing
         hatchSpawnPos.vec2Value = new Vector2(endX, endY);
         transform.position = hatchPosition.vec2Value;
-    }
-
-    public Vector2Variable GetHatchPosition()
-    {
-        return hatchSpawnPos;
     }
 
     public override void Interact(PlayerController2D playerController)

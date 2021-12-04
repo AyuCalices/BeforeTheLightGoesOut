@@ -17,9 +17,7 @@ public class InteractableTorch : InteractableBehaviour
     */
     public void SetTorchPosition(Vector2Variable torchSpawnPosition)
     {
-        //torchSpawnPos.vec2Value = playerSpawnPos.vec2Value; //for testing
         torchSpawnPos = torchSpawnPosition;
-        Debug.Log("InteractableTorch spawn pos: " + torchSpawnPos.vec2Value);
         transform.position = torchPosition.vec2Value;
     }
 
@@ -28,7 +26,6 @@ public class InteractableTorch : InteractableBehaviour
      */
     public override void Interact(PlayerController2D playerController)
     {
-        Debug.Log("Pick up");
         animator = GetComponent<Animator>();
         animator.SetTrigger(PickUpTorch);
         torchLight.intensity = 0f;
