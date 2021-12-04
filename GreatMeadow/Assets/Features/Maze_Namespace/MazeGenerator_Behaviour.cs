@@ -26,8 +26,6 @@ namespace Features.Maze_Namespace
         [SerializeField] private IntVariable height;
 
         [Header("InstantiationParent")] 
-        [Tooltip("Transform parent of all generated grass sprites.")]
-        [SerializeField] private Transform grassSpriteParentTransform;
         [Tooltip("Transform parent of all generated tile sprites.")]
         [SerializeField] private Transform tileParentTransform;
         
@@ -41,7 +39,7 @@ namespace Features.Maze_Namespace
         [Tooltip("List of tiles to be spawned.")]
         [SerializeField] private TileList_SO tiles;
         [Tooltip("Determine the number of neighbor tiles to be rendered.")]
-        [SerializeField] private int renderSize = 2;
+        [SerializeField] private int renderSize = 3;
         
         [Tooltip("Grants access to the neighbor tiles' information.")]
         [SerializeField] private PositionController posControl;
@@ -61,11 +59,14 @@ namespace Features.Maze_Namespace
         //
         private List<Edge> _edges;
         // list of tiles to be spawned
-        private List<GameObject> spawnTiles;
-        // list of grass art to be spawned
-        private List<GameObject> grassTiles;
+        private List<GameObject> spawnTiles = new List<GameObject>();
 
-        private bool updateStarted;
+        private List<GameObject> renderTiles = new List<GameObject>();
+
+        private bool isInitialized;
+        private int lastTilePosition;
+        
+        private int currentTilePos => (int) (playerPos.vec2Value.y + 0.5) * width.intValue + (int) (playerPos.vec2Value.x + 0.5);
 
         public void Awake()
         {
@@ -81,10 +82,7 @@ namespace Features.Maze_Namespace
             
             // Set tiles for global use
             tiles.SetTiles(_tiles);
-            
-            spawnTiles = new List<GameObject>();
-            grassTiles = new List<GameObject>();
-            
+
             // draw the maze (tile objects)
             DrawTiles();
             
@@ -92,7 +90,7 @@ namespace Features.Maze_Namespace
             playerPos.vec2Value = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
 
             // initialize current tile position to be the player spawn's position
-            tilePos.intValue = (int) (playerPos.vec2Value.y + 0.5) * width.intValue + (int) (playerPos.vec2Value.x + 0.5);
+            tilePos.intValue = currentTilePos;
             
             // initialize events
             onPlaceCharacter.Raise();
@@ -102,19 +100,21 @@ namespace Features.Maze_Namespace
             for (int n = 0; n < width.intValue*height.intValue; n++)
             {
                 spawnTiles[n].SetActive(false);
-                grassTiles[n].SetActive(false);
             }
 
-            updateStarted = true;
+            isInitialized = true;
         }
 
         public void Update()
         {
             //  WIP (implement only optimizeRender when player location tile changed)
+            if (!isInitialized) return;
             
-            if (updateStarted) {
-            tilePos.intValue = (int) (playerPos.vec2Value.y + 0.5) * width.intValue + (int) (playerPos.vec2Value.x + 0.5);
-            OptimizeRender();
+            tilePos.intValue = currentTilePos;
+            if (lastTilePosition != tilePos.intValue) 
+            {
+                OptimizeRender();
+                lastTilePosition = tilePos.intValue;
             }
         }
 
@@ -267,43 +267,31 @@ namespace Features.Maze_Namespace
                     Vector2Int gridPosition = new Vector2Int(x, y);
                     
                     // instantiate the current tile & art at position as children of the determined parent transforms
-                    tile.InstantiateTileAt(gridPosition, tileParentTransform, grassSpriteParentTransform);
+                    tile.InstantiateTileAt(gridPosition, tileParentTransform);
                     
                     // add generated tile to list of objects to be (de)-spawned
                     spawnTiles.Add(tileParentTransform.GetChild(pos).gameObject);
-                    
-                    // add generated grass art to list of objects to be (de)-spawned
-                    grassTiles.Add(grassSpriteParentTransform.GetChild(pos).gameObject);
                 }
             }
         }
 
         private void OptimizeRender()
         {
+            //Hide last rendered tiles
+            if (renderTiles.Count != 0)
+            {
+                foreach (var renderTile in renderTiles)
+                {
+                    renderTile.SetActive(false);
+                }
+                renderTiles.Clear();
+            }
+            
             // initialize tiles to be rendered
             List<Tile> tilesToRender = new List<Tile>();
             
             // get a list of tiles to be rendered at the current position
-            tilesToRender = posControl.GetPaths(tiles.GetPosition(tilePos.intValue), renderSize);
-
-            // save tile currently occupied by character
-            Tile currentTile = tilesToRender[0];
-            
-            // check the borders of the render kernel around the character
-            for (int x = -renderSize; x <= renderSize; x++) {
-                for (int y = -renderSize; y <= renderSize; y++) {
-                    // if border is reached
-                    if (Mathf.Abs(x) == renderSize || Mathf.Abs(y) == y) {
-                        // get position of tile outside of render zone and unrender it
-                        int pos = (currentTile.position.y + y) * width.intValue + (currentTile.position.x + x);
-                        
-                        // avoid out of bounds error
-                        if (pos >= 0 && pos <= width.intValue * height.intValue-1) {
-                        spawnTiles[pos].SetActive(false);
-                        }
-                    }
-                }
-            }
+            tilesToRender = posControl.GetPathsByDepth(tiles.GetPosition(tilePos.intValue), renderSize);
 
             // go through the list of tiles to be rendered
             foreach(Tile renderedTile in tilesToRender)
@@ -313,6 +301,7 @@ namespace Features.Maze_Namespace
 
                 // render the tile at the given position
                 tileParentTransform.GetChild(renderPos).gameObject.SetActive(true);
+                renderTiles.Add(tileParentTransform.GetChild(renderPos).gameObject);
             }
 
         }

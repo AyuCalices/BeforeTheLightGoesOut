@@ -8,20 +8,11 @@ namespace Features.Maze_Namespace.Tiles
     public class PositionController : ScriptableObject
     {
         public TileList_SO tiles;
-        
-        
-        public PositionController() 
-        {
-            
-        }
 
-        public List<Tile> GetPaths(Tile tile, int length)
+        public List<Tile> GetConnectedTiles(Tile tile)
         {
             // create list for saving all connected floors to the given length
             List<Tile> connectedTiles = new List<Tile>();
-
-            // add current tile to list
-            connectedTiles.Add(tile);
             
             // go through the list of vec2s (connected floors) of the given tile
             for (int n = 0; n < tile.directions.Count; n++)
@@ -34,24 +25,28 @@ namespace Features.Maze_Namespace.Tiles
                 connectedTiles.Add(tiles.GetTileAt((int) neighborTile.x, (int) neighborTile.y));
             }
             
-            // VARIABLE RENDER SIZE BY RECURSION WIP
-            
-            length = -1;
-            
-            if (length >= 0) {
-                foreach(Tile extraTile in connectedTiles)
-                {
-                    connectedTiles.AddRange(GetPaths(tile, length));
-                }
-            }
-            
             return connectedTiles;
         }
 
-        public void GetNeighbors()
+        public List<Tile> GetPathsByDepth(Tile tile, int depth)
         {
+            List<Tile> connectedTiles = new List<Tile>{tile};
             
+            List<Tile> currentDepthTiles = new List<Tile>{tile};
+            
+            for (int i = 0; i < depth; i++)
+            {
+                List<Tile> newDepthTiles = new List<Tile>();
+                foreach (var tileByDepth in currentDepthTiles)
+                {
+                    newDepthTiles.AddRange(GetConnectedTiles(tileByDepth));
+                }
+
+                currentDepthTiles = newDepthTiles;
+                connectedTiles.AddRange(newDepthTiles);
+            }
+
+            return connectedTiles;
         }
-        
     }
 }
