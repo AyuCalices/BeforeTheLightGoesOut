@@ -34,6 +34,11 @@ public class Hatch : InteractableBehaviour
         transform.position = hatchPosition.vec2Value;
     }
 
+    public Vector2Variable GetHatchPosition()
+    {
+        return hatchSpawnPos;
+    }
+
     public override void Interact(PlayerController2D playerController)
     {
         animator = GetComponent<Animator>();

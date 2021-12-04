@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Features.Character_Namespace;
 using Features.Maze_Namespace.Tiles;
 using UnityEngine;
@@ -42,11 +43,6 @@ namespace Features.Maze_Namespace
         [SerializeField] private TileList_SO tiles;
         [Tooltip("Determine the number of neighbor tiles to be rendered.")]
         [SerializeField] private int renderSize = 2;
-        
-        [Header("Spawning Start Positions")]
-        [Tooltip("Variable for player spawn position.")]
-        [SerializeField] private Vector2Variable playerSpawnPos;
-        [Tooltip("Game Event for player spawn position.")]
         [Tooltip("Grants access to the neighbor tiles' information.")]
         [SerializeField] private PositionController posControl;
         
@@ -57,11 +53,15 @@ namespace Features.Maze_Namespace
         [SerializeField] private IntVariable tilePos;
         
         [Header("Events")]
+        [Tooltip("Game Event for player spawn position.")]
         [SerializeField] private GameEvent onPlaceCharacter;
         [Tooltip("Game Event for hatch spawn position.")]
         [SerializeField] private GameEvent onPlaceHatch;
-        [Tooltip("Game Event for torches spawn position.")]
-        [SerializeField] private GameEvent onPlaceTorches;
+
+        [Header("Places Interaction objects")]
+        [Tooltip("Transform parent of all generated torches.")]
+        [SerializeField] private Transform torchParentTransform;
+        [SerializeField] private TorchGenerator_SO torch;
         
 
         //
@@ -85,9 +85,7 @@ namespace Features.Maze_Namespace
                       $"By that you get the same maze. Stop the game before though - else it wont save your changes inside the MazeGenerator!");
             
             // randomize player starting position
-            playerSpawnPos.vec2Value = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
-            //Debug.Log("player pos variable value: " + playerSpawnPos.GetVariableValue());
-            
+            //playerPos.vec2Value = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
 
             // generate the Maze
             KruskalAlgorithm();
@@ -106,12 +104,7 @@ namespace Features.Maze_Namespace
 
             // initialize current tile position to be the player spawn's position
             tilePos.intValue = (int) (playerPos.vec2Value.y + 0.5) * width.intValue + (int) (playerPos.vec2Value.x + 0.5);
-            
-            // initialize events
-            onPlaceCharacter.Raise();
-            onPlaceHatch.Raise();
-            onPlaceTorches.Raise();
-            
+
             // start with unrendered tiles & grass art to save performance
             for (int n = 0; n < width.intValue*height.intValue; n++)
             {
@@ -120,6 +113,12 @@ namespace Features.Maze_Namespace
             }
 
             updateStarted = true;
+            
+            // initialize events
+            onPlaceCharacter.Raise();
+            onPlaceHatch.Raise();
+            //onPlaceTorches.Raise();
+            PlaceTorchesInMaze();
         }
 
         public void Update()
@@ -328,7 +327,26 @@ namespace Features.Maze_Namespace
                 // render the tile at the given position
                 tileParentTransform.GetChild(renderPos).gameObject.SetActive(true);
             }
+        }
 
+        private void PlaceTorchesInMaze()
+        {
+            //calculate percentage of torch placement
+            int amountOfTorches = Mathf.RoundToInt((height.intValue * width.intValue) * .25f);
+            Debug.Log("Height: " + height.intValue + " and width: " + width.intValue + " Amount of torches: " + amountOfTorches);
+            Vector2[] torchesToPlace = new Vector2[amountOfTorches];
+            //list instead?
+            
+            for (int torchNr = 0; torchNr < torchesToPlace.Length; torchNr++)
+            {
+                Vector2 torchPosition = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
+                torchesToPlace[torchNr] = torchPosition;
+                if (!torchesToPlace.Contains(torchPosition))
+                {
+                    Debug.Log("Torch position: " + torchPosition);
+                    torch.InstantiateTorchAt(torchPosition, torchParentTransform);
+                }
+            }
         }
 
         [System.Serializable]

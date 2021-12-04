@@ -25,17 +25,17 @@ public class PlayerTorch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentTorchDurability -= Time.deltaTime;
-        Debug.Log("currentTorchDurab: " + currentTorchDurability);
-        float torchDurabilityInPercent = currentTorchDurability / maxTorchDurability;
-        Debug.Log("torchDurabilityInPercent: " + torchDurabilityInPercent);
-        torchBrightness = Mathf.Max(lowestTorchBrighness, torchDurabilityInPercent * highestTorchBrightness);
-        Debug.Log("torchBrightness: " + torchBrightness);
-        torchLight.intensity = torchBrightness;
-        if (currentTorchDurability <= 0)
-        {
-            LoadLoseMenu();
-        }
+        //currentTorchDurability -= Time.deltaTime;
+        //Debug.Log("currentTorchDurab: " + currentTorchDurability);
+        //float torchDurabilityInPercent = currentTorchDurability / maxTorchDurability;
+        //Debug.Log("torchDurabilityInPercent: " + torchDurabilityInPercent);
+        //torchBrightness = Mathf.Max(lowestTorchBrighness, torchDurabilityInPercent * highestTorchBrightness);
+        //Debug.Log("torchBrightness: " + torchBrightness);
+        //torchLight.intensity = torchBrightness;
+        //if (currentTorchDurability <= 0)
+        //{
+        //    LoadLoseMenu();
+        //}
     }
     
     //The player picks up the torch.
