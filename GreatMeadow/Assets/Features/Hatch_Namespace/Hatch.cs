@@ -1,13 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Features.Character_Namespace;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
 using Utils.Event_Namespace;
 using Utils.Variables_Namespace;
 
-public class MazeGoal : InteractableBehaviour
+public class Hatch : InteractableBehaviour
 {
     [SerializeField] private Vector2Variable hatchPosition;
     [SerializeField] private Vector2Variable hatchSpawnPos;
@@ -17,7 +13,6 @@ public class MazeGoal : InteractableBehaviour
     [SerializeField] private GameEvent onLoadWinMenu;
     private Animator animator;
     private static readonly int JumpInHatch = Animator.StringToHash("JumpInHatch");
-
 
     /**
     * Set the Hatch Position at the opposite of the starting position.
