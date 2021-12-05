@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setSeed: -1564253300
-  randomizeSeed: 0
+  randomizeSeed: 1
   tile: {fileID: 11400000, guid: 185c75ddc0f097245a4ab156dd76f587, type: 2}
   width: {fileID: 11400000, guid: 306648929f97aa3408cb9fdef1697e0e, type: 2}
   height: {fileID: 11400000, guid: a3e52cf95d2671542b5ca4005cb572ff, type: 2}
@@ -197,7 +197,9 @@ MonoBehaviour:
   posControl: {fileID: 11400000, guid: 8d4e9a1ecebcb0b4880ab439c106118e, type: 2}
   playerPos: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
   tilePos: {fileID: 11400000, guid: f6327b936cbdba94e9e5df1c002016bc, type: 2}
+  hunterPos: {fileID: 11400000, guid: a9e6fc61002f0a343a31a393d080eecf, type: 2}
   onPlaceCharacter: {fileID: 11400000, guid: ed0c1fc5e16792143aecbfb50ac51873, type: 2}
+  onInitializeHunter: {fileID: 11400000, guid: 6468a6e1d429bac4797c9c6ce6d2bc1c, type: 2}
   onPlaceHatch: {fileID: 11400000, guid: 52c84aa8dbc68864bb1c8addd8f0da7d, type: 2}
   onInitializeMap: {fileID: 11400000, guid: fe05a7664a96476489bcdef317ff8d60, type: 2}
   torchParentTransform: {fileID: 678705236}

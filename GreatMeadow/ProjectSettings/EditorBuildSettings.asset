@@ -14,16 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SceneSetup/AnimationScene.unity
     guid: d4eb0fd44130f8a43b653f159e84f612
-  - enabled: 0
-    path: Assets/SceneSetup/TorchScene.unity
-    guid: 394f91564ea36f8439b2f576673ba1e8
   - enabled: 1
     path: Assets/SceneSetup/HatchScene.unity
     guid: 1e63046920e4a4e4f8a7da9eac0b46e4
   - enabled: 1
-    path: Assets/SceneSetup/MazeGenerationScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/SceneSetup/HunterScene.unity
+    guid: b2354383b5ac8404ea2b0ca206b9e4ea
   - enabled: 1
     path: Assets/SceneSetup/MapScene.unity
     guid: e14e63a1bd6bba048833137053e2e13b
+  - enabled: 1
+    path: Assets/SceneSetup/MazeGenerationScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

@@ -59,6 +59,7 @@ public class GameLoader : MonoBehaviour
       scenesToLoad.Add(SceneManager.LoadSceneAsync("AnimationScene",LoadSceneMode.Additive));
       scenesToLoad.Add(SceneManager.LoadSceneAsync("HatchScene",LoadSceneMode.Additive));
       scenesToLoad.Add(SceneManager.LoadSceneAsync("MapScene",LoadSceneMode.Additive));
+      scenesToLoad.Add(SceneManager.LoadSceneAsync("HunterScene",LoadSceneMode.Additive));
       scenesToLoad.Add(SceneManager.LoadSceneAsync("MazeGenerationScene",LoadSceneMode.Additive));
 
       scenesToLoad[scenesToLoad.Count - 1].completed +=  _ =>
@@ -84,6 +85,7 @@ public class GameLoader : MonoBehaviour
       SceneManager.UnloadSceneAsync("AnimationScene");
       SceneManager.UnloadSceneAsync("HatchScene");
       SceneManager.UnloadSceneAsync("MapScene");
+      SceneManager.UnloadSceneAsync("HunterScene");
       SceneManager.UnloadSceneAsync("MazeGenerationScene");
 
       scenesToLoad[scenesToLoad.Count - 1].completed += _ =>
