@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5297076239829641628}
-  - component: {fileID: 5297076239829641630}
   - component: {fileID: 5297076239829641629}
+  - component: {fileID: 1011934590168354182}
+  - component: {fileID: 5297076239829641630}
   - component: {fileID: 5297076239829641631}
   m_Layer: 0
   m_Name: Hatch
@@ -33,6 +34,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5297076239829641629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5297076239829641603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea0f3ab8f50b3348b088e77abaf6911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpTime: {fileID: 11400000, guid: bea9baa7f3f9b4d4ca69b48d6202a814, type: 2}
+  tileList: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}
+  hatchPosition: {fileID: 11400000, guid: a84034803e3a5394986a52f13e3cbcaf, type: 2}
+  hatchSpawnPos: {fileID: 11400000, guid: a84034803e3a5394986a52f13e3cbcaf, type: 2}
+  playerSpawnPos: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
+  width: {fileID: 11400000, guid: 306648929f97aa3408cb9fdef1697e0e, type: 2}
+  height: {fileID: 11400000, guid: a3e52cf95d2671542b5ca4005cb572ff, type: 2}
+  onLoadWinMenu: {fileID: 11400000, guid: a25398a19a1664e4783964386a73a579, type: 2}
+--- !u!95 &1011934590168354182
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5297076239829641603}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f843c03e57e4f6642b086e44d465baa1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!212 &5297076239829641630
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -84,23 +124,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5297076239829641629
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5297076239829641603}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ea0f3ab8f50b3348b088e77abaf6911, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hatchPosition: {fileID: 11400000, guid: a84034803e3a5394986a52f13e3cbcaf, type: 2}
-  hatchSpawnPos: {fileID: 11400000, guid: a84034803e3a5394986a52f13e3cbcaf, type: 2}
-  playerSpawnPos: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
-  width: {fileID: 11400000, guid: 306648929f97aa3408cb9fdef1697e0e, type: 2}
-  height: {fileID: 11400000, guid: a3e52cf95d2671542b5ca4005cb572ff, type: 2}
 --- !u!58 &5297076239829641631
 CircleCollider2D:
   m_ObjectHideFlags: 0

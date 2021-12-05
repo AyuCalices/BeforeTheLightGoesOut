@@ -8,50 +8,54 @@ namespace Features.Maze_Namespace.Tiles
     public class PositionController : ScriptableObject
     {
         public TileList_SO tiles;
-        
-        
-        public PositionController() 
-        {
-            
-        }
 
-        public List<Tile> GetPaths(Tile tile, int length)
+        public List<TileBehaviour> GetConnectedTiles(TileBehaviour tile)
         {
             // create list for saving all connected floors to the given length
-            List<Tile> connectedTiles = new List<Tile>();
-
-            // add current tile to list
-            connectedTiles.Add(tile);
+            List<TileBehaviour> connectedTiles = new List<TileBehaviour>();
             
             // go through the list of vec2s (connected floors) of the given tile
             for (int n = 0; n < tile.directions.Count; n++)
             {
                 // get neighboring tile position from given direction
-                Vector2 neighborTile = tile.position;
-                neighborTile += new Vector2(tile.directions[n].vec2Value.y, tile.directions[n].vec2Value.x);
+                Vector2Int neighborTile = tile.position;
+                neighborTile += new Vector2Int((int)tile.directions[n].vec2Value.y, (int)tile.directions[n].vec2Value.x);
 
                 // add connected tile to list of connections
                 connectedTiles.Add(tiles.GetTileAt((int) neighborTile.x, (int) neighborTile.y));
             }
             
-            // VARIABLE RENDER SIZE BY RECURSION WIP
+            return connectedTiles;
+        }
+
+        public List<TileBehaviour> GetPathsByDepth(TileBehaviour tile, int depth)
+        {
+            List<TileBehaviour> connectedTiles = new List<TileBehaviour>{tile};
             
-            length = -1;
+            List<TileBehaviour> currentDepthTiles = new List<TileBehaviour>{tile};
             
-            if (length >= 0) {
-                foreach(Tile extraTile in connectedTiles)
+            for (int i = 0; i < depth; i++)
+            {
+                List<TileBehaviour> newDepthTiles = new List<TileBehaviour>();
+                foreach (var tileByDepth in currentDepthTiles)
                 {
-                    connectedTiles.AddRange(GetPaths(tile, length));
+                    newDepthTiles.AddRange(GetConnectedTiles(tileByDepth));
+                }
+
+                currentDepthTiles = newDepthTiles;
+
+                //GetConnectedTiles() also returns tiles that already have been added in the previous depth iteration.
+                //That's why we have to check if it exists in the main List already.
+                foreach (var newTile in newDepthTiles)
+                {
+                    if (!connectedTiles.Contains(newTile))
+                    {
+                        connectedTiles.Add(newTile);
+                    }
                 }
             }
             
             return connectedTiles;
         }
-
-        public void GetNeighbors()
-        {
-            
-        }
-        
     }
 }

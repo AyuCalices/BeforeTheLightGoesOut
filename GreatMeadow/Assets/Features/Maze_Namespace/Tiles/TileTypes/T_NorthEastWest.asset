@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e93456d3572b94485e99ef4e1146f9, type: 3}
   m_Name: T_NorthEastWest
   m_EditorClassIdentifier: 
-  grassSprite: {fileID: 21300000, guid: d6209be249bd3c4479d86ba859de8e26, type: 3}
   miniMapSprite: {fileID: 21300000, guid: 5d6df41b5d257674391d9e16adb3c518, type: 3}
-  tile: {fileID: 9097043535581335324, guid: 3ff36fa36c59fdf4f839b9e3eacb451b, type: 3}
+  tile: {fileID: -2722632602537087154, guid: 3ff36fa36c59fdf4f839b9e3eacb451b, type: 3}
   directions:
   - {fileID: 11400000, guid: 8d775117d3b8cab4e88e7742f77c9d27, type: 2}
   - {fileID: 11400000, guid: 7116495bcf8e90a478d81d5b031e302d, type: 2}

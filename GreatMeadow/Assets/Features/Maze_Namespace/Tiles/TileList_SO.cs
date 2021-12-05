@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using Utils.Variables_Namespace;
 
@@ -7,23 +6,28 @@ namespace Features.Maze_Namespace.Tiles
     [CreateAssetMenu]
     public class TileList_SO : ScriptableObject
     {
-        [SerializeField] private IntVariable MazeWidth;
+        [SerializeField] private IntVariable width;
+        [SerializeField] private IntVariable height;
         
-        private Tile[] _tiles;
+        private TileBehaviour[][] _tiles;
 
-        public void SetTiles(Tile[] tiles)
+        private void OnEnable()
         {
-            _tiles = tiles;
+            _tiles = new TileBehaviour[height.intValue][];
+            for (int y = 0; y < _tiles.Length; y++)
+            {
+                _tiles[y] = new TileBehaviour[width.intValue];
+            }
         }
 
-        public Tile GetPosition(int position)
+        public void RegisterTile(TileBehaviour tileBehaviour)
         {
-            return _tiles[position];
+            _tiles[tileBehaviour.position.y][tileBehaviour.position.x] = tileBehaviour;
         }
 
-        public Tile GetTileAt(int x, int y)
+        public TileBehaviour GetTileAt(int x, int y)
         {
-            return _tiles[y * MazeWidth.intValue + x];
+            return _tiles[y][x];
         }
     }
 }
