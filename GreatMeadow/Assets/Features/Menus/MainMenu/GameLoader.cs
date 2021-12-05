@@ -58,8 +58,8 @@ public class GameLoader : MonoBehaviour
       scenesToLoad.Add(SceneManager.LoadSceneAsync("Music",LoadSceneMode.Additive));
       scenesToLoad.Add(SceneManager.LoadSceneAsync("AnimationScene",LoadSceneMode.Additive));
       scenesToLoad.Add(SceneManager.LoadSceneAsync("HatchScene",LoadSceneMode.Additive));
-      scenesToLoad.Add(SceneManager.LoadSceneAsync("MazeGenerationScene",LoadSceneMode.Additive));
       scenesToLoad.Add(SceneManager.LoadSceneAsync("MapScene",LoadSceneMode.Additive));
+      scenesToLoad.Add(SceneManager.LoadSceneAsync("MazeGenerationScene",LoadSceneMode.Additive));
 
       scenesToLoad[scenesToLoad.Count - 1].completed +=  _ =>
       {
@@ -79,12 +79,13 @@ public class GameLoader : MonoBehaviour
     ShowFadeMenu(() =>
     {
       canvasManager.SwitchCanvas(menuToBeOpened);
+      
       SceneManager.UnloadSceneAsync("Music");
       SceneManager.UnloadSceneAsync("AnimationScene");
       SceneManager.UnloadSceneAsync("HatchScene");
-      SceneManager.UnloadSceneAsync("MazeGenerationScene");
       SceneManager.UnloadSceneAsync("MapScene");
-      
+      SceneManager.UnloadSceneAsync("MazeGenerationScene");
+
       scenesToLoad[scenesToLoad.Count - 1].completed += _ =>
       {
         HideFadeMenu((() => scenesToLoad.Clear()));

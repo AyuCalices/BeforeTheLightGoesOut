@@ -4,15 +4,15 @@ using Utils.Event_Namespace;
 
 public class PlayerTorch : MonoBehaviour
 {
-    
-    
     [SerializeField] private float startTorchDuration = 30f;
     [SerializeField] private float highestTorchBrightness = 0.5f;
     [SerializeField] private float lowestTorchBrightness = 0.1f;
     [SerializeField] private float torchBrightness = 1.3f;
     [SerializeField] private Light2D torchLight;
     [SerializeField] private GameEvent onLoadLoseMenu;
-    private float currentTorchDuration = 0f;
+    
+    private float currentTorchDuration;
+    private bool gameIsLost;
 
     // Start is called before the first frame update
     void Start()
@@ -28,10 +28,10 @@ public class PlayerTorch : MonoBehaviour
         float torchDurabilityInPercent = currentTorchDuration / startTorchDuration;
         torchBrightness = Mathf.Max(lowestTorchBrightness, torchDurabilityInPercent * highestTorchBrightness);
         torchLight.intensity = torchBrightness;
-        if (currentTorchDuration <= 0)
+        if (currentTorchDuration <= 0 && !gameIsLost)
         {
-            Debug.Log("bb");
-            //LoadLoseMenu();
+            gameIsLost = true;
+            LoadLoseMenu();
         }
     }
     

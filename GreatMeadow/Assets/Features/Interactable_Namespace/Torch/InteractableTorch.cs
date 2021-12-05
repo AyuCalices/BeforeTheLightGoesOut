@@ -1,26 +1,26 @@
+using System;
+using System.Collections;
 using Features.Character_Namespace;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
-using Utils.Variables_Namespace;
 
 [RequireComponent(typeof(Animator))]
 public class InteractableTorch : InteractableBehaviour
 {
-    [SerializeField] private Vector2Variable torchSpawnPos;
-    [SerializeField] private Vector2Variable torchPosition;
     [SerializeField] private Light2D torchLight;
+    
     private Animator animator;
     private static readonly int PickUpTorch = Animator.StringToHash("PickUpTorch");
+    private float maxTorchIntensity;
+    private bool isLooted;
 
-    /**
-    * Set spawn position of torch
-    */
-    public void SetTorchPosition(Vector2Variable torchSpawnPosition)
+    private void Awake()
     {
-        torchSpawnPos = torchSpawnPosition;
-        transform.position = torchPosition.vec2Value;
+        maxTorchIntensity = torchLight.intensity;
+        torchLight.intensity = 0;
+        gameObject.SetActive(false);
     }
-
+    
     /**
      * Pick Up Torch
      */
@@ -31,5 +31,40 @@ public class InteractableTorch : InteractableBehaviour
         torchLight.intensity = 0f;
         GetComponent<AudioSource>().Stop();
         playerController.GetComponentInChildren<PlayerTorch>().RefillTorch();
+        isLooted = true;
+    }
+
+    private IEnumerator ChangeLightOverTime(float fromVal, float toVal, float duration)
+    {
+        float counter = 0f;
+
+        while (counter < duration)
+        {
+            if (Time.timeScale == 0)
+                counter += Time.unscaledDeltaTime;
+            else
+                counter += Time.deltaTime;
+
+            torchLight.intensity = Mathf.Lerp(fromVal, toVal, counter / duration);
+            yield return null;
+        }
+    }
+
+    public override void Enable()
+    {
+        base.Enable();
+        if (!isLooted)
+        {
+            StartCoroutine(ChangeLightOverTime(0, maxTorchIntensity, lerpTime.floatValue));
+        }
+    }
+
+    public override void Disable()
+    {
+        base.Disable();
+        if (!isLooted)
+        {
+            StartCoroutine(ChangeLightOverTime(maxTorchIntensity, 0, lerpTime.floatValue));
+        }
     }
 }
