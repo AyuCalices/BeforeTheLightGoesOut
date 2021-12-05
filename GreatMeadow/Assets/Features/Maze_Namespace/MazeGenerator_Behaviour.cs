@@ -66,7 +66,7 @@ namespace Features.Maze_Namespace
         // list of tiles to be spawned
         private List<TileBehaviour> runtimeTiles = new List<TileBehaviour>();
 
-        private List<TileBehaviour> renderTiles = new List<TileBehaviour>();
+        private List<TileBehaviour> oldRenderTiles = new List<TileBehaviour>();
 
         private bool isInitialized;
         private int lastTilePosition;
@@ -123,6 +123,7 @@ namespace Features.Maze_Namespace
             
             //TODO: drop the dynamic rendering in another script
             //TODO: create some rendering methods for below
+            //TODO: do line 128-131 inside the TileBehaviour
             // start with unrendered tiles & grass art to save performance
             for (int n = 0; n < width.intValue*height.intValue; n++)
             {
@@ -315,28 +316,25 @@ namespace Features.Maze_Namespace
             // go through the list of tiles to be rendered
             foreach(TileBehaviour renderedTile in tilesToRender)
             {
-                // get the position of the tile to be rendered
-                int renderPos = renderedTile.position.y  * width.intValue + renderedTile.position.x;
-
                 // render the tile at the given position
-                if (!renderTiles.Contains(runtimeTiles[renderPos]))
+                if (!oldRenderTiles.Contains(renderedTile))
                 {
-                    runtimeTiles[renderPos].Enable();
+                    renderedTile.Enable();
                 }
                 else
                 {
-                    renderTiles.Remove(runtimeTiles[renderPos]);
+                    oldRenderTiles.Remove(renderedTile);
                 }
 
-                newRenderTiles.Add(runtimeTiles[renderPos]);
+                newRenderTiles.Add(renderedTile);
             }
             
-            foreach (var renderTile in renderTiles)
+            foreach (var renderTile in oldRenderTiles)
             {
                 renderTile.Disable();
             }
 
-            renderTiles = newRenderTiles;
+            oldRenderTiles = newRenderTiles;
         }
 
         //TODO: out
