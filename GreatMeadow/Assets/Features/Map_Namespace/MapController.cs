@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -47,7 +48,13 @@ public class MapController : MonoBehaviour
         playerInputActions.Player.OpenMap.performed += mapActivated;
         playerInputActions.Player.OpenMap.Enable();
     }
-    
+
+    private void OnDisable()
+    {
+        playerInputActions.Player.OpenMap.performed -= mapActivated;
+        playerInputActions.Player.OpenMap.Disable();
+    }
+
     public void InitializeMap()
     {
         // list where the map tiles will be stored
