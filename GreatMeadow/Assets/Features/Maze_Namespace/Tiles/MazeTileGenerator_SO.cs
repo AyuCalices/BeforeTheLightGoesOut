@@ -7,18 +7,15 @@ namespace Features.Maze_Namespace.Tiles
     [CreateAssetMenu]
     public class MazeTileGenerator_SO : TileGenerator_SO
     {
-        [SerializeField] private SpriteRenderer tilePrefab;
-
-        public void InstantiateTileAt(Vector2 position, Transform tileParent, Transform grassSpriteParent)
+        public TileBehaviour InstantiateTileAt(Tile tile, Transform tileParent)
         {
-            TileSprite_SO tileSprite = GetTileSpriteByDirections(tileList.GetTileAt((int)position.x, (int)position.y).directions);
-            
-            SpriteRenderer grassSprite = Instantiate(tilePrefab, grassSpriteParent);
-            grassSprite.transform.localPosition = position;
-            grassSprite.sprite = tileSprite.grassSprite;
-            
-            GameObject tile = Instantiate(tileSprite.tile, tileParent);
-            tile.transform.localPosition = position;
+            TileSprite_SO tileSprite = GetTileSpriteByDirections(tile.directions);
+
+            TileBehaviour runtimeTile = Instantiate(tileSprite.tile, tileParent);
+            runtimeTile.Initialize(tile);
+            runtimeTile.transform.localPosition = (Vector2)tile.position;
+
+            return runtimeTile;
         }
     }
 }
