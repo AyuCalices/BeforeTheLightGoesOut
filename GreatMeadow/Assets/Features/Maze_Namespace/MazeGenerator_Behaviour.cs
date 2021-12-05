@@ -51,6 +51,8 @@ namespace Features.Maze_Namespace
         [SerializeField] private Vector2Variable playerPos;
         [Tooltip("Variable for player position in tile.")]
         [SerializeField] private IntVariable tilePos;
+
+        [SerializeField] private Vector2Variable hunterPosition;
         
         [Header("Events")]
         [SerializeField] private GameEvent onPlaceCharacter;
