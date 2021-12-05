@@ -71,6 +71,7 @@ namespace Features.Character_Namespace
             animator.SetFloat(HorizontalMovement, GetInputMovement().x);
             animator.SetFloat(VerticalMovement, GetInputMovement().y);
             animator.SetFloat(Speed, GetInputMovement().sqrMagnitude);
+            
             //Get into idle position
             if (GetInputMovement().x == 1 || GetInputMovement().x == -1 || GetInputMovement().y == 1 || GetInputMovement().y == -1)
             {
