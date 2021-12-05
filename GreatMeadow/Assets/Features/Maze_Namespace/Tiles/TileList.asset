@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cfa0c80720c9b14f8bcec21391c2eca, type: 3}
   m_Name: TileList
   m_EditorClassIdentifier: 
-  MazeWidth: {fileID: 11400000, guid: 306648929f97aa3408cb9fdef1697e0e, type: 2}
-  tiles: []
+  width: {fileID: 11400000, guid: 306648929f97aa3408cb9fdef1697e0e, type: 2}
+  height: {fileID: 11400000, guid: a3e52cf95d2671542b5ca4005cb572ff, type: 2}

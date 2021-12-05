@@ -92,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9019939012722439194}
   - component: {fileID: 4662396226575257198}
+  - component: {fileID: 6663724388282218663}
   m_Layer: 0
   m_Name: East_Tile
   m_TagString: Untagged
@@ -166,6 +167,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6663724388282218663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9019939012722439195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ece7ba0721f1964ea0c295b43b96f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpTime: {fileID: 11400000, guid: bea9baa7f3f9b4d4ca69b48d6202a814, type: 2}
+  tileList: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}
 --- !u!1 &9019939012878112878
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +242,7 @@ MonoBehaviour:
   - {x: -0.5, y: 0.5, z: 0}
   m_ShapePathHash: -405615107
   m_Mesh: {fileID: 0}
-  m_InstanceId: 47580
+  m_InstanceId: 47754
 --- !u!60 &8961548169639675994
 PolygonCollider2D:
   m_ObjectHideFlags: 0

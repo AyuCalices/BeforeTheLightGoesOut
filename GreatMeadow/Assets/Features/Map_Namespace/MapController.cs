@@ -1,16 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.PlayerLoop;
-using UnityEngine.SceneManagement;
 using Utils.Variables_Namespace;
-using Random = UnityEngine.Random;
-using Scene = UnityEditor.SearchService.Scene;
 using Features.Maze_Namespace.Tiles;
 
+//TODO: remove magic numbers
 public class MapController : MonoBehaviour
 {
     [Tooltip("Width of generated maze in number of tiles (x-axis).")]
@@ -36,9 +30,25 @@ public class MapController : MonoBehaviour
     // access to the player positions' tile number
     [SerializeField] private IntVariable tilePos;
 
-    private bool updateStarted;
+    private bool isInitialized;
     
-    private void Start()
+    private void Awake()
+    {
+        // initialize input actions for map scene
+        playerInputActions = new PlayerInputActions();
+        
+        // enable player input in map scene
+        playerInputActions.Enable();
+    }
+    
+    private void OnEnable()
+    {
+        // allow opening of the map
+        playerInputActions.Player.OpenMap.performed += mapActivated;
+        playerInputActions.Player.OpenMap.Enable();
+    }
+    
+    public void InitializeMap()
     {
         // list where the map tiles will be stored
         shownTiles = new List<GameObject>();
@@ -55,6 +65,7 @@ public class MapController : MonoBehaviour
             shownTiles[n].SetActive(false);
         }
 
+        //TODO: use canvas for positioning line 53 & 56
         // position map background art
         mapParent.GetChild(0).position = new Vector3(Screen.width/2, Screen.height/2, 0);
         
@@ -65,38 +76,21 @@ public class MapController : MonoBehaviour
         mapParent.GetChild(2).SetAsLastSibling();
 
         // only start update, when initialization is completed
-        updateStarted = true;
-
+        isInitialized = true;
     }
 
     private void Update()
     {
-        if (updateStarted == true) {
-        // reveal map tile at player position
-        shownTiles[tilePos.intValue].SetActive(true);
-        
-        // depict player position on current map tile
-        mapParent.GetChild(shownTiles.Count+2).position = shownTiles[tilePos.intValue].transform.position;
+        if (isInitialized) 
+        {
+            // reveal map tile at player position
+            shownTiles[tilePos.intValue].SetActive(true);
+            
+            // depict player position on current map tile
+            mapParent.GetChild(shownTiles.Count+2).position = shownTiles[tilePos.intValue].transform.position;
         }
     }
 
-    private void Awake()
-    {
-        // initialize input actions for map scene
-        playerInputActions = new PlayerInputActions();
-        
-        // enable player input in map scene
-        playerInputActions.Enable();
-        
-    }
-
-    private void OnEnable()
-    {
-        // allow opening of the map
-        playerInputActions.Player.OpenMap.performed += mapActivated;
-        playerInputActions.Player.OpenMap.Enable();
-    }
-    
     private void DrawTiles()
     {
         // for each tile of the generated maze
@@ -120,19 +114,9 @@ public class MapController : MonoBehaviour
         }
     }
 
-    public void mapActivated(InputAction.CallbackContext obj)
+    private void mapActivated(InputAction.CallbackContext obj)
     {
         // open map on call if closed and close if opened
-
-        if (mapParent.gameObject.activeSelf == true)
-        {
-            mapParent.gameObject.SetActive(false);
-        }
-        else
-        {
-            mapParent.gameObject.SetActive(true);
-        }
-
+        mapParent.gameObject.SetActive(!mapParent.gameObject.activeSelf);
     }
-
 }

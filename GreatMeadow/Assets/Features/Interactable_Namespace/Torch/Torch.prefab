@@ -127,8 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c244c10ba10a629488ecf6c74ce1493b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torchSpawnPos: {fileID: 11400000, guid: 154130d6c4ccffe49b5a582f66a0365b, type: 2}
-  torchPosition: {fileID: 11400000, guid: 154130d6c4ccffe49b5a582f66a0365b, type: 2}
+  lerpTime: {fileID: 11400000, guid: bea9baa7f3f9b4d4ca69b48d6202a814, type: 2}
   torchLight: {fileID: 3611683907312456987}
 --- !u!212 &3611683906383126882
 SpriteRenderer:

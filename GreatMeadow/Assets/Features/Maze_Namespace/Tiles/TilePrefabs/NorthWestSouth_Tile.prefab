@@ -260,6 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6898012032442257888}
   - component: {fileID: 4750057186511343810}
+  - component: {fileID: 7824572150938025896}
   m_Layer: 0
   m_Name: NorthWestSouth_Tile
   m_TagString: Untagged
@@ -336,6 +337,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7824572150938025896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6898012032442257889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ece7ba0721f1964ea0c295b43b96f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpTime: {fileID: 11400000, guid: bea9baa7f3f9b4d4ca69b48d6202a814, type: 2}
+  tileList: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}
 --- !u!1 &7740121328365066180
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Features.Maze_Namespace.Tiles;
 using UnityEngine;
 using Utils.Event_Namespace;
@@ -37,7 +36,7 @@ namespace Features.Maze_Namespace
         [Tooltip("List of tiles to be spawned.")]
         [SerializeField] private TileList_SO tiles;
         [Tooltip("Determine the number of neighbor tiles to be rendered.")]
-        [SerializeField] private int renderSize = 3;
+        [SerializeField] private int renderSize = 1;
         [Tooltip("Grants access to the neighbor tiles' information.")]
         [SerializeField] private PositionController posControl;
         
@@ -52,27 +51,30 @@ namespace Features.Maze_Namespace
         [SerializeField] private GameEvent onPlaceCharacter;
         [Tooltip("Game Event for hatch spawn position.")]
         [SerializeField] private GameEvent onPlaceHatch;
-
+        [Tooltip("Game Event for hatch spawn position.")]
+        [SerializeField] private GameEvent onInitializeMap;
+        
         [Header("Places Interaction objects")]
         [Tooltip("Transform parent of all generated torches.")]
         [SerializeField] private Transform torchParentTransform;
-        [SerializeField] private TorchGenerator_SO torch;
-        [SerializeField] private Vector2Variable hatchPosition;
+        [SerializeField] private InteractableTorch torchPrefab;
         
 
-        //
         private Tile[] _tiles;
-        //
         private List<Edge> _edges;
+        
         // list of tiles to be spawned
-        private List<GameObject> spawnTiles = new List<GameObject>();
+        private List<TileBehaviour> runtimeTiles = new List<TileBehaviour>();
 
-        private List<GameObject> renderTiles = new List<GameObject>();
+        private List<TileBehaviour> renderTiles = new List<TileBehaviour>();
 
         private bool isInitialized;
         private int lastTilePosition;
         
-        private int currentTilePos => (int) (playerPos.vec2Value.y + 0.5) * width.intValue + (int) (playerPos.vec2Value.x + 0.5);
+        private int curIntPos => (int) (playerPos.vec2Value.y + 0.5) * width.intValue + (int) (playerPos.vec2Value.x + 0.5);
+
+        private Vector2Int curVec2Pos => new Vector2Int(Mathf.RoundToInt(playerPos.vec2Value.x),
+            Mathf.RoundToInt(playerPos.vec2Value.y));
 
         public void Awake()
         {
@@ -88,30 +90,48 @@ namespace Features.Maze_Namespace
 
             // generate the Maze
             KruskalAlgorithm();
-            
-            // Set tiles for global use
-            tiles.SetTiles(_tiles);
 
             // draw the maze (tile objects)
             DrawTiles();
             
+            
+            
+            
+            
+            //TODO: remove playerPos or tilePos
             // randomize player starting position
             playerPos.vec2Value = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
 
             // initialize current tile position to be the player spawn's position
-            tilePos.intValue = currentTilePos;
-            // start with unrendered tiles & grass art to save performance
-            for (int n = 0; n < width.intValue*height.intValue; n++)
-            {
-                spawnTiles[n].SetActive(false);
-            }
+            tilePos.intValue = curIntPos;
 
-            isInitialized = true;
             
+            
+            
+
+            //TODO: Over the top: create a genertator modifier interface inside a scriptable object and implement placeCharacter, placeHatch, initializeMap into those ?
             // initialize events
             onPlaceCharacter.Raise();
             onPlaceHatch.Raise();
+            onInitializeMap.Raise();
             PlaceTorchesInMaze();
+            
+            
+            
+            
+            
+            
+            //TODO: drop the dynamic rendering in another script
+            //TODO: create some rendering methods for below
+            // start with unrendered tiles & grass art to save performance
+            for (int n = 0; n < width.intValue*height.intValue; n++)
+            {
+                runtimeTiles[n].gameObject.SetActive(false);
+            }
+            OptimizeRender();
+            lastTilePosition = tilePos.intValue;
+            
+            isInitialized = true;
         }
 
         public void Update()
@@ -119,7 +139,7 @@ namespace Features.Maze_Namespace
             //  WIP (implement only optimizeRender when player location tile changed)
             if (!isInitialized) return;
             
-            tilePos.intValue = currentTilePos;
+            tilePos.intValue = curIntPos;
             if (lastTilePosition != tilePos.intValue) 
             {
                 OptimizeRender();
@@ -269,51 +289,57 @@ namespace Features.Maze_Namespace
             {
                 for (int x = 0; x < width.intValue; x++)
                 {
-                    // save position of the tile
-                    int pos = y * width.intValue + x;
-                    
                     // create position grid with current tile position in loop
-                    Vector2Int gridPosition = new Vector2Int(x, y);
+                    int gridPosition = y * width.intValue + x;
                     
                     // instantiate the current tile & art at position as children of the determined parent transforms
-                    tile.InstantiateTileAt(gridPosition, tileParentTransform);
+                    TileBehaviour newTile = tile.InstantiateTileAt(_tiles[gridPosition], tileParentTransform);
                     
                     // add generated tile to list of objects to be (de)-spawned
-                    spawnTiles.Add(tileParentTransform.GetChild(pos).gameObject);
+                    runtimeTiles.Add(newTile);
                 }
             }
         }
 
+        //TODO: out
         private void OptimizeRender()
         {
-            //Hide last rendered tiles
-            if (renderTiles.Count != 0)
-            {
-                foreach (var renderTile in renderTiles)
-                {
-                    renderTile.SetActive(false);
-                }
-                renderTiles.Clear();
-            }
-            
+            List<TileBehaviour> newRenderTiles = new List<TileBehaviour>();
+
             // initialize tiles to be rendered
-            List<Tile> tilesToRender = new List<Tile>();
+            List<TileBehaviour> tilesToRender = new List<TileBehaviour>();
             
             // get a list of tiles to be rendered at the current position
-            tilesToRender = posControl.GetPathsByDepth(tiles.GetPosition(tilePos.intValue), renderSize);
+            tilesToRender = posControl.GetPathsByDepth(tiles.GetTileAt(curVec2Pos.x, curVec2Pos.y), renderSize);
 
             // go through the list of tiles to be rendered
-            foreach(Tile renderedTile in tilesToRender)
+            foreach(TileBehaviour renderedTile in tilesToRender)
             {
                 // get the position of the tile to be rendered
                 int renderPos = renderedTile.position.y  * width.intValue + renderedTile.position.x;
 
                 // render the tile at the given position
-                tileParentTransform.GetChild(renderPos).gameObject.SetActive(true);
-                renderTiles.Add(tileParentTransform.GetChild(renderPos).gameObject);
+                if (!renderTiles.Contains(runtimeTiles[renderPos]))
+                {
+                    runtimeTiles[renderPos].Enable();
+                }
+                else
+                {
+                    renderTiles.Remove(runtimeTiles[renderPos]);
+                }
+
+                newRenderTiles.Add(runtimeTiles[renderPos]);
             }
+            
+            foreach (var renderTile in renderTiles)
+            {
+                renderTile.Disable();
+            }
+
+            renderTiles = newRenderTiles;
         }
 
+        //TODO: out
         private void PlaceTorchesInMaze()
         {
             //calculate percentage of torch placement
@@ -322,11 +348,16 @@ namespace Features.Maze_Namespace
 
             for (int torchNr = 0; torchNr < torchesToPlace.Length; torchNr++)
             {
-                Vector2 torchPosition = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
-                if (!torchesToPlace.Contains(torchPosition) && torchPosition != playerPos.vec2Value && torchPosition != hatchPosition.vec2Value )
+                Vector2Int torchPosition = new Vector2Int(Mathf.RoundToInt(Random.Range(0f, width.intValue - 1)), Mathf.RoundToInt(Random.Range(0f, height.intValue - 1)));
+                
+                if (!runtimeTiles[torchPosition.y * width.intValue + torchPosition.x].ContainsInteractable() && torchPosition != playerPos.vec2Value)
                 {
                     torchesToPlace[torchNr] = torchPosition;
-                    torch.InstantiateTorchAt(torchPosition, torchParentTransform);
+                    
+                    InteractableTorch torch = Instantiate(torchPrefab, torchParentTransform);
+                    torch.transform.position = (Vector2)torchPosition;
+                    
+                    runtimeTiles[torchPosition.y * width.intValue + torchPosition.x].RegisterInteractable(torch);
                 }
             }
         }

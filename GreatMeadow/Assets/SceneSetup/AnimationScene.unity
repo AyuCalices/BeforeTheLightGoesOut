@@ -132,13 +132,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 344043541}
+  - component: {fileID: 344043545}
+  - component: {fileID: 344043546}
   - component: {fileID: 344043540}
   - component: {fileID: 344043539}
   - component: {fileID: 344043543}
   - component: {fileID: 344043542}
   - component: {fileID: 344043544}
-  - component: {fileID: 344043545}
-  - component: {fileID: 344043546}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efa15223c2abc74ea176456593ac315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTorchDuration: 30
+  startTorchDuration: 60
   highestTorchBrightness: 1.3
   lowestTorchBrightness: 0.1
   torchBrightness: 1.3
@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 1015735851}
   - component: {fileID: 1015735850}
   m_Layer: 0
-  m_Name: GameEventListenerTwo
+  m_Name: GameEventListener
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

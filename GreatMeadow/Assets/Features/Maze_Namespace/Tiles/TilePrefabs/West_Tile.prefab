@@ -187,6 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2337539902580388586}
   - component: {fileID: 8259147654613123216}
+  - component: {fileID: -5110238805904486421}
   m_Layer: 0
   m_Name: West_Tile
   m_TagString: Untagged
@@ -261,3 +262,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-5110238805904486421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337539902580388587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ece7ba0721f1964ea0c295b43b96f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpTime: {fileID: 11400000, guid: bea9baa7f3f9b4d4ca69b48d6202a814, type: 2}
+  tileList: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}

@@ -106,6 +106,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8100726783043981359}
   - component: {fileID: 3681020908823653216}
+  - component: {fileID: -2797698445088930211}
   m_Layer: 0
   m_Name: South_Wall
   m_TagString: Untagged
@@ -180,6 +181,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2797698445088930211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8100726783043981358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ece7ba0721f1964ea0c295b43b96f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lerpTime: {fileID: 11400000, guid: bea9baa7f3f9b4d4ca69b48d6202a814, type: 2}
+  tileList: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}
 --- !u!1 &8253702187055479644
 GameObject:
   m_ObjectHideFlags: 0
