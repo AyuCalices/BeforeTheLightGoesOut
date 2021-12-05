@@ -30,8 +30,8 @@ public class PlayerTorch : MonoBehaviour
         torchLight.intensity = torchBrightness;
         if (currentTorchDuration <= 0)
         {
-            Debug.Log("bb");
-            //LoadLoseMenu();
+            //Debug.Log("bb");
+            LoadLoseMenu();
         }
     }
     
