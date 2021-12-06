@@ -19,6 +19,7 @@ public class TileBehaviour : GameObjectActiveSwitchBehaviour
         position = tile.position;
         tileList.RegisterTile(this);
         directions = tile.directions;
+        gameObject.SetActive(false);
     }
 
     public void RegisterInteractable(InteractableBehaviour interactable)

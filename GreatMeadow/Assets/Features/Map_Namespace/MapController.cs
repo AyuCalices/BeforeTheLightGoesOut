@@ -14,7 +14,9 @@ public class MapController : MonoBehaviour
     [SerializeField] private IntVariable height;
 
     [Tooltip("Parent transform of all map tiles children.")]
-    [SerializeField] private Transform mapParent;
+    [SerializeField] private GameObject map;
+    [SerializeField] private Transform mapInstantiationParent;
+    [SerializeField] private Transform playerPositionPoint;
     
     [Tooltip("Grants access to the generation of the map.")]
     [SerializeField] private MiniMapTileGenerator_SO mapTile;
@@ -40,18 +42,20 @@ public class MapController : MonoBehaviour
         
         // enable player input in map scene
         playerInputActions.Enable();
+        
+        map.SetActive(false);
     }
     
     private void OnEnable()
     {
         // allow opening of the map
-        playerInputActions.Player.OpenMap.performed += mapActivated;
+        playerInputActions.Player.OpenMap.performed += MapActivated;
         playerInputActions.Player.OpenMap.Enable();
     }
 
     private void OnDisable()
     {
-        playerInputActions.Player.OpenMap.performed -= mapActivated;
+        playerInputActions.Player.OpenMap.performed -= MapActivated;
         playerInputActions.Player.OpenMap.Disable();
     }
 
@@ -61,7 +65,7 @@ public class MapController : MonoBehaviour
         shownTiles = new List<GameObject>();
         
         // centralize the map
-        mapParent.transform.position += new Vector3(-width.intValue*5, -height.intValue*5,  0);
+        mapInstantiationParent.transform.position += new Vector3(-width.intValue*5, -height.intValue*5,  0);
         
         // draw map tiles from the same maze seed
         DrawTiles();
@@ -72,15 +76,8 @@ public class MapController : MonoBehaviour
             shownTiles[n].SetActive(false);
         }
 
-        //TODO: use canvas for positioning line 53 & 56
-        // position map background art
-        mapParent.GetChild(0).position = new Vector3(Screen.width/2, Screen.height/2, 0);
-        
-        // position map text
-        mapParent.GetChild(1).position = new Vector3(Screen.width/2, Screen.height/2+height.intValue*6, 0);
-        
         // depict player position marker above all tiles
-        mapParent.GetChild(2).SetAsLastSibling();
+        playerPositionPoint.SetAsLastSibling();
 
         // only start update, when initialization is completed
         isInitialized = true;
@@ -94,7 +91,7 @@ public class MapController : MonoBehaviour
             shownTiles[tilePos.intValue].SetActive(true);
             
             // depict player position on current map tile
-            mapParent.GetChild(shownTiles.Count+2).position = shownTiles[tilePos.intValue].transform.position;
+            playerPositionPoint.position = shownTiles[tilePos.intValue].transform.position;
         }
     }
 
@@ -113,17 +110,17 @@ public class MapController : MonoBehaviour
                 Vector2Int gridPosition = new Vector2Int(x, y);
                 
                 // instantiate map tile at fitting position as child of the map canvas
-                mapTile.InstantiateTileAt(gridPosition, mapParent);
+                mapTile.InstantiateTileAt(gridPosition, mapInstantiationParent);
                 
                 // add the map tile to the map parent
-                shownTiles.Add(mapParent.GetChild(pos+3).gameObject);
+                shownTiles.Add(mapInstantiationParent.GetChild(pos).gameObject);
             }
         }
     }
 
-    private void mapActivated(InputAction.CallbackContext obj)
+    private void MapActivated(InputAction.CallbackContext obj)
     {
         // open map on call if closed and close if opened
-        mapParent.gameObject.SetActive(!mapParent.gameObject.activeSelf);
+        map.SetActive(!map.activeSelf);
     }
 }

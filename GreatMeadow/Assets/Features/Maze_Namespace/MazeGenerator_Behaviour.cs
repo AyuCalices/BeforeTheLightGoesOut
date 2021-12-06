@@ -128,13 +128,8 @@ namespace Features.Maze_Namespace
             
             
             //TODO: drop the dynamic rendering in another script
-            //TODO: create some rendering methods for below
-            //TODO: do line 128-131 inside the TileBehaviour
+            //TODO: create some rendering methods/class for below
             // start with unrendered tiles & grass art to save performance
-            for (int n = 0; n < width.intValue*height.intValue; n++)
-            {
-                runtimeTiles[n].gameObject.SetActive(false);
-            }
             OptimizeRender();
             lastTilePosition = tilePos.intValue;
             
