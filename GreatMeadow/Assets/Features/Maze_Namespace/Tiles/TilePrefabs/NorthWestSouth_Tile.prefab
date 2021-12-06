@@ -57,7 +57,7 @@ MonoBehaviour:
   - {x: -0.5, y: -0.3, z: 0}
   m_ShapePathHash: -804666259
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46292
+  m_InstanceId: 57034
 --- !u!61 &773934162050910325
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -71,7 +71,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.40005538, y: -0.400167}
+  m_Offset: {x: -0.4, y: -0.4}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -82,7 +82,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.19988924, y: 0.19966602}
+  m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
 --- !u!1 &6698384395841279754
 GameObject:
@@ -223,7 +223,7 @@ MonoBehaviour:
   - {x: -0.5, y: 0.1, z: 0}
   m_ShapePathHash: 1398834293
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46304
+  m_InstanceId: 57048
 --- !u!61 &5063170438109821913
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -237,7 +237,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.3999387, y: 0.2999213}
+  m_Offset: {x: -0.4, y: 0.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -248,7 +248,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2001226, y: 0.4001574}
+  m_Size: {x: 0.2, y: 0.4}
   m_EdgeRadius: 0
 --- !u!1 &6898012032442257889
 GameObject:
@@ -408,7 +408,7 @@ MonoBehaviour:
   - {x: 0.3, y: 0.5, z: 0}
   m_ShapePathHash: -1906440083
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46286
+  m_InstanceId: 57028
 --- !u!61 &3210800414688439201
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -422,7 +422,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.40025365, y: 0}
+  m_Offset: {x: 0.4, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -433,5 +433,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1994927, y: 1}
+  m_Size: {x: 0.2, y: 1}
   m_EdgeRadius: 0
