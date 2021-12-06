@@ -1,8 +1,8 @@
 using System.Collections.Generic;
+using DataStructures.Variables;
 using Features.Maze_Namespace.Tiles;
 using UnityEngine;
 using Utils.Event_Namespace;
-using Utils.Variables_Namespace;
 using Random = UnityEngine.Random;
 
 namespace Features.Maze_Namespace
@@ -27,10 +27,10 @@ namespace Features.Maze_Namespace
         [SerializeField] private Transform tileParentTransform;
         
         [Header("Directions")]
-        [SerializeField] private Vector2Variable north;
-        [SerializeField] private Vector2Variable south;
-        [SerializeField] private Vector2Variable east;
-        [SerializeField] private Vector2Variable west;
+        [SerializeField] private Vector2IntVariable north;
+        [SerializeField] private Vector2IntVariable south;
+        [SerializeField] private Vector2IntVariable east;
+        [SerializeField] private Vector2IntVariable west;
 
         [Header("Tiles")]
         [Tooltip("List of tiles to be spawned.")]
@@ -42,11 +42,9 @@ namespace Features.Maze_Namespace
         
         [Header("Position tracking")]
         [Tooltip("Variable for spawning player and working with player position.")]
-        [SerializeField] private Vector2Variable playerPos;
-        [Tooltip("Variable for player position in tile.")]
-        [SerializeField] private IntVariable tilePos;
-
-        [SerializeField] private Vector2Variable hunterPos;
+        [SerializeField] private Vector2IntVariable playerPos;
+        [Tooltip("Variable for spawning hunter and working with hunter position.")]
+        [SerializeField] private Vector2IntVariable hunterPos;
         
         [Header("Events")]
         [Tooltip("Game Event for player spawn position.")]
@@ -73,12 +71,7 @@ namespace Features.Maze_Namespace
         private List<TileBehaviour> oldRenderTiles = new List<TileBehaviour>();
 
         private bool isInitialized;
-        private int lastTilePosition;
-        
-        private int curIntPos => (int) (playerPos.vec2Value.y + 0.5) * width.intValue + (int) (playerPos.vec2Value.x + 0.5);
-
-        private Vector2Int curVec2Pos => new Vector2Int(Mathf.RoundToInt(playerPos.vec2Value.x),
-            Mathf.RoundToInt(playerPos.vec2Value.y));
+        private Vector2Int lastTilePosition;
 
         public void Awake()
         {
@@ -98,22 +91,11 @@ namespace Features.Maze_Namespace
             // draw the maze (tile objects)
             DrawTiles();
             
-            
-            
-            
-            
-            //TODO: remove playerPos or tilePos
             // randomize player starting position
-            playerPos.vec2Value = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
-            hunterPos.vec2Value = playerPos.vec2Value;
-
-            // initialize current tile position to be the player spawn's position
-            tilePos.intValue = curIntPos;
-
+            playerPos.Set(new Vector2Int(Mathf.RoundToInt(Random.Range(0f, width.Get() - 1)), Mathf.RoundToInt(Random.Range(0f, height.Get() - 1))));
+            hunterPos.Set(playerPos.Get());
             
             
-            
-
             //TODO: Over the top: create a genertator modifier interface inside a scriptable object and implement placeCharacter, placeHatch, initializeMap into those ?
             // initialize events
             onPlaceCharacter.Raise();
@@ -124,14 +106,11 @@ namespace Features.Maze_Namespace
             
             
             
-            
-            
-            
             //TODO: drop the dynamic rendering in another script
             //TODO: create some rendering methods/class for below
             // start with unrendered tiles & grass art to save performance
             OptimizeRender();
-            lastTilePosition = tilePos.intValue;
+            lastTilePosition = playerPos.Get();
             
             isInitialized = true;
         }
@@ -141,11 +120,10 @@ namespace Features.Maze_Namespace
             //  WIP (implement only optimizeRender when player location tile changed)
             if (!isInitialized) return;
             
-            tilePos.intValue = curIntPos;
-            if (lastTilePosition != tilePos.intValue) 
+            if (lastTilePosition != playerPos.Get()) 
             {
                 OptimizeRender();
-                lastTilePosition = tilePos.intValue;
+                lastTilePosition = playerPos.Get();
             }
         }
 
@@ -163,10 +141,10 @@ namespace Features.Maze_Namespace
         private void KruskalAlgorithm()
         {
             //Tile Initialization
-            _tiles = new Tile[width.intValue * height.intValue];
-            for (int i = 0; i < width.intValue * height.intValue; i++)
+            _tiles = new Tile[width.Get() * height.Get()];
+            for (int i = 0; i < width.Get() * height.Get(); i++)
             {
-                _tiles[i] = new Tile(i % width.intValue, i / width.intValue);
+                _tiles[i] = new Tile(i % width.Get(), i / width.Get());
             }
         
             //Edge Initialization
@@ -192,9 +170,9 @@ namespace Features.Maze_Namespace
         private void GenerateEdgesVertical()
         {
             int edgeIndex = 0;
-            for (int y = 1; y <= height.intValue; y++)
+            for (int y = 1; y <= height.Get(); y++)
             {
-                for (int x = 1; x < width.intValue; x++)
+                for (int x = 1; x < width.Get(); x++)
                 {
                     Edge edge = new Edge(2);
                     _edges.Add(edge);
@@ -219,15 +197,15 @@ namespace Features.Maze_Namespace
         private void GenerateEdgesHorizontal()
         {
             int edgeIndex = 0;
-            for (int y = 1; y < height.intValue; y++)
+            for (int y = 1; y < height.Get(); y++)
             {
-                for (int x = 0; x < width.intValue; x++)
+                for (int x = 0; x < width.Get(); x++)
                 {
                     Edge edge = new Edge(2);
                     _edges.Add(edge);
 
                     edge.tiles[0] = _tiles[edgeIndex];
-                    edge.tiles[1] = _tiles[edgeIndex + width.intValue];
+                    edge.tiles[1] = _tiles[edgeIndex + width.Get()];
 
                     edgeIndex++;
                 }
@@ -265,7 +243,7 @@ namespace Features.Maze_Namespace
             SetDirectionsByAxis(y, edge.tiles, north, south);
         }
 
-        private void SetDirectionsByAxis(int axis, Tile[] tiles, Vector2Variable positiveDirection, Vector2Variable negativeDirection)
+        private void SetDirectionsByAxis(int axis, Tile[] tiles, Vector2IntVariable positiveDirection, Vector2IntVariable negativeDirection)
         {
             switch (axis)
             {
@@ -287,12 +265,12 @@ namespace Features.Maze_Namespace
         private void DrawTiles()
         {
             // for all tiles to be generated according to chosen height & width
-            for (int y = 0; y < height.intValue; y++)
+            for (int y = 0; y < height.Get(); y++)
             {
-                for (int x = 0; x < width.intValue; x++)
+                for (int x = 0; x < width.Get(); x++)
                 {
                     // create position grid with current tile position in loop
-                    int gridPosition = y * width.intValue + x;
+                    int gridPosition = y * width.Get() + x;
                     
                     // instantiate the current tile & art at position as children of the determined parent transforms
                     TileBehaviour newTile = tile.InstantiateTileAt(_tiles[gridPosition], tileParentTransform);
@@ -312,7 +290,7 @@ namespace Features.Maze_Namespace
             List<TileBehaviour> tilesToRender = new List<TileBehaviour>();
             
             // get a list of tiles to be rendered at the current position
-            tilesToRender = posControl.GetPathsByDepth(tiles.GetTileAt(curVec2Pos.x, curVec2Pos.y), renderSize);
+            tilesToRender = posControl.GetPathsByDepth(tiles.GetTileAt(playerPos.Get()), renderSize);
 
             // go through the list of tiles to be rendered
             foreach(TileBehaviour renderedTile in tilesToRender)
@@ -342,21 +320,21 @@ namespace Features.Maze_Namespace
         private void PlaceTorchesInMaze()
         {
             //calculate percentage of torch placement
-            int amountOfTorches = Mathf.RoundToInt((height.intValue * width.intValue) * .10f);
+            int amountOfTorches = Mathf.RoundToInt((height.Get() * width.Get()) * .10f);
             Vector2[] torchesToPlace = new Vector2[amountOfTorches];
 
             for (int torchNr = 0; torchNr < torchesToPlace.Length; torchNr++)
             {
-                Vector2Int torchPosition = new Vector2Int(Mathf.RoundToInt(Random.Range(0f, width.intValue - 1)), Mathf.RoundToInt(Random.Range(0f, height.intValue - 1)));
+                Vector2Int torchPosition = new Vector2Int(Mathf.RoundToInt(Random.Range(0f, width.Get() - 1)), Mathf.RoundToInt(Random.Range(0f, height.Get() - 1)));
                 
-                if (!runtimeTiles[torchPosition.y * width.intValue + torchPosition.x].ContainsInteractable() && torchPosition != playerPos.vec2Value)
+                if (!runtimeTiles[torchPosition.y * width.Get() + torchPosition.x].ContainsInteractable() && torchPosition != playerPos.Get())
                 {
                     torchesToPlace[torchNr] = torchPosition;
                     
                     InteractableTorch torch = Instantiate(torchPrefab, torchParentTransform);
                     torch.transform.position = (Vector2)torchPosition;
                     
-                    runtimeTiles[torchPosition.y * width.intValue + torchPosition.x].RegisterInteractable(torch);
+                    runtimeTiles[torchPosition.y * width.Get() + torchPosition.x].RegisterInteractable(torch);
                 }
             }
         }
@@ -378,7 +356,7 @@ namespace Features.Maze_Namespace
     {
         public Tile parent;
         public Vector2Int position;
-        public List<Vector2Variable> directions = new List<Vector2Variable>();
+        public List<Vector2IntVariable> directions = new List<Vector2IntVariable>();
 
         public Tile(int x, int y)
         {

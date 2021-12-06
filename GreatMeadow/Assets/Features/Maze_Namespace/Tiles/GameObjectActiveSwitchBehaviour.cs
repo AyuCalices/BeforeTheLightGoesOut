@@ -1,5 +1,5 @@
+using DataStructures.Variables;
 using UnityEngine;
-using Utils.Variables_Namespace;
 
 public class GameObjectActiveSwitchBehaviour : MonoBehaviour
 {
@@ -18,12 +18,12 @@ public class GameObjectActiveSwitchBehaviour : MonoBehaviour
         gameObject.SetActive(true);
         
         LeanTween.cancel(gameObject);
-        LeanTween.alpha(gameObject, 1, lerpTime.floatValue);
+        LeanTween.alpha(gameObject, 1, lerpTime.Get());
     }
 
     public virtual void Disable()
     {
         LeanTween.cancel(gameObject);
-        LeanTween.alpha(gameObject, 0, lerpTime.floatValue).setOnComplete(() => gameObject.SetActive(false));
+        LeanTween.alpha(gameObject, 0, lerpTime.Get()).setOnComplete(() => gameObject.SetActive(false));
     }
 }

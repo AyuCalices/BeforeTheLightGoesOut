@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using Utils.Variables_Namespace;
 
 namespace Features.Maze_Namespace.Tiles
 {

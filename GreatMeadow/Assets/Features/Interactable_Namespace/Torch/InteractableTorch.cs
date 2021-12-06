@@ -54,7 +54,7 @@ public class InteractableTorch : InteractableBehaviour
         base.Enable();
         if (!isLooted)
         {
-            StartCoroutine(ChangeLightOverTime(0, maxTorchIntensity, lerpTime.floatValue));
+            StartCoroutine(ChangeLightOverTime(0, maxTorchIntensity, lerpTime.Get()));
         }
     }
 
@@ -63,7 +63,7 @@ public class InteractableTorch : InteractableBehaviour
         base.Disable();
         if (!isLooted)
         {
-            StartCoroutine(ChangeLightOverTime(maxTorchIntensity, 0, lerpTime.floatValue));
+            StartCoroutine(ChangeLightOverTime(maxTorchIntensity, 0, lerpTime.Get()));
         }
     }
 }

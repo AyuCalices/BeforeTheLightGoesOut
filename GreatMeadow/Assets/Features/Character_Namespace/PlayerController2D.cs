@@ -1,12 +1,12 @@
+using DataStructures.Variables;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Utils.Variables_Namespace;
 
 namespace Features.Character_Namespace
 {
     public class PlayerController2D : MonoBehaviour
     {
-        [SerializeField] private Vector2Variable playerPosition;
+        [SerializeField] private Vector2IntVariable playerPosition;
         [SerializeField] private float speed = 0.01f;
         [SerializeField] private Vector2 storedInputMovement;
         [SerializeField] private float movementSmoothingSpeed = 1f;
@@ -24,7 +24,7 @@ namespace Features.Character_Namespace
         
         public void SetPlayerPosition()
         {
-            transform.position = playerPosition.GetVariableValue();
+            transform.position = (Vector2)playerPosition.Get();
         }
 
         private void Awake()
@@ -51,7 +51,9 @@ namespace Features.Character_Namespace
         {
             CalculateMovementInputSmoothing();
             UpdatePlayerMovement();
-            playerPosition.vec2Value = this.transform.position;
+            
+            var position = transform.position;
+            playerPosition.Set(new Vector2Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y)));
         }
 
         //Input's Axes values are raw

@@ -1,15 +1,15 @@
+using DataStructures.Variables;
 using Features.Character_Namespace;
 using Features.Maze_Namespace.Tiles;
 using UnityEngine;
 using Utils.Event_Namespace;
-using Utils.Variables_Namespace;
 
 public class Hatch : InteractableBehaviour
 {
     [SerializeField] private TileList_SO tileList;
-    [SerializeField] private Vector2Variable hatchPosition;
-    [SerializeField] private Vector2Variable hatchSpawnPos;
-    [SerializeField] private Vector2Variable playerSpawnPos;
+    [SerializeField] private Vector2IntVariable hatchPosition;
+    [SerializeField] private Vector2IntVariable hatchSpawnPos;
+    [SerializeField] private Vector2IntVariable playerSpawnPos;
     [SerializeField] private IntVariable width;
     [SerializeField] private IntVariable height;
     [SerializeField] private GameEvent onLoadWinMenu;
@@ -19,16 +19,17 @@ public class Hatch : InteractableBehaviour
     /**
     * Set the Hatch Position at the opposite of the starting position.
     */
-    public void SetHatchPosition() {
-        int startX = (int) playerSpawnPos.vec2Value.x;
-        int startY = (int) playerSpawnPos.vec2Value.y;
+    public void SetHatchPosition() 
+    {
+        int startX = playerSpawnPos.Get().x;
+        int startY = playerSpawnPos.Get().y;
            
-        int endX = width.intValue - 1 - startX; 
-        int endY = height.intValue - 1 - startY;
+        int endX = width.Get() - 1 - startX; 
+        int endY = height.Get() - 1 - startY;
 
         //hatchSpawnPos.vec2Value = playerSpawnPos.vec2Value; //for testing
-        hatchSpawnPos.vec2Value = new Vector2(endX, endY);
-        transform.position = hatchPosition.vec2Value;
+        hatchSpawnPos.Set(new Vector2Int(endX, endY));
+        transform.position = (Vector2)hatchPosition.Get();
         tileList.GetTileAt(endX, endY).RegisterInteractable(this);
     }
 

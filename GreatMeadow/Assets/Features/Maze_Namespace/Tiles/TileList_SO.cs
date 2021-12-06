@@ -1,5 +1,5 @@
+using DataStructures.Variables;
 using UnityEngine;
-using Utils.Variables_Namespace;
 
 namespace Features.Maze_Namespace.Tiles
 {
@@ -13,10 +13,10 @@ namespace Features.Maze_Namespace.Tiles
 
         private void OnEnable()
         {
-            _tiles = new TileBehaviour[height.intValue][];
+            _tiles = new TileBehaviour[height.Get()][];
             for (int y = 0; y < _tiles.Length; y++)
             {
-                _tiles[y] = new TileBehaviour[width.intValue];
+                _tiles[y] = new TileBehaviour[width.Get()];
             }
         }
 
@@ -28,6 +28,11 @@ namespace Features.Maze_Namespace.Tiles
         public TileBehaviour GetTileAt(int x, int y)
         {
             return _tiles[y][x];
+        }
+
+        public TileBehaviour GetTileAt(Vector2Int position)
+        {
+            return _tiles[position.y][position.x];
         }
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using DataStructures.Variables;
 using UnityEngine;
-using Utils.Variables_Namespace;
 
 namespace Features.Maze_Namespace.Tiles
 {
@@ -10,7 +10,7 @@ namespace Features.Maze_Namespace.Tiles
         [SerializeField] protected TileSprite_SO[] tileSprites;
         [SerializeField] protected TileList_SO tileList;
 
-        protected TileSprite_SO GetTileSpriteByDirections(List<Vector2Variable> directions)
+        protected TileSprite_SO GetTileSpriteByDirections(List<Vector2IntVariable> directions)
         {
             foreach (TileSprite_SO tileSprite in tileSprites)
             {
