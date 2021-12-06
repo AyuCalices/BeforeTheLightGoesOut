@@ -228,9 +228,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hunterPos: {fileID: 11400000, guid: a9e6fc61002f0a343a31a393d080eecf, type: 2}
+  playerPos: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
   tiles: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}
   posControl: {fileID: 11400000, guid: 8d4e9a1ecebcb0b4880ab439c106118e, type: 2}
-  tileSwapTime: 1
+  hunterTileSwapTime: 1
+  hunterBahviourUpdateTime: 5
+  playerChasePathfindingDepth: 3
 --- !u!212 &847286655
 SpriteRenderer:
   m_ObjectHideFlags: 0
