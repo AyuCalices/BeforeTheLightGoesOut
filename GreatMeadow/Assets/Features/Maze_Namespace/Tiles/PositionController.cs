@@ -57,5 +57,34 @@ namespace Features.Maze_Namespace.Tiles
             
             return connectedTiles;
         }
+
+        public List<TileBehaviour> GetPathsByDepth_ExcludeParentPositions(TileBehaviour tile, int depth, TileBehaviour tileToExclude)
+        {
+            List<TileBehaviour> connectedTiles = new List<TileBehaviour>{tile};
+            
+            Dictionary<TileBehaviour, List<TileBehaviour>> currentDepthTileGroups = new Dictionary<TileBehaviour, List<TileBehaviour>>();
+            currentDepthTileGroups.Add(tileToExclude, new List<TileBehaviour>{tile});
+            
+            for (int i = 0; i < depth; i++)
+            {
+                Dictionary<TileBehaviour, List<TileBehaviour>> newDepthTileGroups = new Dictionary<TileBehaviour, List<TileBehaviour>>();
+                foreach (var tileGroupByDepth in currentDepthTileGroups)
+                {
+                    
+                    List<TileBehaviour> newTileDirections = new List<TileBehaviour>();
+                    foreach (var newtile in tileGroupByDepth.Value)
+                    {
+                        List<TileBehaviour> tilesToBeAdded = GetConnectedTiles(newtile);
+                        tilesToBeAdded.Remove(tileGroupByDepth.Key);
+                        
+                        newDepthTileGroups.Add(newtile, tilesToBeAdded);
+                        connectedTiles.AddRange(tilesToBeAdded);
+                    }
+                }
+                currentDepthTileGroups = newDepthTileGroups;
+            }
+            
+            return connectedTiles;
+        }
     }
 }
