@@ -29,11 +29,15 @@ MonoBehaviour:
     m_IsLoaded: 1
     m_IsActive: 0
     m_IsSubScene: 0
-  - m_Path: Assets/SceneSetup/MazeGenerationScene.unity
+  - m_Path: Assets/SceneSetup/MapScene.unity
     m_IsLoaded: 1
     m_IsActive: 0
     m_IsSubScene: 0
-  - m_Path: Assets/SceneSetup/MapScene.unity
+  - m_Path: Assets/SceneSetup/HunterScene.unity
+    m_IsLoaded: 1
+    m_IsActive: 0
+    m_IsSubScene: 0
+  - m_Path: Assets/SceneSetup/MazeGenerationScene.unity
     m_IsLoaded: 1
     m_IsActive: 0
     m_IsSubScene: 0

@@ -45,10 +45,14 @@ namespace Features.Maze_Namespace
         [SerializeField] private Vector2Variable playerPos;
         [Tooltip("Variable for player position in tile.")]
         [SerializeField] private IntVariable tilePos;
+
+        [SerializeField] private Vector2Variable hunterPos;
         
         [Header("Events")]
         [Tooltip("Game Event for player spawn position.")]
         [SerializeField] private GameEvent onPlaceCharacter;
+        [Tooltip("Game Event for hatch spawn position.")]
+        [SerializeField] private GameEvent onInitializeHunter;
         [Tooltip("Game Event for hatch spawn position.")]
         [SerializeField] private GameEvent onPlaceHatch;
         [Tooltip("Game Event for hatch spawn position.")]
@@ -101,6 +105,7 @@ namespace Features.Maze_Namespace
             //TODO: remove playerPos or tilePos
             // randomize player starting position
             playerPos.vec2Value = new Vector2(Mathf.Round(Random.Range(0f, width.intValue - 1)), Mathf.Round(Random.Range(0f, height.intValue - 1)));
+            hunterPos.vec2Value = playerPos.vec2Value;
 
             // initialize current tile position to be the player spawn's position
             tilePos.intValue = curIntPos;
@@ -112,6 +117,7 @@ namespace Features.Maze_Namespace
             //TODO: Over the top: create a genertator modifier interface inside a scriptable object and implement placeCharacter, placeHatch, initializeMap into those ?
             // initialize events
             onPlaceCharacter.Raise();
+            onInitializeHunter.Raise();
             onPlaceHatch.Raise();
             onInitializeMap.Raise();
             PlaceTorchesInMaze();
