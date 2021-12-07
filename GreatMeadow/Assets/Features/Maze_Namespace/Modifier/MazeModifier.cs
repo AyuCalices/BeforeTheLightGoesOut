@@ -5,5 +5,5 @@ using UnityEngine;
 
 public abstract class MazeModifier : ScriptableObject
 {
-    public abstract void AddInteractableModifier(MazeGenerator_Behaviour mazeGenerator);
+    public abstract void AddInteractableModifier(MazeGenerator_Behaviour mazeGenerator, List<TileBehaviour> tilesWithoutInteractable);
 }

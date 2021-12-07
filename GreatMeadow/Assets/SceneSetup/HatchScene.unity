@@ -180,6 +180,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d4b64186a9addb47ae3aee1d202f6cc, type: 3}
+--- !u!114 &1579388925 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7174463129453458048, guid: 6d4b64186a9addb47ae3aee1d202f6cc, type: 3}
+  m_PrefabInstance: {fileID: 1579388924}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea0f3ab8f50b3348b088e77abaf6911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1738130390
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +238,7 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1579388925}
         m_TargetAssemblyTypeName: Hatch, Assembly-CSharp
         m_MethodName: Initialize
         m_Mode: 1

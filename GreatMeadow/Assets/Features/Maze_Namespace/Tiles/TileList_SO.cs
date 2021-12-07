@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using DataStructures.Variables;
 using UnityEngine;
 
@@ -30,5 +32,17 @@ namespace Features.Maze_Namespace.Tiles
         public TileBehaviour GetTileAt(Vector2Int position) => _tiles[position.y][position.x];
 
         public TileBehaviour[][] GetAllTiles() => _tiles;
+
+        public List<TileBehaviour> ToList()
+        {
+            List<TileBehaviour> tiles = new List<TileBehaviour>();
+            
+            foreach (var tilesY in _tiles)
+            {
+                tiles.AddRange(tilesY.ToList());
+            }
+
+            return tiles;
+        }
     }
 }

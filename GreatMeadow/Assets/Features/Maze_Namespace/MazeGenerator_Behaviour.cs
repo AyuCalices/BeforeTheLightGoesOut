@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using DataStructures.Variables;
 using Features.Maze_Namespace.Tiles;
 using UnityEngine;
@@ -17,6 +19,7 @@ namespace Features.Maze_Namespace
 
         [Header("Appearance")] 
         [SerializeField] private MazeTileGenerator_SO tile;
+        [SerializeField] protected TileList_SO tileList;
         [Tooltip("Width of generated maze in number of tiles (x-axis).")]
         [SerializeField] private IntVariable width;
         [Tooltip("Height of generated maze in number of tiles (y-axis).")]
@@ -51,7 +54,6 @@ namespace Features.Maze_Namespace
         private Tile[] _tiles;
         private List<Edge> _edges;
 
-
         public void Awake()
         {
             // maze Seed Generation
@@ -64,12 +66,16 @@ namespace Features.Maze_Namespace
             //Generate the Maze
             KruskalAlgorithm();
             DrawTiles();
-            SetPositions();
-            
+
+            List<TileBehaviour> tilesWithoutInteractable = tileList.ToList();
+            Debug.Log(tilesWithoutInteractable.Count);
+            SetPositions(tilesWithoutInteractable);
+            Debug.Log(tilesWithoutInteractable.Count);
             foreach (var mazeModifier in mazeModifiers)
             {
-                mazeModifier.AddInteractableModifier(this);
+                mazeModifier.AddInteractableModifier(this, tilesWithoutInteractable);
             }
+            Debug.Log(tilesWithoutInteractable.Count);
             
             MazeRendererBehaviour mazeRenderer = GetComponent<MazeRendererBehaviour>();
             if (mazeRenderer != null)
@@ -81,15 +87,23 @@ namespace Features.Maze_Namespace
             onMazeGenerationComplete.Raise();
         }
         
-        private void SetPositions() 
+        private void SetPositions(List<TileBehaviour> tilesWithoutInteractable)
         {
-            playerPos.Set(new Vector2Int(Mathf.RoundToInt(Random.Range(0f, width.Get() - 1)), Mathf.RoundToInt(Random.Range(0f, height.Get() - 1))));
+            //player pos
+            Vector2Int newPlayerPos = new Vector2Int(Mathf.RoundToInt(Random.Range(0f, width.Get() - 1)),
+                Mathf.RoundToInt(Random.Range(0f, height.Get() - 1)));
+            playerPos.Set(newPlayerPos);
+            tilesWithoutInteractable.Remove(tileList.GetTileAt(newPlayerPos));
+            
+            //hunter pos
             hunterPos.Set(playerPos.Get());
             
             //Set the Hatch Position at the opposite of the starting position.
             int hatchX = width.Get() - 1 - playerPos.Get().x; 
             int hatch = height.Get() - 1 - playerPos.Get().y;
-            hatchPosition.Set(new Vector2Int(hatchX, hatch));
+            Vector2Int hatchPos = new Vector2Int(hatchX, hatch);
+            hatchPosition.Set(hatchPos);
+            tilesWithoutInteractable.Remove(tileList.GetTileAt(hatchPos));
         }
 
         #region Kruskal Algorithm
