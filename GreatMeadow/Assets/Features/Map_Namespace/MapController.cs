@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
+using DataStructures.Variables;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Utils.Variables_Namespace;
 using Features.Maze_Namespace.Tiles;
 
-//TODO: remove magic numbers
 public class MapController : MonoBehaviour
 {
     [Tooltip("Width of generated maze in number of tiles (x-axis).")]
@@ -14,7 +12,9 @@ public class MapController : MonoBehaviour
     [SerializeField] private IntVariable height;
 
     [Tooltip("Parent transform of all map tiles children.")]
-    [SerializeField] private Transform mapParent;
+    [SerializeField] private GameObject map;
+    [SerializeField] private Transform mapInstantiationParent;
+    [SerializeField] private Transform playerPositionPoint;
     
     [Tooltip("Grants access to the generation of the map.")]
     [SerializeField] private MiniMapTileGenerator_SO mapTile;
@@ -26,10 +26,10 @@ public class MapController : MonoBehaviour
     private InputAction mapHandling;
     
     // list to access game object (de-)activation as part of map progression
-    private List<GameObject> shownTiles;
+    private GameObject[][] mapTiles;
     
     // access to the player positions' tile number
-    [SerializeField] private IntVariable tilePos;
+    [SerializeField] private Vector2IntVariable playerPosition;
 
     private bool isInitialized;
     
@@ -40,47 +40,38 @@ public class MapController : MonoBehaviour
         
         // enable player input in map scene
         playerInputActions.Enable();
+        
+        map.SetActive(false);
     }
     
     private void OnEnable()
     {
         // allow opening of the map
-        playerInputActions.Player.OpenMap.performed += mapActivated;
+        playerInputActions.Player.OpenMap.performed += MapActivated;
         playerInputActions.Player.OpenMap.Enable();
     }
 
     private void OnDisable()
     {
-        playerInputActions.Player.OpenMap.performed -= mapActivated;
+        playerInputActions.Player.OpenMap.performed -= MapActivated;
         playerInputActions.Player.OpenMap.Disable();
     }
 
     public void InitializeMap()
     {
-        // list where the map tiles will be stored
-        shownTiles = new List<GameObject>();
-        
-        // centralize the map
-        mapParent.transform.position += new Vector3(-width.intValue*5, -height.intValue*5,  0);
-        
         // draw map tiles from the same maze seed
         DrawTiles();
-
-        // loop through all map tiles and hide them at game start
-        for (int n = 0; n < width.intValue*height.intValue; n++)
+        
+        for (int y = 0; y < height.Get(); y++)
         {
-            shownTiles[n].SetActive(false);
+            for (int x = 0; x < width.Get(); x++)
+            {
+                mapTiles[y][x].SetActive(false);
+            }
         }
 
-        //TODO: use canvas for positioning line 53 & 56
-        // position map background art
-        mapParent.GetChild(0).position = new Vector3(Screen.width/2, Screen.height/2, 0);
-        
-        // position map text
-        mapParent.GetChild(1).position = new Vector3(Screen.width/2, Screen.height/2+height.intValue*6, 0);
-        
         // depict player position marker above all tiles
-        mapParent.GetChild(2).SetAsLastSibling();
+        playerPositionPoint.SetAsLastSibling();
 
         // only start update, when initialization is completed
         isInitialized = true;
@@ -91,39 +82,36 @@ public class MapController : MonoBehaviour
         if (isInitialized) 
         {
             // reveal map tile at player position
-            shownTiles[tilePos.intValue].SetActive(true);
+            Vector2Int pos = playerPosition.Get();
+            
+            mapTiles[pos.y][pos.x].SetActive(true);
             
             // depict player position on current map tile
-            mapParent.GetChild(shownTiles.Count+2).position = shownTiles[tilePos.intValue].transform.position;
+            playerPositionPoint.position = mapTiles[pos.y][pos.x].transform.position;
         }
     }
 
     private void DrawTiles()
     {
         // for each tile of the generated maze
-        
-        for (int y = 0; y < height.intValue; y++)
+        mapTiles = new GameObject[height.Get()][];
+        for (int y = 0; y < height.Get(); y++)
         {
-            for (int x = 0; x < width.intValue; x++)
+            mapTiles[y] = new GameObject[width.Get()];
+            for (int x = 0; x < width.Get(); x++)
             {
-                // store position to access child index at end of loop
-                int pos = y * width.intValue + x;
-
                 // get position from current tile in loop
                 Vector2Int gridPosition = new Vector2Int(x, y);
                 
-                // instantiate map tile at fitting position as child of the map canvas
-                mapTile.InstantiateTileAt(gridPosition, mapParent);
-                
                 // add the map tile to the map parent
-                shownTiles.Add(mapParent.GetChild(pos+3).gameObject);
+                mapTiles[y][x] = mapTile.InstantiateTileAt(gridPosition, mapInstantiationParent);
             }
         }
     }
 
-    private void mapActivated(InputAction.CallbackContext obj)
+    private void MapActivated(InputAction.CallbackContext obj)
     {
         // open map on call if closed and close if opened
-        mapParent.gameObject.SetActive(!mapParent.gameObject.activeSelf);
+        map.SetActive(!map.activeSelf);
     }
 }

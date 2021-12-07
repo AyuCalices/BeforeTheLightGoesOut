@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using DataStructures.Variables;
 using Features.Maze_Namespace.Tiles;
 using UnityEngine;
-using Utils.Variables_Namespace;
 
 public class HunterBehaviour : MonoBehaviour
 {
-    [SerializeField] private Vector2Variable hunterPos;
-    [SerializeField] private Vector2Variable playerPos;
+    [SerializeField] private Vector2IntVariable hunterPos;
+    [SerializeField] private Vector2IntVariable playerPos;
     [SerializeField] private TileList_SO tiles;
     [SerializeField] private PositionController posControl;
     
@@ -18,10 +18,10 @@ public class HunterBehaviour : MonoBehaviour
 
     private TileBehaviour lastTile;
     
-    public void Initialize()
+    public void InitializeHunter()
     {
-        transform.position = hunterPos.vec2Value;
-        lastTile = tiles.GetTileAt(Mathf.RoundToInt(hunterPos.vec2Value.x), Mathf.RoundToInt(hunterPos.vec2Value.y));
+        transform.position = (Vector2)hunterPos.Get();
+        lastTile = tiles.GetTileAt(hunterPos.Get());
 
         StartCoroutine(Move());
     }
@@ -58,15 +58,12 @@ public class HunterBehaviour : MonoBehaviour
     {
         while (true)
         {
-            TileBehaviour currentTile = tiles.GetTileAt(Mathf.RoundToInt(hunterPos.vec2Value.x), Mathf.RoundToInt(hunterPos.vec2Value.y));
+            TileBehaviour currentTile = tiles.GetTileAt(hunterPos.Get());
 
-            Vector2Int playerPosition = new Vector2Int(Mathf.RoundToInt(playerPos.vec2Value.x),
-                Mathf.RoundToInt(playerPos.vec2Value.y));
-
-            if (hunterPos.vec2Value != playerPosition)
+            if (hunterPos.Get() != playerPos.Get())
             {
                 TileBehaviour nextTile;
-                if (GetNextPathfindingPosition(currentTile, playerPosition, playerChasePathfindingDepth, out TileBehaviour foundTile))
+                if (GetNextPathfindingPosition(currentTile, playerPos.Get(), playerChasePathfindingDepth, out TileBehaviour foundTile))
                 {
                     nextTile = foundTile;
                 }
@@ -75,7 +72,7 @@ public class HunterBehaviour : MonoBehaviour
                     nextTile = GetRandomDestination(currentTile);
                 }
 
-                hunterPos.vec2Value = nextTile.position;
+                hunterPos.Set(nextTile.position);
                 LeanTween.move(gameObject, nextTile.position, hunterTileSwapTime);
             }
 

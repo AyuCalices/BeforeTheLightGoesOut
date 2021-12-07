@@ -1,8 +1,8 @@
 using System.Collections.Generic;
+using DataStructures.Variables;
 using Features.Maze_Namespace;
 using Features.Maze_Namespace.Tiles;
 using UnityEngine;
-using Utils.Variables_Namespace;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class TileBehaviour : GameObjectActiveSwitchBehaviour
@@ -10,7 +10,7 @@ public class TileBehaviour : GameObjectActiveSwitchBehaviour
     [SerializeField] private TileList_SO tileList;
     
     public Vector2Int position { get; private set; }
-    public List<Vector2Variable> directions { get; private set; }
+    public List<Vector2IntVariable> directions { get; private set; }
     
     private InteractableBehaviour interactable;
     
@@ -27,6 +27,16 @@ public class TileBehaviour : GameObjectActiveSwitchBehaviour
     }
     
     public bool ContainsInteractable() => interactable != null;
+
+    public override void PrepareRenderer()
+    {
+        base.PrepareRenderer();
+
+        if (interactable != null)
+        {
+            interactable.PrepareRenderer();
+        }
+    }
 
     public override void Enable()
     {

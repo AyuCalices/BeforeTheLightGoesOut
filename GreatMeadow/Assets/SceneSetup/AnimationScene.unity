@@ -675,14 +675,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14879ae99a78a24aac937a0d1317c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  event: {fileID: 11400000, guid: ed0c1fc5e16792143aecbfb50ac51873, type: 2}
+  event: {fileID: 11400000, guid: 6468a6e1d429bac4797c9c6ce6d2bc1c, type: 2}
   Response:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 344043543}
         m_TargetAssemblyTypeName: Features.Character_Namespace.PlayerController2D,
           Assembly-CSharp
-        m_MethodName: SetPlayerPosition
+        m_MethodName: InitializePlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

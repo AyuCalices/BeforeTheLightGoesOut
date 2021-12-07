@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Utils.Variables_Namespace;
 
 namespace Features.Maze_Namespace.Tiles
 {
@@ -19,10 +18,10 @@ namespace Features.Maze_Namespace.Tiles
             {
                 // get neighboring tile position from given direction
                 Vector2Int neighborTile = tile.position;
-                neighborTile += new Vector2Int((int)tile.directions[n].vec2Value.y, (int)tile.directions[n].vec2Value.x);
+                neighborTile += tile.directions[n].Get();
 
                 // add connected tile to list of connections
-                connectedTiles.Add(tiles.GetTileAt((int) neighborTile.x, (int) neighborTile.y));
+                connectedTiles.Add(tiles.GetTileAt(neighborTile.x, neighborTile.y));
             }
             
             return connectedTiles;
