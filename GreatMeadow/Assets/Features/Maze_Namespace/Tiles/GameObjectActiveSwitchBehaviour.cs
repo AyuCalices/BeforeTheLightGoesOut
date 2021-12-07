@@ -1,16 +1,22 @@
+using System.Collections.Generic;
+using DataStructures.Variables;
 using UnityEngine;
-using Utils.Variables_Namespace;
 
 public class GameObjectActiveSwitchBehaviour : MonoBehaviour
 {
     [SerializeField] protected FloatVariable lerpTime;
 
-    private void Awake()
+    public virtual void PrepareRenderer()
     {
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        Color color = spriteRenderer.color;
-        color = new Color(color.r, color.g, color.b, 0);
-        spriteRenderer.color = color;
+        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        foreach (var spriteRenderer in spriteRenderers)
+        {
+            Color color = spriteRenderer.color;
+            color = new Color(color.r, color.g, color.b, 0);
+            spriteRenderer.color = color;
+        }
+        
+        gameObject.SetActive(false);
     }
 
     public virtual void Enable()
@@ -18,12 +24,12 @@ public class GameObjectActiveSwitchBehaviour : MonoBehaviour
         gameObject.SetActive(true);
         
         LeanTween.cancel(gameObject);
-        LeanTween.alpha(gameObject, 1, lerpTime.floatValue);
+        LeanTween.alpha(gameObject, 1, lerpTime.Get());
     }
 
     public virtual void Disable()
     {
         LeanTween.cancel(gameObject);
-        LeanTween.alpha(gameObject, 0, lerpTime.floatValue).setOnComplete(() => gameObject.SetActive(false));
+        LeanTween.alpha(gameObject, 0, lerpTime.Get()).setOnComplete(() => gameObject.SetActive(false));
     }
 }

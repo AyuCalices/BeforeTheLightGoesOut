@@ -1,15 +1,16 @@
+using DataStructures.Variables;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Utils.Variables_Namespace;
 
 namespace Features.Character_Namespace
 {
     public class PlayerController2D : MonoBehaviour
     {
-        [SerializeField] private Vector2Variable playerPosition;
+        [SerializeField] private Vector2IntVariable playerPosition;
         [SerializeField] private float speed = 0.01f;
         [SerializeField] private Vector2 storedInputMovement;
         [SerializeField] private float movementSmoothingSpeed = 1f;
+        [SerializeField] private AudioSource audioSource;
         private PlayerInputActions playerInputActions;
         private InputAction movement;
         private Vector2 smoothInputMovement;
@@ -21,10 +22,10 @@ namespace Features.Character_Namespace
         private static readonly int LastMoveX = Animator.StringToHash("LastMoveX");
         private static readonly int LastMoveY = Animator.StringToHash("LastMoveY");
         private InteractableBehaviour currentInteractable;
-        
-        public void SetPlayerPosition()
+
+        public void InitializePlayer()
         {
-            transform.position = playerPosition.GetVariableValue();
+            transform.position = (Vector2)playerPosition.Get();
         }
 
         private void Awake()
@@ -51,7 +52,9 @@ namespace Features.Character_Namespace
         {
             CalculateMovementInputSmoothing();
             UpdatePlayerMovement();
-            playerPosition.vec2Value = this.transform.position;
+            
+            var position = transform.position;
+            playerPosition.Set(new Vector2Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y)));
         }
 
         //Input's Axes values are raw
@@ -71,11 +74,14 @@ namespace Features.Character_Namespace
             animator.SetFloat(HorizontalMovement, GetInputMovement().x);
             animator.SetFloat(VerticalMovement, GetInputMovement().y);
             animator.SetFloat(Speed, GetInputMovement().sqrMagnitude);
+            GetComponent<AudioSource>().Pause();
+
             //Get into idle position
             if (GetInputMovement().x == 1 || GetInputMovement().x == -1 || GetInputMovement().y == 1 || GetInputMovement().y == -1)
             {
                 animator.SetFloat(LastMoveX, GetInputMovement().x);
                 animator.SetFloat(LastMoveY, GetInputMovement().y);
+                GetComponent<AudioSource>().UnPause();
             }
         }
 

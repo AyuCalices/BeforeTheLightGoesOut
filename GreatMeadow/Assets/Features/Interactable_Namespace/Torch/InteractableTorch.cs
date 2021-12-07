@@ -14,13 +14,6 @@ public class InteractableTorch : InteractableBehaviour
     private float maxTorchIntensity;
     private bool isLooted;
 
-    private void Awake()
-    {
-        maxTorchIntensity = torchLight.intensity;
-        torchLight.intensity = 0;
-        gameObject.SetActive(false);
-    }
-    
     /**
      * Pick Up Torch
      */
@@ -29,6 +22,7 @@ public class InteractableTorch : InteractableBehaviour
         animator = GetComponent<Animator>();
         animator.SetTrigger(PickUpTorch);
         torchLight.intensity = 0f;
+        GetComponent<AudioSource>().Stop();
         playerController.GetComponentInChildren<PlayerTorch>().RefillTorch();
         isLooted = true;
     }
@@ -48,13 +42,24 @@ public class InteractableTorch : InteractableBehaviour
             yield return null;
         }
     }
+    
+    public override void PrepareRenderer()
+    {
+        base.PrepareRenderer();
+        maxTorchIntensity = torchLight.intensity;
+        torchLight.intensity = 0;
+    }
 
     public override void Enable()
     {
         base.Enable();
         if (!isLooted)
         {
-            StartCoroutine(ChangeLightOverTime(0, maxTorchIntensity, lerpTime.floatValue));
+            StartCoroutine(ChangeLightOverTime(0, maxTorchIntensity, lerpTime.Get()));
+        }
+        else
+        {
+            animator.SetTrigger(PickUpTorch);
         }
     }
 
@@ -63,7 +68,7 @@ public class InteractableTorch : InteractableBehaviour
         base.Disable();
         if (!isLooted)
         {
-            StartCoroutine(ChangeLightOverTime(maxTorchIntensity, 0, lerpTime.floatValue));
+            StartCoroutine(ChangeLightOverTime(maxTorchIntensity, 0, lerpTime.Get()));
         }
     }
 }

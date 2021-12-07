@@ -172,7 +172,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 847286654}
         m_TargetAssemblyTypeName: HunterBehaviour, Assembly-CSharp
-        m_MethodName: Initialize
+        m_MethodName: InitializeHunter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

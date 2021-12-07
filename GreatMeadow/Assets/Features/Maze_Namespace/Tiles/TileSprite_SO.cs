@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using DataStructures.Variables;
 using UnityEngine;
-using Utils.Variables_Namespace;
 
 namespace Features.Maze_Namespace.Tiles
 {
@@ -9,6 +9,6 @@ namespace Features.Maze_Namespace.Tiles
     {
         public Sprite miniMapSprite;
         public TileBehaviour tile;
-        public List<Vector2Variable> directions;
+        public List<Vector2IntVariable> directions;
     }
 }

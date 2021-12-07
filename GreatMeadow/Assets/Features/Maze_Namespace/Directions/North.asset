@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99da1432dd362394186c857ca5ef0315, type: 3}
+  m_Script: {fileID: 11500000, guid: cf9ceefec993b6049bb77dc33888e02d, type: 3}
   m_Name: North
   m_EditorClassIdentifier: 
-  vec2Value: {x: 1, y: 0}
+  storedValue: {x: 0, y: 1}
+  onValueChanged: {fileID: 0}
