@@ -34,6 +34,7 @@ public class Hatch : InteractableBehaviour
 
     public override void Interact(PlayerController2D playerController)
     {
+        GetComponent<AudioSource>().Play();
         animator = GetComponent<Animator>();
         animator.SetTrigger(JumpInHatch);
         playerController.GetComponent<SpriteRenderer>().enabled = false;

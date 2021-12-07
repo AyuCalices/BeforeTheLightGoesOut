@@ -10,7 +10,6 @@ public class PlayerTorch : MonoBehaviour
     [SerializeField] private float torchBrightness = 1.3f;
     [SerializeField] private Light2D torchLight;
     [SerializeField] private GameEvent onLoadLoseMenu;
-    
     private float currentTorchDuration;
     private bool gameIsLost;
 
@@ -24,7 +23,6 @@ public class PlayerTorch : MonoBehaviour
     public void Update()
     {
         currentTorchDuration -= Time.deltaTime;
-        
         float torchDurabilityInPercent = currentTorchDuration / startTorchDuration;
         torchBrightness = Mathf.Max(lowestTorchBrightness, torchDurabilityInPercent * highestTorchBrightness);
         torchLight.intensity = torchBrightness;
