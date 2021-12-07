@@ -14,7 +14,6 @@ public class CanvasManager : MonoBehaviour
         canvasControllerList = GetComponentsInChildren<CanvasController>().ToList();
         canvasControllerList.ForEach(x => x.gameObject.SetActive(false));
         
-        // HIER KOMMENTAR EINFÜGEN XD
         MenuType_SO startingMenu = canvasControllerList.Find(controller => controller.isStartMenu).canvasType;
         SwitchCanvas(startingMenu);
     }
