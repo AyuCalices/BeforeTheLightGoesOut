@@ -10,10 +10,10 @@ namespace Features.Maze_Namespace.Tiles
         [SerializeField] private Image imagePrefab;
         
         // instantiate tile at given position under given parent transform
-        public void InstantiateTileAt(Vector2 position, Transform tileParent)
+        public GameObject InstantiateTileAt(Vector2Int position, Transform tileParent)
         {
             // get tile positions and directions
-            TileSprite_SO tileSprite = GetTileSpriteByDirections(tileList.GetTileAt((int)position.x, (int)position.y).directions);
+            TileSprite_SO tileSprite = GetTileSpriteByDirections(tileList.GetTileAt(position).directions);
             
             // instantiate sprite under parent
             Image grassSprite = Instantiate(imagePrefab, tileParent);
@@ -26,6 +26,8 @@ namespace Features.Maze_Namespace.Tiles
            
             // load fitting minimap sprite
             grassSprite.sprite = tileSprite.miniMapSprite;
+
+            return grassSprite.gameObject;
         }
     }
 }
