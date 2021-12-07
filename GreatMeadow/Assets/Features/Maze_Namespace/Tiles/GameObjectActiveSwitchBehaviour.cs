@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DataStructures.Variables;
 using UnityEngine;
 
@@ -5,12 +6,17 @@ public class GameObjectActiveSwitchBehaviour : MonoBehaviour
 {
     [SerializeField] protected FloatVariable lerpTime;
 
-    private void Awake()
+    public virtual void PrepareRenderer()
     {
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        Color color = spriteRenderer.color;
-        color = new Color(color.r, color.g, color.b, 0);
-        spriteRenderer.color = color;
+        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        foreach (var spriteRenderer in spriteRenderers)
+        {
+            Color color = spriteRenderer.color;
+            color = new Color(color.r, color.g, color.b, 0);
+            spriteRenderer.color = color;
+        }
+        
+        gameObject.SetActive(false);
     }
 
     public virtual void Enable()

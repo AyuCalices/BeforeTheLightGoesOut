@@ -18,7 +18,7 @@ public class HunterBehaviour : MonoBehaviour
 
     private TileBehaviour lastTile;
     
-    public void Initialize()
+    public void InitializeHunter()
     {
         transform.position = (Vector2)hunterPos.Get();
         lastTile = tiles.GetTileAt(hunterPos.Get());

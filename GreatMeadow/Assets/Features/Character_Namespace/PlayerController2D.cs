@@ -22,7 +22,7 @@ namespace Features.Character_Namespace
         private static readonly int LastMoveY = Animator.StringToHash("LastMoveY");
         private InteractableBehaviour currentInteractable;
         
-        public void SetPlayerPosition()
+        public void InitializePlayer()
         {
             transform.position = (Vector2)playerPosition.Get();
         }

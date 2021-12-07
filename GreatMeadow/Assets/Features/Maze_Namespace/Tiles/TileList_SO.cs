@@ -25,14 +25,10 @@ namespace Features.Maze_Namespace.Tiles
             _tiles[tileBehaviour.position.y][tileBehaviour.position.x] = tileBehaviour;
         }
 
-        public TileBehaviour GetTileAt(int x, int y)
-        {
-            return _tiles[y][x];
-        }
+        public TileBehaviour GetTileAt(int x, int y) => _tiles[y][x];
 
-        public TileBehaviour GetTileAt(Vector2Int position)
-        {
-            return _tiles[position.y][position.x];
-        }
+        public TileBehaviour GetTileAt(Vector2Int position) => _tiles[position.y][position.x];
+
+        public TileBehaviour[][] GetAllTiles() => _tiles;
     }
 }

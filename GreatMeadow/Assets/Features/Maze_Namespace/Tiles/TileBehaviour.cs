@@ -19,7 +19,6 @@ public class TileBehaviour : GameObjectActiveSwitchBehaviour
         position = tile.position;
         tileList.RegisterTile(this);
         directions = tile.directions;
-        gameObject.SetActive(false);
     }
 
     public void RegisterInteractable(InteractableBehaviour interactable)
@@ -28,6 +27,16 @@ public class TileBehaviour : GameObjectActiveSwitchBehaviour
     }
     
     public bool ContainsInteractable() => interactable != null;
+
+    public override void PrepareRenderer()
+    {
+        base.PrepareRenderer();
+
+        if (interactable != null)
+        {
+            interactable.PrepareRenderer();
+        }
+    }
 
     public override void Enable()
     {
