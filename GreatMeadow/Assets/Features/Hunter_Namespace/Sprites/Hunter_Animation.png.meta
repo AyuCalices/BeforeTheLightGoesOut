@@ -134,6 +134,42 @@ TextureImporter:
   - first:
       213: -8495537553586594967
     second: Hunter_Animation 43
+  - first:
+      213: -2569106384286991336
+    second: Hunter_Animation 44
+  - first:
+      213: 4279386024201055170
+    second: Hunter_Animation 45
+  - first:
+      213: -4683155373308723912
+    second: Hunter_Animation 46
+  - first:
+      213: 1337832336382031980
+    second: Hunter_Animation 47
+  - first:
+      213: 3844297481024856698
+    second: Hunter_Animation 48
+  - first:
+      213: 1594187134395881420
+    second: Hunter_Animation 49
+  - first:
+      213: -9180494809714953744
+    second: Hunter_Animation 50
+  - first:
+      213: -4195572561935242423
+    second: Hunter_Animation 51
+  - first:
+      213: 8377406930603019011
+    second: Hunter_Animation 52
+  - first:
+      213: 1683126213401837663
+    second: Hunter_Animation 53
+  - first:
+      213: -8187727836206796484
+    second: Hunter_Animation 54
+  - first:
+      213: -2854941663305299851
+    second: Hunter_Animation 55
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -907,8 +943,8 @@ TextureImporter:
       name: Hunter_Animation 33
       rect:
         serializedVersion: 2
-        x: 400
-        y: 160
+        x: 320
+        y: 240
         width: 80
         height: 80
       alignment: 0
@@ -928,8 +964,8 @@ TextureImporter:
       name: Hunter_Animation 34
       rect:
         serializedVersion: 2
-        x: 480
-        y: 160
+        x: 400
+        y: 240
         width: 80
         height: 80
       alignment: 0
@@ -949,8 +985,8 @@ TextureImporter:
       name: Hunter_Animation 35
       rect:
         serializedVersion: 2
-        x: 0
-        y: 80
+        x: 160
+        y: 240
         width: 80
         height: 80
       alignment: 0
@@ -970,8 +1006,8 @@ TextureImporter:
       name: Hunter_Animation 36
       rect:
         serializedVersion: 2
-        x: 80
-        y: 80
+        x: 240
+        y: 240
         width: 80
         height: 80
       alignment: 0
@@ -991,8 +1027,8 @@ TextureImporter:
       name: Hunter_Animation 37
       rect:
         serializedVersion: 2
-        x: 320
-        y: 240
+        x: 400
+        y: 160
         width: 80
         height: 80
       alignment: 0
@@ -1012,8 +1048,8 @@ TextureImporter:
       name: Hunter_Animation 38
       rect:
         serializedVersion: 2
-        x: 160
-        y: 80
+        x: 480
+        y: 160
         width: 80
         height: 80
       alignment: 0
@@ -1033,7 +1069,7 @@ TextureImporter:
       name: Hunter_Animation 39
       rect:
         serializedVersion: 2
-        x: 240
+        x: 0
         y: 80
         width: 80
         height: 80
@@ -1054,7 +1090,7 @@ TextureImporter:
       name: Hunter_Animation 40
       rect:
         serializedVersion: 2
-        x: 320
+        x: 80
         y: 80
         width: 80
         height: 80
@@ -1075,7 +1111,7 @@ TextureImporter:
       name: Hunter_Animation 41
       rect:
         serializedVersion: 2
-        x: 400
+        x: 160
         y: 80
         width: 80
         height: 80
@@ -1096,7 +1132,7 @@ TextureImporter:
       name: Hunter_Animation 42
       rect:
         serializedVersion: 2
-        x: 480
+        x: 240
         y: 80
         width: 80
         height: 80
@@ -1117,8 +1153,8 @@ TextureImporter:
       name: Hunter_Animation 43
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 320
+        y: 240
         width: 80
         height: 80
       alignment: 0
@@ -1130,6 +1166,258 @@ TextureImporter:
       bones: []
       spriteID: 96bda763b99c91a80800000000000000
       internalID: -8495537553586594967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter_Animation 44
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 80
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81cb26eea53b85cd0800000000000000
+      internalID: -2569106384286991336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter_Animation 45
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 80
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cb66457aee636b30800000000000000
+      internalID: 4279386024201055170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter_Animation 46
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 80
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83db8f91007120fb0800000000000000
+      internalID: -4683155373308723912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter_Animation 47
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c68f41bfb6fe09210800000000000000
+      internalID: 1337832336382031980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter_Animation 48
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a726a67e030b95530800000000000000
+      internalID: 3844297481024856698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter_Animation 49
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc71a2b90c0bf1610800000000000000
+      internalID: 1594187134395881420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter_Animation 50
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 80
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f17f946c94589080800000000000000
+      internalID: -9180494809714953744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter_Animation 51
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 240
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94b6978ebf456c5c0800000000000000
+      internalID: -4195572561935242423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter_Animation 52
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 80
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30b0d7dc737824470800000000000000
+      internalID: 8377406930603019011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter_Animation 53
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 80
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5007fd9f5aab5710800000000000000
+      internalID: 1683126213401837663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter_Animation 54
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c31f055d9e85f5e80800000000000000
+      internalID: -8187727836206796484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hunter_Animation 55
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 80
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5788930fea53168d0800000000000000
+      internalID: -2854941663305299851
       vertices: []
       indices: 
       edges: []
