@@ -139,7 +139,7 @@ MonoBehaviour:
   - {x: 0.3, y: -0.5, z: 0}
   m_ShapePathHash: 176555661
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46570
+  m_InstanceId: 58404
 --- !u!61 &4229147666606650260
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.39985323, y: -0.40005124}
+  m_Offset: {x: 0.4, y: -0.4}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -164,7 +164,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.20029354, y: 0.1998975}
+  m_Size: {x: 0.2, y: 0.2}
   m_EdgeRadius: 0
 --- !u!1 &6169521826615969278
 GameObject:
@@ -276,7 +276,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6169521826763204996}
   - component: {fileID: 6169521826763204997}
-  - component: {fileID: 6045633944145518963}
+  - component: {fileID: 1451774507365781409}
+  - component: {fileID: 3180235356505386191}
   m_Layer: 0
   m_Name: Wall_NorthWest
   m_TagString: Untagged
@@ -325,9 +326,9 @@ MonoBehaviour:
   - {x: -0.5, y: -0.5, z: 0}
   m_ShapePathHash: 1124539429
   m_Mesh: {fileID: 0}
-  m_InstanceId: 46586
---- !u!60 &6045633944145518963
-PolygonCollider2D:
+  m_InstanceId: 58422
+--- !u!61 &1451774507365781409
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -339,7 +340,7 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.1, y: 0.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -349,11 +350,32 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.49982074, y: 0.49903715}
-      - {x: -0.4988775, y: -0.5006312}
-      - {x: -0.30098224, y: -0.5011306}
-      - {x: -0.30105326, y: 0.099312656}
-      - {x: 0.502625, y: 0.09865698}
-      - {x: 0.49976844, y: 0.49978107}
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 0.4}
+  m_EdgeRadius: 0
+--- !u!61 &3180235356505386191
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6169521826763205003}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: bc758ada8779ef54b9748470b86c3e5d, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.4, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 1}
+  m_EdgeRadius: 0
