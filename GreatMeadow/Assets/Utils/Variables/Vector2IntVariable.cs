@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DataStructures.Variables
 {
-    [CreateAssetMenu(fileName = "NewVector3Variable", menuName = "Utils/Variables/Vector3Variable")]
+    [CreateAssetMenu(fileName = "NewVector2IntVariable", menuName = "Utils/Variables/Vector2IntVariable")]
     public class Vector2IntVariable : AbstractVariable<Vector2Int>
     {
         public void Add(Vector2Int value)
