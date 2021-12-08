@@ -13,7 +13,7 @@ namespace Features.Maze_Namespace.Tiles
         
         private TileBehaviour[][] _tiles;
 
-        private void OnEnable()
+        public void Initialize()
         {
             _tiles = new TileBehaviour[height.Get()][];
             for (int y = 0; y < _tiles.Length; y++)

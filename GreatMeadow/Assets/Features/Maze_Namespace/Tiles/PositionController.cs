@@ -8,30 +8,35 @@ namespace Features.Maze_Namespace.Tiles
     {
         public TileList_SO tiles;
 
-        public List<TileBehaviour> GetConnectedTiles(TileBehaviour tile)
+        /// <summary>
+        /// </summary>
+        /// <param name="startTile">The position the search will start from.</param>
+        /// <returns>Returns all tiles around a passed tile. It will not contain the tile passed by the parameter</returns>
+        public List<TileBehaviour> GetConnectedTiles(TileBehaviour startTile)
         {
-            // create list for saving all connected floors to the given length
             List<TileBehaviour> connectedTiles = new List<TileBehaviour>();
             
-            // go through the list of vec2s (connected floors) of the given tile
-            for (int n = 0; n < tile.directions.Count; n++)
+            for (int n = 0; n < startTile.directions.Count; n++)
             {
-                // get neighboring tile position from given direction
-                Vector2Int neighborTile = tile.position;
-                neighborTile += tile.directions[n].Get();
-
-                // add connected tile to list of connections
+                Vector2Int neighborTile = startTile.position;
+                neighborTile += startTile.directions[n].Get();
                 connectedTiles.Add(tiles.GetTileAt(neighborTile.x, neighborTile.y));
             }
             
             return connectedTiles;
         }
 
-        public List<TileBehaviour> GetPathsByDepth(TileBehaviour tile, int depth)
+        /// <summary>
+        /// Returns all positions around one tile by a certain depth.
+        /// </summary>
+        /// <param name="startTile">The position the search will start from.</param>
+        /// <param name="depth">The amount of tiles away from the startPosition</param>
+        /// <returns>Returns all tiles which tile distance is <= depth</returns>
+        public List<TileBehaviour> GetPathsByDepth(TileBehaviour startTile, int depth)
         {
-            List<TileBehaviour> connectedTiles = new List<TileBehaviour>{tile};
+            List<TileBehaviour> connectedTiles = new List<TileBehaviour>{startTile};
             
-            List<TileBehaviour> currentDepthTiles = new List<TileBehaviour>{tile};
+            List<TileBehaviour> currentDepthTiles = new List<TileBehaviour>{startTile};
             
             for (int i = 0; i < depth; i++)
             {
@@ -57,12 +62,23 @@ namespace Features.Maze_Namespace.Tiles
             return connectedTiles;
         }
 
-        public List<TileBehaviour> GetPathsByDepth_ExcludeParentPositions(TileBehaviour tile, int depth, TileBehaviour tileToExclude)
+        /// <summary>
+        /// </summary>
+        /// <param name="startTile">The position the search will start from</param>
+        /// <param name="depth">The amount of tiles away from the startPosition</param>
+        /// <param name="tileToExclude">The direction parent tile of startTile</param>
+        /// <returns>Returns a list of tiles based of a startingTilePosition and excludes the previous tile.</returns>
+        public List<TileBehaviour> GetPathsByDepth_ExcludeParentPositions(TileBehaviour startTile, int depth, TileBehaviour tileToExclude)
         {
-            List<TileBehaviour> connectedTiles = new List<TileBehaviour>{tile};
+            if (!GetConnectedTiles(tileToExclude).Contains(startTile))
+            {
+                Debug.LogError($"The {tileToExclude} is not a direction parent of {startTile}. Please pass a valid tile to exclude!");
+            }
+            
+            List<TileBehaviour> connectedTiles = new List<TileBehaviour>{startTile};
             
             Dictionary<TileBehaviour, List<TileBehaviour>> currentDepthTileGroups = new Dictionary<TileBehaviour, List<TileBehaviour>>();
-            currentDepthTileGroups.Add(tileToExclude, new List<TileBehaviour>{tile});
+            currentDepthTileGroups.Add(tileToExclude, new List<TileBehaviour>{startTile});
             
             for (int i = 0; i < depth; i++)
             {

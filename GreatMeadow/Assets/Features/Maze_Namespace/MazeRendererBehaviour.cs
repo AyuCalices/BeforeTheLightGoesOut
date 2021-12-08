@@ -90,7 +90,7 @@ public class MazeRendererBehaviour : MonoBehaviour
         foreach(TileBehaviour renderedTile in tilesToRender)
         {
             // render the tile at the given position
-            if (!RenderEntityContains(otherRenderEntities, renderedTile))
+            if (!RenderEntityContains(otherRenderEntities, renderedTile) && !focusedRenderEntity.oldRenderTiles.Contains(renderedTile))
             {
                 renderedTile.Enable();
             } 
