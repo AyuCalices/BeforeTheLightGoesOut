@@ -50,3 +50,4 @@ We are aMazed and we’ve teamed up to develop this 2D game for the course Game 
 * Feisty Crab Studios: [Simple Sprite Exploder](https://assetstore.unity.com/packages/tools/physics/simple-sprite-exploder-95191)
 * Stephan Hövelbrinks aka talecrafter: [Pixelart Animation Importer for Unity](https://github.com/talecrafter/AnimationImporter)
 * Ryan Hipple: [Unite2017](https://github.com/roboryantron/Unite2017)
+* Reckless Cowboys: [MultiScene: Save multi-scene configurations](https://github.com/RecklessCowboys/MultiScene)
