@@ -2055,7 +2055,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 30b66f98f19bf2b4cb976aa8af27c8b7, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -2089,7 +2089,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 344043538}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: b6bf9a538fb5b364ea7b629ee1192279, type: 2}
+  m_Material: {fileID: 6200000, guid: 30b66f98f19bf2b4cb976aa8af27c8b7, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -2149,7 +2149,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b79c5a6d221c0e7468a64e4bb3eef2f5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.208
+  m_Volume: 0.109
   m_Pitch: 1
   Loop: 1
   Mute: 0
