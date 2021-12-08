@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Features.Audio_Namespace.Logic
 {
-    public class SoundSettings : MonoBehaviour
+    public class AudioSettings : MonoBehaviour
     {
         [Header("Volume")]
         [SerializeField] private AudioMixer volumeMixer;
