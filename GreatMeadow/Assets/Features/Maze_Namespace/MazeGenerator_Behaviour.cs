@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using DataStructures.Variables;
 using Features.Maze_Namespace.Tiles;
 using UnityEngine;
@@ -63,19 +61,18 @@ namespace Features.Maze_Namespace
                       $"  |  Copy the seed into the setSeed field of the MazeGenerator and put the randomizeSeed boolean to false. " +
                       $"By that you get the same maze. Stop the game before though - else it wont save your changes inside the MazeGenerator!");
 
+            tileList.Initialize();
+            
             //Generate the Maze
             KruskalAlgorithm();
             DrawTiles();
 
             List<TileBehaviour> tilesWithoutInteractable = tileList.ToList();
-            Debug.Log(tilesWithoutInteractable.Count);
             SetPositions(tilesWithoutInteractable);
-            Debug.Log(tilesWithoutInteractable.Count);
             foreach (var mazeModifier in mazeModifiers)
             {
                 mazeModifier.AddInteractableModifier(this, tilesWithoutInteractable);
             }
-            Debug.Log(tilesWithoutInteractable.Count);
             
             MazeRendererBehaviour mazeRenderer = GetComponent<MazeRendererBehaviour>();
             if (mazeRenderer != null)
@@ -95,15 +92,15 @@ namespace Features.Maze_Namespace
             playerPos.Set(newPlayerPos);
             tilesWithoutInteractable.Remove(tileList.GetTileAt(newPlayerPos));
             
-            //hunter pos
-            hunterPos.Set(playerPos.Get());
-            
             //Set the Hatch Position at the opposite of the starting position.
             int hatchX = width.Get() - 1 - playerPos.Get().x; 
             int hatch = height.Get() - 1 - playerPos.Get().y;
             Vector2Int hatchPos = new Vector2Int(hatchX, hatch);
             hatchPosition.Set(hatchPos);
             tilesWithoutInteractable.Remove(tileList.GetTileAt(hatchPos));
+            
+            //hunter pos
+            hunterPos.Set(hatchPos);
         }
 
         #region Kruskal Algorithm

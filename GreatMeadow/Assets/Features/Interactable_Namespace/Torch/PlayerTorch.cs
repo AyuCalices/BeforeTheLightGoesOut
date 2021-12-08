@@ -4,23 +4,31 @@ using Utils.Event_Namespace;
 
 public class PlayerTorch : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private Light2D torchLight;
+    [SerializeField] private GameEvent onLoadLoseMenu;
+    
+    [Header("Balancing")]
     [SerializeField] private float startTorchDuration = 30f;
     [SerializeField] private float highestTorchBrightness = 0.5f;
     [SerializeField] private float lowestTorchBrightness = 0.1f;
     [SerializeField] private float torchBrightness = 1.3f;
-    [SerializeField] private Light2D torchLight;
-    [SerializeField] private GameEvent onLoadLoseMenu;
+    
     private float currentTorchDuration;
     private bool gameIsLost;
+    
+    //The player picks up the torch.
+    public void RefillTorch()
+    {
+        currentTorchDuration = startTorchDuration;
+    }
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         RefillTorch();
     }
 
-    // Update is called once per frame
-    public void Update()
+    private void Update()
     {
         currentTorchDuration -= Time.deltaTime;
         float torchDurabilityInPercent = currentTorchDuration / startTorchDuration;
@@ -32,15 +40,9 @@ public class PlayerTorch : MonoBehaviour
             LoadLoseMenu();
         }
     }
-    
-    //The player picks up the torch.
-    public void RefillTorch()
-    {
-        currentTorchDuration = startTorchDuration;
-    }
-    
+
     //If the torch goes out the lose screen will be shown.
-    public void LoadLoseMenu()
+    private void LoadLoseMenu()
     {
         onLoadLoseMenu.Raise();
     }
