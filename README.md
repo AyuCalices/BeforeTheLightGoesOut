@@ -15,13 +15,16 @@ TODO insert text
 * Press M to open/close the map
 
 ## Level Sketch :clipboard:
-TODO insert img
+![Maze](https://user-images.githubusercontent.com/57158200/145290413-9182290d-1e3f-4271-a342-f23e51a3f6a3.JPG)
+
 
 ## Team :busts_in_silhouette:
-TODO insert img
+
 We are aMazed and we’ve teamed up to develop this 2D game for the course Game Engines.
+![crew](https://user-images.githubusercontent.com/57158200/145291622-66e7eb9e-e5c7-43a8-91e0-eb666a80f1e5.png)
 
 :page_facing_up: **Programming & Design:** 
+
 * Cansu Ilhan
 * Lukas Glasmacher
 * Hikari Sophia Stölzle 
