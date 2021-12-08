@@ -15,7 +15,8 @@ TODO insert text
 * Press M to open/close the map
 
 ## Level Sketch :clipboard:
-![Maze](https://user-images.githubusercontent.com/57158200/145290413-9182290d-1e3f-4271-a342-f23e51a3f6a3.JPG)
+<img width="653" alt="ReadMEPic" src="https://user-images.githubusercontent.com/58053240/145306709-0f87520e-7144-44e6-8583-fe062d716d97.png">
+
 
 
 ## Team :busts_in_silhouette:
