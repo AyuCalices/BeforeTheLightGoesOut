@@ -2074,7 +2074,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerIntPosition: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
   playerFloatPosition: {fileID: 11400000, guid: 119fe1922b673a74683c5e731ab70319, type: 2}
-  audioSource: {fileID: 344043547}
   onLoadLoseMenu: {fileID: 11400000, guid: b91f0df70583c40ba94d8ea2c213ae9f, type: 2}
   spriteExploder: {fileID: 1967547423}
   speed: 0.4
@@ -2145,7 +2144,7 @@ AudioSource:
   m_GameObject: {fileID: 344043538}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 920514e6345d5a248b74d163b02f361d, type: 2}
   m_audioClip: {fileID: 8300000, guid: b79c5a6d221c0e7468a64e4bb3eef2f5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.109
@@ -2241,7 +2240,7 @@ AudioSource:
   m_GameObject: {fileID: 344043538}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 920514e6345d5a248b74d163b02f361d, type: 2}
   m_audioClip: {fileID: 8300000, guid: 6359e319f75fe3041af9da74de1a33d9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.233

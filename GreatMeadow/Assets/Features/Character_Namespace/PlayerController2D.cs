@@ -11,7 +11,6 @@ namespace Features.Character_Namespace
         [Header("References")]
         [SerializeField] private Vector2IntVariable playerIntPosition;
         [SerializeField] private Vector2Variable playerFloatPosition;
-        [SerializeField] private AudioSource audioSource;
         [SerializeField] private GameEvent onLoadLoseMenu;
         [SerializeField] private SpriteExploderWithoutPhysics spriteExploder;
         
@@ -20,9 +19,10 @@ namespace Features.Character_Namespace
         [SerializeField] private float movementSmoothingSpeed = 1f;
 
         private InteractableBehaviour currentInteractable;
-        private bool playerIsDead;
+        private bool playerCanWalk;
         
         //movement
+        private AudioSource audioSource;
         private PlayerInputActions playerInputActions;
         private InputAction movement;
         private Vector2 smoothInputMovement;
@@ -35,16 +35,21 @@ namespace Features.Character_Namespace
         private static readonly int VerticalMovement = Animator.StringToHash("Vertical");
         private static readonly int LastMoveX = Animator.StringToHash("LastMoveX");
         private static readonly int LastMoveY = Animator.StringToHash("LastMoveY");
-        
-        
+
         public void InitializePlayer()
         {
             transform.position = (Vector2)playerIntPosition.Get();
         }
 
+        //used by an animation event
+        public void EnableWalk()
+        {
+            playerCanWalk = true;
+        }
+
         public void TriggerDeath()
         {
-            playerIsDead = true;
+            playerCanWalk = false;
             spriteExploder.ExplodeSprite();
             GetComponent<SpriteRenderer>().enabled = false;
             onLoadLoseMenu.Raise();
@@ -52,6 +57,9 @@ namespace Features.Character_Namespace
 
         private void Awake()
         {
+            audioSource = GetComponent<AudioSource>();
+            audioSource.Pause();
+            
             playerInputActions = new PlayerInputActions();
             playerInputActions.Enable();
             animator = GetComponent<Animator>();
@@ -78,7 +86,7 @@ namespace Features.Character_Namespace
         //Update Loop - Used for calculating frame-based data
         private void Update()
         {
-            if (playerIsDead) return;
+            if (!playerCanWalk) return;
             
             CalculateMovementInputSmoothing();
             UpdatePlayerMovement();
@@ -104,14 +112,14 @@ namespace Features.Character_Namespace
             //Set animation to movement
             animator.SetFloat(HorizontalMovement, inputMovement.x);
             animator.SetFloat(VerticalMovement, inputMovement.y);
-            GetComponent<AudioSource>().Pause();
+            audioSource.Pause();
 
             //Get into idle position
             if (inputMovement.x != 0  || inputMovement.y != 0)
             {
                 animator.SetFloat(LastMoveX, inputMovement.x);
                 animator.SetFloat(LastMoveY, inputMovement.y);
-                GetComponent<AudioSource>().UnPause();
+                audioSource.UnPause();
             }
         }
 
