@@ -38,6 +38,9 @@ We are aMazed and we’ve teamed up to develop this 2D game for the course Game 
 :musical_note: **Music by:**
 * Joel Steudler: [Retro Fantasy Music Pack Vol 2](https://joelsteudler.itch.io/retro-fantasy-music-pack-vol-2)
 * Joel Steudler: [Retro Fantasy Music Pack Vol 3](https://joelsteudler.itch.io/retro-fantasy-music-pack-vol-3)
+* Dented Pixel: [LeanTween](https://assetstore.unity.com/packages/tools/animation/leantween-3595)
+* Feisty Crab Studios: [Simple Sprite Exploder](https://assetstore.unity.com/packages/tools/physics/simple-sprite-exploder-95191)
+* Stephan Hövelbrinks aka talecrafter: [Pixelart Animation Importer for Unity](https://github.com/talecrafter/AnimationImporter)
 
 :speaker: **Soundeffects by:**
 * cabled_mess: [Minimal UI Sounds](https://assetstore.unity.com/packages/audio/sound-fx/minimal-ui-sounds-78266)
