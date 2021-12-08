@@ -2,16 +2,16 @@ using UnityEngine;
 
 namespace DataStructures.Variables
 {
-    [CreateAssetMenu(fileName = "NewVector2IntVariable", menuName = "Utils/Variables/Vector2IntVariable")]
-    public class Vector2IntVariable : AbstractVariable<Vector2Int>
+    [CreateAssetMenu(fileName = "NewVector2Variable", menuName = "Utils/Variables/Vector2Variable")]
+    public class Vector2Variable : AbstractVariable<Vector2>
     {
-        public void Add(Vector2Int value)
+        public void Add(Vector2 value)
         {
             runtimeValue += value;
             onValueChanged.Raise();
         }
 
-        public void Add(Vector2IntVariable value)
+        public void Add(Vector2Variable value)
         {
             runtimeValue += value.runtimeValue;
             onValueChanged.Raise();
