@@ -14,7 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: {fileID: 11400000, guid: a3e52cf95d2671542b5ca4005cb572ff, type: 2}
   width: {fileID: 11400000, guid: 306648929f97aa3408cb9fdef1697e0e, type: 2}
-  playerPosition: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
-  tilesList: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}
   interactablePrefab: {fileID: 3611683906383126892, guid: 4d101b51a86b6794bbebc121608b350e, type: 3}
-  spawnPercentage: 0.1
+  spawnPercentage: 0.3

@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9780737292e0967449ec373debf88b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setSeed: -269187619
+  setSeed: -2691
   randomizeSeed: 0
   tile: {fileID: 11400000, guid: 185c75ddc0f097245a4ab156dd76f587, type: 2}
   tileList: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}

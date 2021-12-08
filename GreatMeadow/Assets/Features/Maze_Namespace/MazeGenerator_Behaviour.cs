@@ -61,6 +61,8 @@ namespace Features.Maze_Namespace
                       $"  |  Copy the seed into the setSeed field of the MazeGenerator and put the randomizeSeed boolean to false. " +
                       $"By that you get the same maze. Stop the game before though - else it wont save your changes inside the MazeGenerator!");
 
+            tileList.Initialize();
+            
             //Generate the Maze
             KruskalAlgorithm();
             DrawTiles();
