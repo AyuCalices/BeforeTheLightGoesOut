@@ -1,6 +1,7 @@
 using DataStructures.Variables;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utils.Event_Namespace;
 
 namespace Features.Character_Namespace
 {
@@ -11,6 +12,11 @@ namespace Features.Character_Namespace
         [SerializeField] private Vector2 storedInputMovement;
         [SerializeField] private float movementSmoothingSpeed = 1f;
         [SerializeField] private AudioSource audioSource;
+        
+        [Header("Events")]
+        [SerializeField] private GameEvent onInteractableTriggerEnter;
+        [SerializeField] private GameEvent onInteractableTriggerExit;
+        
         private PlayerInputActions playerInputActions;
         private InputAction movement;
         private Vector2 smoothInputMovement;
@@ -110,6 +116,7 @@ namespace Features.Character_Namespace
             currentInteractable = collider.GetComponent<InteractableBehaviour>();
             if (currentInteractable != null)
             {
+                onInteractableTriggerEnter.Raise();
                 playerInputActions.Player.Interact.performed += OnPerformInteraction;
             }
         }
@@ -122,6 +129,7 @@ namespace Features.Character_Namespace
             if (currentInteractable != null)
             {
                 playerInputActions.Player.Interact.performed -= OnPerformInteraction;
+                onInteractableTriggerExit.Raise();
                 currentInteractable = null;
             }
         }
@@ -130,6 +138,11 @@ namespace Features.Character_Namespace
          * If E is pressed, player interacts with object.
          */
         public void OnPerformInteraction(InputAction.CallbackContext context)
+        {
+            currentInteractable.Interact(this);
+        }
+        
+        public void OnPerformInteraction()
         {
             currentInteractable.Interact(this);
         }
