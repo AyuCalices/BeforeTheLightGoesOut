@@ -7,7 +7,7 @@ Use the map to track your location and unlock the paths you’ve already walked 
 Your goal is to find the hidden hatch before your torch burns down to escape this eerie maze. Because that is not the only danger, you can feel that there is something lingering in the dark, waiting for you. 
 
 ## Idea :bulb:
-TODO insert text
+During our first big brainstorming session, we each came up with concepts for what we want to do; starting from the generation of the maze, we continiously kept on implementing new features from our ideas.
 
 ## How to play (Controls) :joystick: 
 * Move with WASD keys
