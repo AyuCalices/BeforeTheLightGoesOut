@@ -10,7 +10,7 @@ namespace Features.Maze_Namespace.Tiles
         [SerializeField] private Image imagePrefab;
         
         // instantiate tile at given position under given parent transform
-        public GameObject InstantiateTileAt(Vector2Int position, Transform tileParent)
+        public GameObject InstantiateTileAt(Vector2Int position, Transform tileParent, float spriteSize, int mazeWidth, int mazeHeight)
         {
             // get tile positions and directions
             TileSprite_SO tileSprite = GetTileSpriteByDirections(tileList.GetTileAt(position).directions);
@@ -19,10 +19,14 @@ namespace Features.Maze_Namespace.Tiles
             Image grassSprite = Instantiate(imagePrefab, tileParent);
             
             // get canvas positions
-            Rect imagePrefabRect = imagePrefab.GetComponent<RectTransform>().rect;
-
+            RectTransform imagePrefabRect = grassSprite.GetComponent<RectTransform>();
+            
             // place sprite at correct position
-            grassSprite.transform.localPosition = new Vector3(position.x * imagePrefabRect.width, position.y * imagePrefabRect.height); 
+            imagePrefabRect.sizeDelta = new Vector2(spriteSize, spriteSize);
+            var rect = imagePrefabRect.rect;
+            float posX = (position.x - (mazeWidth / 2f)) * rect.width + rect.width / 2f;
+            float posY = (position.y - (mazeHeight / 2f)) * rect.height + rect.height / 2f;
+            grassSprite.transform.localPosition = new Vector3(posX, posY); 
            
             // load fitting minimap sprite
             grassSprite.sprite = tileSprite.miniMapSprite;

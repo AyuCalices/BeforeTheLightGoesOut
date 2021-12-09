@@ -176,5 +176,10 @@ namespace Features.Character_Namespace
         {
             currentInteractable.Interact(this);
         }
+        
+        public void PerformInteraction()
+        {
+            currentInteractable.Interact(this);
+        }
     }
 }

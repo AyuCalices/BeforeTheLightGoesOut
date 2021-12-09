@@ -14,7 +14,7 @@ public class MapController : MonoBehaviour
 
     [Tooltip("Parent transform of all map tiles children.")]
     [SerializeField] private GameObject map;
-    [SerializeField] private Transform mapInstantiationParent;
+    [SerializeField] private RectTransform mapInstantiationParent;
     [SerializeField] private Transform playerPositionPoint;
     
     [Tooltip("Grants access to the generation of the map.")]
@@ -34,36 +34,6 @@ public class MapController : MonoBehaviour
 
     private bool isInitialized;
     
-    [Header("Events")]
-    [SerializeField] private GameEvent openMap;
-    [SerializeField] private GameEvent closeMap;
-    
-    private void Awake()
-    {
-        // initialize input actions for map scene
-        playerInputActions = new PlayerInputActions();
-        
-        // enable player input in map scene
-        playerInputActions.Enable();
-        
-        map.SetActive(false);
-    }
-    
-    private void OnEnable()
-    {
-        openMap.Raise();
-        // allow opening of the map
-        playerInputActions.Player.OpenMap.performed += MapActivated;
-        playerInputActions.Player.OpenMap.Enable();
-    }
-
-    private void OnDisable()
-    {
-        closeMap.Raise();
-        playerInputActions.Player.OpenMap.performed -= MapActivated;
-        playerInputActions.Player.OpenMap.Disable();
-    }
-
     public void InitializeMap()
     {
         // draw map tiles from the same maze seed
@@ -83,6 +53,36 @@ public class MapController : MonoBehaviour
         // only start update, when initialization is completed
         isInitialized = true;
     }
+    
+    public void ToggleMap()
+    {
+        // open map on call if closed and close if opened
+        map.SetActive(!map.activeSelf);
+    }
+    
+    private void Awake()
+    {
+        // initialize input actions for map scene
+        playerInputActions = new PlayerInputActions();
+        
+        // enable player input in map scene
+        playerInputActions.Enable();
+        
+        map.SetActive(false);
+    }
+    
+    private void OnEnable()
+    {
+        // allow opening of the map
+        playerInputActions.Player.OpenMap.performed += MapActivated;
+        playerInputActions.Player.OpenMap.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerInputActions.Player.OpenMap.performed -= MapActivated;
+        playerInputActions.Player.OpenMap.Disable();
+    }
 
     private void Update()
     {
@@ -100,6 +100,9 @@ public class MapController : MonoBehaviour
 
     private void DrawTiles()
     {
+        float size = Mathf.Min(mapInstantiationParent.rect.width / width.Get(),
+            mapInstantiationParent.rect.height / height.Get());
+        
         // for each tile of the generated maze
         mapTiles = new GameObject[height.Get()][];
         for (int y = 0; y < height.Get(); y++)
@@ -111,7 +114,7 @@ public class MapController : MonoBehaviour
                 Vector2Int gridPosition = new Vector2Int(x, y);
                 
                 // add the map tile to the map parent
-                mapTiles[y][x] = mapTile.InstantiateTileAt(gridPosition, mapInstantiationParent);
+                mapTiles[y][x] = mapTile.InstantiateTileAt(gridPosition, mapInstantiationParent, size, width.Get(), height.Get());
             }
         }
     }
@@ -120,9 +123,5 @@ public class MapController : MonoBehaviour
     {
         // open map on call if closed and close if opened
         map.SetActive(!map.activeSelf);
-    }
-    
-    public void OnPerformInteraction()
-    {
     }
 }

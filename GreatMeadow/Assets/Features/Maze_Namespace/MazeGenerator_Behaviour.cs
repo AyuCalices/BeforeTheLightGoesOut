@@ -92,15 +92,32 @@ namespace Features.Maze_Namespace
             playerPos.Set(newPlayerPos);
             tilesWithoutInteractable.Remove(tileList.GetTileAt(newPlayerPos));
             
-            //Set the Hatch Position at the opposite of the starting position.
-            int hatchX = width.Get() - 1 - playerPos.Get().x; 
-            int hatch = height.Get() - 1 - playerPos.Get().y;
-            Vector2Int hatchPos = new Vector2Int(hatchX, hatch);
+            //hatch
+            Vector2Int hatchPos = SetRandomPosition(playerPos.Get(), Mathf.Min(width.Get() / 3f, height.Get() / 3f));
             hatchPosition.Set(hatchPos);
             tilesWithoutInteractable.Remove(tileList.GetTileAt(hatchPos));
             
             //hunter pos
-            hunterPos.Set(hatchPos);
+            hunterPos.Set(SetRandomPosition(playerPos.Get(), Mathf.Min(width.Get() / 3f, height.Get() / 3f)));
+        }
+
+        private Vector2Int SetRandomPosition(Vector2 basePosition, float radius)
+        {
+            if (radius > width.Get() / 2f && radius > height.Get() / 2f)
+            {
+                Debug.LogError("The radius is to large");
+            }
+            
+            Vector2Int newPos = new Vector2Int(Mathf.RoundToInt(Random.Range(0f, width.Get() - 1)),
+                Mathf.RoundToInt(Random.Range(0f, height.Get() - 1)));
+
+            while (Vector2.Distance(basePosition, newPos) <= radius)
+            {
+                newPos = new Vector2Int(Mathf.RoundToInt(Random.Range(0f, width.Get() - 1)),
+                    Mathf.RoundToInt(Random.Range(0f, height.Get() - 1)));
+            }
+
+            return newPos;
         }
 
         #region Kruskal Algorithm

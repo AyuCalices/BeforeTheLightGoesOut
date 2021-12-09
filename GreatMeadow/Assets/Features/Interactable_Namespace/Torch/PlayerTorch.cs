@@ -8,7 +8,6 @@ public class PlayerTorch : MonoBehaviour
     [Header("References")]
     [SerializeField] private Light2D torchLight;
     [SerializeField] private GameEvent onLoadLoseMenu;
-    [SerializeField] private BoolVariable gameIsFinished;
     
     [Header("Balancing")]
     [SerializeField] private float startTorchDuration = 30f;
@@ -46,10 +45,6 @@ public class PlayerTorch : MonoBehaviour
     //If the torch goes out the lose screen will be shown.
     private void LoadLoseMenu()
     {
-        if (gameIsFinished.Get()) return;
-        
-        gameIsFinished.Set(true);
-        
         onLoadLoseMenu.Raise();
     }
 }

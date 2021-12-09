@@ -236,7 +236,6 @@ MonoBehaviour:
   renderPositions:
   - {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
   - {fileID: 11400000, guid: a9e6fc61002f0a343a31a393d080eecf, type: 2}
-  - {fileID: 11400000, guid: a84034803e3a5394986a52f13e3cbcaf, type: 2}
 --- !u!1 &678705235
 GameObject:
   m_ObjectHideFlags: 0
