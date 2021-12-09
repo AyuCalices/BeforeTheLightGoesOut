@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d60f261b718a448d960f65fcea8d2f82, type: 3}
-  m_Name: MazeWidth
+  m_Script: {fileID: 11500000, guid: 6fef6476fd772794db6ed3d9f94cf87a, type: 3}
+  m_Name: Exploder Focus
   m_EditorClassIdentifier: 
-  storedValue: 5
-  onValueChanged: {fileID: 0}
+  spriteExploder: {fileID: 0}

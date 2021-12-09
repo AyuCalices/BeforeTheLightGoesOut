@@ -18,17 +18,17 @@ public class Hatch : InteractableBehaviour
         tileList.GetTileAt(hatchPosition.Get()).RegisterInteractable(this);
     }
 
+    //used by an animator event
+    public void LoadWinMenu()
+    {
+        onLoadWinMenu.Raise();
+    }
+
     public override void Interact(PlayerController2D playerController)
     {
         GetComponent<AudioSource>().Play();
         animator = GetComponent<Animator>();
         animator.SetTrigger(JumpInHatch);
         playerController.GetComponent<SpriteRenderer>().enabled = false;
-    }
-
-    //gets called by an animator event
-    public void LoadWinMenu()
-    {
-        onLoadWinMenu.Raise();
     }
 }

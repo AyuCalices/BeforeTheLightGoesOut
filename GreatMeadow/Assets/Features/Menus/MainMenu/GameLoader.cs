@@ -22,6 +22,11 @@ public class GameLoader : MonoBehaviour
   
   private List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
 
+  private void Awake()
+  {
+    LeanTween.init(1000);
+  }
+
   private void HideFadeMenu(Action onfadeCompleteAction = null)
   {
     LeanTween.alphaCanvas(fadeMenu, 0f, fadeTime).setOnComplete(() =>

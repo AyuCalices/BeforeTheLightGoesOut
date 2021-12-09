@@ -13,6 +13,7 @@ namespace Features.Character_Namespace
         [SerializeField] private Vector2Variable playerFloatPosition;
         [SerializeField] private GameEvent onLoadLoseMenu;
         [SerializeField] private SpriteExploderWithoutPhysics spriteExploder;
+        [SerializeField] private ExploderFocus exploderFocus;
         
         [Header("Balancing")]
         [SerializeField] private float speed = 0.01f;
@@ -30,6 +31,7 @@ namespace Features.Character_Namespace
         private Vector2 storedInputMovement;
 
         //animator
+        private SpriteRenderer spriteRenderer;
         private Animator animator;
         private static readonly int HorizontalMovement = Animator.StringToHash("Horizontal");
         private static readonly int VerticalMovement = Animator.StringToHash("Vertical");
@@ -42,6 +44,9 @@ namespace Features.Character_Namespace
         public void InitializePlayer()
         {
             transform.position = (Vector2)playerIntPosition.Get();
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            
+            exploderFocus.SetExploderFocus(spriteRenderer, spriteExploder);
         }
 
         //used by an animation event
@@ -50,11 +55,20 @@ namespace Features.Character_Namespace
             playerCanWalk = true;
         }
 
-        public void TriggerDeath()
+        public void DisableWalk()
         {
             playerCanWalk = false;
-            spriteExploder.ExplodeSprite();
-            GetComponent<SpriteRenderer>().enabled = false;
+        }
+
+        public void SetAsSpriteExploder()
+        {
+            exploderFocus.SetExploderFocus(spriteRenderer, spriteExploder);
+        }
+
+        public void TriggerDeath()
+        {
+            DisableWalk();
+            exploderFocus.ExplodeSprite();
             onLoadLoseMenu.Raise();
         }
 

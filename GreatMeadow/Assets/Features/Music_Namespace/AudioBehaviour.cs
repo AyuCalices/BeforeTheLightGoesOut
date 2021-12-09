@@ -30,7 +30,7 @@ public class AudioBehaviour : MonoBehaviour
     {
         while (true)
         {
-            if (currentTrackIndex == soundTracks.Count - 1)
+            if (currentTrackIndex >= soundTracks.Count - 1)
             {
                 currentTrackIndex = 0;
             }
