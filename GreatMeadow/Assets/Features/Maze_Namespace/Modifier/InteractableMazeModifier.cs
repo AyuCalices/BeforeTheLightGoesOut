@@ -9,13 +9,13 @@ public class InteractableMazeModifier : MazeModifier
 {
     [SerializeField] private IntVariable height;
     [SerializeField] private IntVariable width;
-    [SerializeField] private InteractableTorch interactablePrefab;
+    [SerializeField] private InteractableBehaviour interactablePrefab;
     [SerializeField] private float spawnPercentage;
     
 
     public override void AddInteractableModifier(MazeGenerator_Behaviour mazeGenerator, List<TileBehaviour> tilesWithoutInteractable)
     {
-        //calculate percentage of torch placement
+        //calculate percentage of interactable placement
         int amountOfInteractable = Mathf.RoundToInt((height.Get() * width.Get()) * spawnPercentage);
 
         for (int index = 0; index < amountOfInteractable; index++)

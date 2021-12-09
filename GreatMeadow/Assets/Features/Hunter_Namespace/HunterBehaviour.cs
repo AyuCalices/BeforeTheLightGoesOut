@@ -15,6 +15,7 @@ public class HunterBehaviour : MonoBehaviour
     [SerializeField] private TileList_SO tiles;
     [SerializeField] private PositionController posControl;
     [SerializeField] private GameEvent killPlayerEvent;
+    [SerializeField] private BoolVariable playerIsKillable;
 
     [Header("Hunter Balancing")]
     [SerializeField] private float hunterBahviourUpdateTime;
@@ -61,7 +62,7 @@ public class HunterBehaviour : MonoBehaviour
         hunterPos.Set(new Vector2Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y)));
         
         //kill animation condition
-        if (hunterPos.Get() == playerIntPosition.Get() && !playerIsKilled)
+        if (hunterPos.Get() == playerIntPosition.Get() && !playerIsKilled && playerIsKillable.Get())
         {
             playerIsKilled = true;
             animator.SetTrigger(KillPlayer);
@@ -76,7 +77,7 @@ public class HunterBehaviour : MonoBehaviour
             //set positions
             TileBehaviour currentTile = tiles.GetTileAt(hunterPos.Get());
             TileBehaviour nextTile;
-            if (GetNextPathfindingPosition(currentTile, playerIntPosition.Get(), playerChasePathfindingDepth, out TileBehaviour foundTile))
+            if (GetNextPathfindingPosition(currentTile, playerIntPosition.Get(), playerChasePathfindingDepth, out TileBehaviour foundTile) && playerIsKillable.Get())
             {
                 nextTile = foundTile;
             }
