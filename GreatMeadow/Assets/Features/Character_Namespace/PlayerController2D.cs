@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Utils.Event_Namespace;
 
+
 namespace Features.Character_Namespace
 {
     public class PlayerController2D : MonoBehaviour
@@ -10,23 +11,18 @@ namespace Features.Character_Namespace
         [Header("References")]
         [SerializeField] private Vector2IntVariable playerIntPosition;
         [SerializeField] private Vector2Variable playerFloatPosition;
-        [SerializeField] private AudioSource audioSource;
         [SerializeField] private GameEvent onLoadLoseMenu;
         [SerializeField] private SpriteExploderWithoutPhysics spriteExploder;
         
         [Header("Balancing")]
         [SerializeField] private float speed = 0.01f;
         [SerializeField] private float movementSmoothingSpeed = 1f;
-        
-        [Header("Events")]
-        [SerializeField] private GameEvent onInteractableTriggerEnter;
-        [SerializeField] private GameEvent onInteractableTriggerExit;
-        
 
         private InteractableBehaviour currentInteractable;
-        private bool playerIsDead;
+        private bool playerCanWalk;
         
         //movement
+        private AudioSource audioSource;
         private PlayerInputActions playerInputActions;
         private InputAction movement;
         private Vector2 smoothInputMovement;
@@ -39,16 +35,24 @@ namespace Features.Character_Namespace
         private static readonly int VerticalMovement = Animator.StringToHash("Vertical");
         private static readonly int LastMoveX = Animator.StringToHash("LastMoveX");
         private static readonly int LastMoveY = Animator.StringToHash("LastMoveY");
-        
-        
+
+        [Header("Events")]
+        [SerializeField] private GameEvent onInteractableTriggerEnter;
+        [SerializeField] private GameEvent onInteractableTriggerExit;
         public void InitializePlayer()
         {
             transform.position = (Vector2)playerIntPosition.Get();
         }
 
+        //used by an animation event
+        public void EnableWalk()
+        {
+            playerCanWalk = true;
+        }
+
         public void TriggerDeath()
         {
-            playerIsDead = true;
+            playerCanWalk = false;
             spriteExploder.ExplodeSprite();
             GetComponent<SpriteRenderer>().enabled = false;
             onLoadLoseMenu.Raise();
@@ -56,6 +60,9 @@ namespace Features.Character_Namespace
 
         private void Awake()
         {
+            audioSource = GetComponent<AudioSource>();
+            audioSource.Pause();
+            
             playerInputActions = new PlayerInputActions();
             playerInputActions.Enable();
             animator = GetComponent<Animator>();
@@ -82,7 +89,7 @@ namespace Features.Character_Namespace
         //Update Loop - Used for calculating frame-based data
         private void Update()
         {
-            if (playerIsDead) return;
+            if (!playerCanWalk) return;
             
             CalculateMovementInputSmoothing();
             UpdatePlayerMovement();
@@ -108,14 +115,14 @@ namespace Features.Character_Namespace
             //Set animation to movement
             animator.SetFloat(HorizontalMovement, inputMovement.x);
             animator.SetFloat(VerticalMovement, inputMovement.y);
-            GetComponent<AudioSource>().Pause();
+            audioSource.Pause();
 
             //Get into idle position
             if (inputMovement.x != 0  || inputMovement.y != 0)
             {
                 animator.SetFloat(LastMoveX, inputMovement.x);
                 animator.SetFloat(LastMoveY, inputMovement.y);
-                GetComponent<AudioSource>().UnPause();
+                audioSource.UnPause();
             }
         }
 
@@ -141,19 +148,15 @@ namespace Features.Character_Namespace
         {
             if (currentInteractable != null)
             {
+             
+             onInteractableTriggerExit.Raise();
                 playerInputActions.Player.Interact.performed -= OnPerformInteraction;
-                onInteractableTriggerExit.Raise();
                 currentInteractable = null;
             }
         }
         
         //If E is pressed, player interacts with object.
         private void OnPerformInteraction(InputAction.CallbackContext context)
-        {
-            currentInteractable.Interact(this);
-        }
-        
-        public void OnPerformInteraction()
         {
             currentInteractable.Interact(this);
         }

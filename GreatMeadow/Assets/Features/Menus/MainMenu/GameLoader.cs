@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils.Event_Namespace;
@@ -18,6 +17,7 @@ public class GameLoader : MonoBehaviour
   [Header("Canvas")]
   [SerializeField] private CanvasManager canvasManager;
   [SerializeField] private CanvasGroup fadeMenu;
+  [SerializeField] private AudioBehaviour audioBehaviour;
   [SerializeField] private float fadeTime = 1f;
   
   private List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
@@ -39,7 +39,6 @@ public class GameLoader : MonoBehaviour
 
   public void Quit()
   {
-    Debug.Log("Game Quit!");
     Application.Quit();
   }
   
@@ -51,6 +50,7 @@ public class GameLoader : MonoBehaviour
       return;
     }
     
+    audioBehaviour.Disable(fadeTime);
     ShowFadeMenu(() =>
     {
       canvasManager.CloseCanvas();
@@ -90,7 +90,11 @@ public class GameLoader : MonoBehaviour
 
       scenesToLoad[scenesToLoad.Count - 1].completed += _ =>
       {
-        HideFadeMenu((() => scenesToLoad.Clear()));
+        HideFadeMenu(() =>
+        {
+          scenesToLoad.Clear();
+          audioBehaviour.Enable();
+        });
       };
     });
   }

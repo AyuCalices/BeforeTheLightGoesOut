@@ -50,10 +50,6 @@ MonoBehaviour:
   lerpTime: {fileID: 11400000, guid: bea9baa7f3f9b4d4ca69b48d6202a814, type: 2}
   tileList: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}
   hatchPosition: {fileID: 11400000, guid: a84034803e3a5394986a52f13e3cbcaf, type: 2}
-  hatchSpawnPos: {fileID: 11400000, guid: a84034803e3a5394986a52f13e3cbcaf, type: 2}
-  playerSpawnPos: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
-  width: {fileID: 11400000, guid: 306648929f97aa3408cb9fdef1697e0e, type: 2}
-  height: {fileID: 11400000, guid: a3e52cf95d2671542b5ca4005cb572ff, type: 2}
   onLoadWinMenu: {fileID: 11400000, guid: a25398a19a1664e4783964386a73a579, type: 2}
 --- !u!82 &7174463128965368637
 AudioSource:
@@ -64,7 +60,7 @@ AudioSource:
   m_GameObject: {fileID: 7174463128965368632}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 920514e6345d5a248b74d163b02f361d, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0d083103b5a4bf24a86f5a8c71463c9f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
