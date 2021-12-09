@@ -27,6 +27,8 @@ public class InteractableTorch : InteractableBehaviour
         isLooted = true;
     }
 
+    public override bool CanBeInteracted() => !isLooted;
+
     private IEnumerator ChangeLightOverTime(float fromVal, float toVal, float duration)
     {
         float counter = 0f;
