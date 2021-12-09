@@ -36,6 +36,9 @@ namespace Features.Character_Namespace
         private static readonly int LastMoveX = Animator.StringToHash("LastMoveX");
         private static readonly int LastMoveY = Animator.StringToHash("LastMoveY");
 
+        [Header("Events")]
+        [SerializeField] private GameEvent onInteractableTriggerEnter;
+        [SerializeField] private GameEvent onInteractableTriggerExit;
         public void InitializePlayer()
         {
             transform.position = (Vector2)playerIntPosition.Get();
@@ -135,6 +138,7 @@ namespace Features.Character_Namespace
             currentInteractable = collider.GetComponent<InteractableBehaviour>();
             if (currentInteractable != null)
             {
+                onInteractableTriggerEnter.Raise();
                 playerInputActions.Player.Interact.performed += OnPerformInteraction;
             }
         }
@@ -144,6 +148,8 @@ namespace Features.Character_Namespace
         {
             if (currentInteractable != null)
             {
+             
+             onInteractableTriggerExit.Raise();
                 playerInputActions.Player.Interact.performed -= OnPerformInteraction;
                 currentInteractable = null;
             }

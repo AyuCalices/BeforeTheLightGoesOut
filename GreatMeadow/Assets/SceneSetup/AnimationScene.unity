@@ -2078,6 +2078,8 @@ MonoBehaviour:
   spriteExploder: {fileID: 1967547423}
   speed: 0.4
   movementSmoothingSpeed: 10
+  onInteractableTriggerEnter: {fileID: 11400000, guid: 57dd84cfe4289c340b23ad912a408324, type: 2}
+  onInteractableTriggerExit: {fileID: 11400000, guid: 8e79a2e497e51a24db9460acad5ddcae, type: 2}
 --- !u!61 &344043544
 BoxCollider2D:
   m_ObjectHideFlags: 0
