@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d60f261b718a448d960f65fcea8d2f82, type: 3}
   m_Name: MazeHeight
   m_EditorClassIdentifier: 
-  storedValue: 4
+  storedValue: 10
   onValueChanged: {fileID: 0}

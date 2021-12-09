@@ -22,7 +22,7 @@ public class InteractableTorch : InteractableBehaviour
         animator = GetComponent<Animator>();
         animator.SetTrigger(PickUpTorch);
         torchLight.intensity = 0f;
-        GetComponent<AudioSource>().Stop();
+        GetComponent<AudioSource>().enabled = false;
         playerController.GetComponentInChildren<PlayerTorch>().RefillTorch();
         isLooted = true;
     }

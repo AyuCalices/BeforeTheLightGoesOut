@@ -1046,7 +1046,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 3
-  m_Text: Explore the maze to discover the map!
+  m_Text: Explore more to unlock the entire map!
 --- !u!222 &1069270805
 CanvasRenderer:
   m_ObjectHideFlags: 0

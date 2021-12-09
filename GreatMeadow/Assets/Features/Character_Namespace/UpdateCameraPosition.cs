@@ -11,9 +11,8 @@ public class UpdateCameraPosition : MonoBehaviour
     {
         mainCameraTransform = Camera.main.transform;
     }
-    void Update()
+    private void Update()
     {
         mainCameraTransform.position = new Vector3(transform.position.x, transform.position.y, CameraDistance);
-
     }
 }
