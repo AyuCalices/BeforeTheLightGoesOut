@@ -7,7 +7,9 @@ Use the map to track your location and unlock the paths you’ve already walked 
 Your goal is to find the hidden hatch before your torch burns down to escape this eerie maze. Because that is not the only danger, you can feel that there is something lingering in the dark, waiting for you. 
 
 ## Idea :bulb:
-During our first big brainstorming session, we each came up with concepts for what we want to do - drawing inspiration from our favourite games/series/films and breaking it down to what we could achieve together in a few months. Starting from the generation of the maze, we continuously kept on implementing new features from our shared ideas. Originally, we wanted to make a turn based game set on a great meadow, with not quite so many horror features - but we ended up creating a game which would exceed our own expectations of what we can achieve.
+During our first big brainstorming session, we each came up with concepts for what we want to do - drawing inspiration from our favourite games/series/films and breaking it down to what we could achieve together in a few months.
+
+Starting from the generation of the maze, we continuously kept on implementing new features from our shared ideas. Originally, we wanted to make a turn based game set on a great meadow, with not quite so many horror features - but we ended up creating a game which would exceed our own expectations of what we can achieve.
 
 ## How to play (Controls) :joystick: 
 * Move with WASD keys
