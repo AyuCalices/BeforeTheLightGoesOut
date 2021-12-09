@@ -3,6 +3,7 @@ using DataStructures.Variables;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Features.Maze_Namespace.Tiles;
+using Utils.Event_Namespace;
 
 public class MapController : MonoBehaviour
 {
@@ -33,6 +34,10 @@ public class MapController : MonoBehaviour
 
     private bool isInitialized;
     
+    [Header("Events")]
+    [SerializeField] private GameEvent openMap;
+    [SerializeField] private GameEvent closeMap;
+    
     private void Awake()
     {
         // initialize input actions for map scene
@@ -46,6 +51,7 @@ public class MapController : MonoBehaviour
     
     private void OnEnable()
     {
+        openMap.Raise();
         // allow opening of the map
         playerInputActions.Player.OpenMap.performed += MapActivated;
         playerInputActions.Player.OpenMap.Enable();
@@ -53,6 +59,7 @@ public class MapController : MonoBehaviour
 
     private void OnDisable()
     {
+        closeMap.Raise();
         playerInputActions.Player.OpenMap.performed -= MapActivated;
         playerInputActions.Player.OpenMap.Disable();
     }
@@ -113,5 +120,9 @@ public class MapController : MonoBehaviour
     {
         // open map on call if closed and close if opened
         map.SetActive(!map.activeSelf);
+    }
+    
+    public void OnPerformInteraction()
+    {
     }
 }
