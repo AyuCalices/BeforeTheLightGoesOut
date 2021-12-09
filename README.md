@@ -1,4 +1,4 @@
-# aMazed
+# Before The Light Goes Out
 A top-down 2D escape game made in Unity using C# for a course project at HTW Berlin, Germany. :video_game:
 
 You wake up in the middle of a maze. All you have is a map and a torch that won't last long... But don’t panic! You’ll find a limited number of torches on your way to stay illuminated. It’s important to keep the torch alive. :fire:
