@@ -60,6 +60,7 @@ namespace Features.Character_Namespace
         public void DisableWalk()
         {
             playerCanWalk = false;
+            audioSource.Pause();
         }
 
         public void SetAsSpriteExploder()
