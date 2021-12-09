@@ -172,6 +172,17 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""action"": ""Open Map"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2709c93d-be6f-4465-b6e8-3f9fd3ac8f2a"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Open Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
