@@ -97,8 +97,10 @@ namespace Features.Maze_Namespace
             hatchPosition.Set(hatchPos);
             tilesWithoutInteractable.Remove(tileList.GetTileAt(hatchPos));
             
-            //hunter pos
-            hunterPos.Set(SetRandomPosition(playerPos.Get(), Mathf.Min(width.Get() / 3f, height.Get() / 3f)));
+            //hunter pos on the opposite of the player
+            Vector2Int hunterPosition =
+                new Vector2Int(width.Get() - 1 - newPlayerPos.x, height.Get() - 1 - newPlayerPos.y);
+            hunterPos.Set(hunterPosition);
         }
 
         private Vector2Int SetRandomPosition(Vector2 basePosition, float radius)

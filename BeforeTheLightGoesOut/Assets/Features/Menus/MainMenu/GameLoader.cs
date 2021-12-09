@@ -17,7 +17,7 @@ public class GameLoader : MonoBehaviour
   [Header("Canvas")]
   [SerializeField] private CanvasManager canvasManager;
   [SerializeField] private CanvasGroup fadeMenu;
-  [SerializeField] private AudioBehaviour audioBehaviour;
+  [SerializeField] private MusicBehaviour musicBehaviour;
   [SerializeField] private float fadeTime = 1f;
   
   private List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
@@ -55,7 +55,7 @@ public class GameLoader : MonoBehaviour
       return;
     }
     
-    audioBehaviour.Disable(fadeTime);
+    musicBehaviour.Disable(fadeTime);
     ShowFadeMenu(() =>
     {
       canvasManager.CloseCanvas();
@@ -98,7 +98,7 @@ public class GameLoader : MonoBehaviour
         HideFadeMenu(() =>
         {
           scenesToLoad.Clear();
-          audioBehaviour.Enable();
+          musicBehaviour.Enable();
         });
       };
     });
