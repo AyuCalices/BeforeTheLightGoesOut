@@ -45,7 +45,7 @@ We are aMazed and we’ve teamed up to develop this 2D game for the course Game 
 * INNERVISION:GD: [Footstep Sound Effects [PRO] ](https://assetstore.unity.com/packages/audio/sound-fx/footstep-sound-effects-pro-169177)
 * Daily Sound: [Torch Flame](https://assetstore.unity.com/packages/audio/sound-fx/torch-flame-31954)
 * AlbertFernandez: [BATTLE & WOUNDS SOUND PACK](https://www.gamedevmarket.net/asset/battle-wounds-sound-pack/)
-* Mixkit.co: [Hunter Heartbeat] https://mixkit.co/free-sound-effects/heartbeat/
+* Mixkit.co: *Hier einfügen*
 
 :wrench: **Utils**
 * Dented Pixel: [LeanTween](https://assetstore.unity.com/packages/tools/animation/leantween-3595)
