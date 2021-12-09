@@ -11,9 +11,13 @@ namespace Features.Character_Namespace
         [Header("References")]
         [SerializeField] private Vector2IntVariable playerIntPosition;
         [SerializeField] private Vector2Variable playerFloatPosition;
-        [SerializeField] private GameEvent onLoadLoseMenu;
         [SerializeField] private SpriteExploderWithoutPhysics spriteExploder;
         [SerializeField] private ExploderFocus exploderFocus;
+        
+        [Header("Events")]
+        [SerializeField] private GameEvent onLoadLoseMenu;
+        [SerializeField] private GameEvent onInteractableTriggerEnter;
+        [SerializeField] private GameEvent onInteractableTriggerExit;
         
         [Header("Balancing")]
         [SerializeField] private float speed = 0.01f;
@@ -38,9 +42,7 @@ namespace Features.Character_Namespace
         private static readonly int LastMoveX = Animator.StringToHash("LastMoveX");
         private static readonly int LastMoveY = Animator.StringToHash("LastMoveY");
 
-        [Header("Events")]
-        [SerializeField] private GameEvent onInteractableTriggerEnter;
-        [SerializeField] private GameEvent onInteractableTriggerExit;
+        
         public void InitializePlayer()
         {
             transform.position = (Vector2)playerIntPosition.Get();
@@ -150,7 +152,7 @@ namespace Features.Character_Namespace
         private void OnTriggerEnter2D(Collider2D collider)
         {
             currentInteractable = collider.GetComponent<InteractableBehaviour>();
-            if (currentInteractable != null)
+            if (currentInteractable != null && currentInteractable.CanBeInteracted())
             {
                 onInteractableTriggerEnter.Raise();
                 playerInputActions.Player.Interact.performed += OnPerformInteraction;
@@ -162,8 +164,7 @@ namespace Features.Character_Namespace
         {
             if (currentInteractable != null)
             {
-             
-             onInteractableTriggerExit.Raise();
+                onInteractableTriggerExit.Raise();
                 playerInputActions.Player.Interact.performed -= OnPerformInteraction;
                 currentInteractable = null;
             }
