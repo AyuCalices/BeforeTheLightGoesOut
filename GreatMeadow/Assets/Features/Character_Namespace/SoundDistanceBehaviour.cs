@@ -7,14 +7,21 @@ public class SoundDistanceBehaviour : MonoBehaviour
     [SerializeField] private Vector2IntVariable soundTarget;
 
     private AudioSource audioSource;
-
-    private void Awake()
+    private bool isInitialized;
+    
+    public void Initialize()
     {
         audioSource = GetComponent<AudioSource>();
+        audioSource.volume = Mathf.InverseLerp(3, 1, Vector2.Distance(transform.position, soundTarget.Get()));
+        audioSource.Play();
+        isInitialized = true;
     }
 
     private void Update()
     {
-        audioSource.volume = Mathf.InverseLerp(3, 1, Vector2.Distance(transform.position, soundTarget.Get()));
+        if (isInitialized)
+        { 
+            audioSource.volume = Mathf.InverseLerp(3, 1, Vector2.Distance(transform.position, soundTarget.Get()));
+        }
     }
 }
