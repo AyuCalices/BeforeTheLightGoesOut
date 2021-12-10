@@ -15,8 +15,14 @@ During our first big brainstorming session, we each came up with concepts for wh
 Originally, we wanted to make a turn based game set on a great meadow, with not quite so many horror features - but we ended up creating a game which would exceed our own expectations of what we can achieve.
 
 ## How to play (Controls) :joystick: 
+### Keyboard
 * Move with WASD keys
 * Press E to interact with objects
+* Press M to open/close the map
+
+### Controller
+* Move with left stick
+* Press A to interact with objects
 * Press M to open/close the map
 
 ## Level Sketch :clipboard:
