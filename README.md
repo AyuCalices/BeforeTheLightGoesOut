@@ -7,6 +7,7 @@ Use the map to track your location and unlock the paths you’ve already walked 
 Your goal is to find the hidden hatch before your torch burns down to escape this eerie maze. Because that is not the only danger, you can feel that there is something lingering in the dark, waiting for you. 
 
 The pre-release can be downloaded [here](https://github.com/AyuCalices/BeforeTheLightGoesOut/releases)(Latest version: Version 1.0.0).
+![aMazed_s0568739_s0570683_s0571104_s0571394_1-1](https://user-images.githubusercontent.com/58053240/145488334-e50287b0-efe5-4300-9f21-277385576b38.gif)
 
 ## Idea :bulb:
 During our first big brainstorming session, we each came up with concepts for what we want to do - drawing inspiration from our favourite games/series/films and breaking it down to what we could achieve together in a few months. Starting from the generation of the maze, we continuously kept on implementing new features from our shared ideas.
@@ -14,8 +15,14 @@ During our first big brainstorming session, we each came up with concepts for wh
 Originally, we wanted to make a turn based game set on a great meadow, with not quite so many horror features - but we ended up creating a game which would exceed our own expectations of what we can achieve.
 
 ## How to play (Controls) :joystick: 
+### Keyboard
 * Move with WASD keys
 * Press E to interact with objects
+* Press M to open/close the map
+
+### Controller
+* Move with left stick
+* Press A to interact with objects
 * Press M to open/close the map
 
 ## Level Sketch :clipboard:
