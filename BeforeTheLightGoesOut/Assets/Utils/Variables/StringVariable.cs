@@ -1,6 +1,7 @@
+using DataStructures.Variables;
 using UnityEngine;
 
-namespace DataStructures.Variables
+namespace Utils.Variables
 {
     [CreateAssetMenu(fileName = "NewStringVariable", menuName = "Utils/Variables/StringVariable")]
     public class StringVariable : AbstractVariable<string>

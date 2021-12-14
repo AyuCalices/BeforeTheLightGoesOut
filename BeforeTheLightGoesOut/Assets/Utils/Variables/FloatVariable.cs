@@ -1,6 +1,7 @@
+using DataStructures.Variables;
 using UnityEngine;
 
-namespace DataStructures.Variables
+namespace Utils.Variables
 {
     [CreateAssetMenu(fileName = "NewFloatVariable", menuName = "Utils/Variables/Float Variable")]
     public class FloatVariable : AbstractVariable<float>

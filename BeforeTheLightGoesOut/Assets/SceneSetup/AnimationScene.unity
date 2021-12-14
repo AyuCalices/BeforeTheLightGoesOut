@@ -2076,7 +2076,7 @@ MonoBehaviour:
   playerIntPosition: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
   playerFloatPosition: {fileID: 11400000, guid: 119fe1922b673a74683c5e731ab70319, type: 2}
   spriteExploder: {fileID: 1967547423}
-  exploderFocus: {fileID: 11400000, guid: ccbae5e6021f7b44397534aaafa46231, type: 2}
+  exploderFocusSo: {fileID: 11400000, guid: ccbae5e6021f7b44397534aaafa46231, type: 2}
   onLoadLoseMenu: {fileID: 11400000, guid: b91f0df70583c40ba94d8ea2c213ae9f, type: 2}
   onInteractableTriggerEnter: {fileID: 11400000, guid: 57dd84cfe4289c340b23ad912a408324, type: 2}
   onInteractableTriggerExit: {fileID: 11400000, guid: 8e79a2e497e51a24db9460acad5ddcae, type: 2}

@@ -1640,12 +1640,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 504220829}
-        m_TargetAssemblyTypeName: GameLoader, Assembly-CSharp
+        m_TargetAssemblyTypeName: Features.Menues_Namespace.Scripts.GameLoadBehaviour,
+          Assembly-CSharp
         m_MethodName: UnloadGameScenes
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 1b7a6ce8e3fbe4ebfb782ac0bef0950f, type: 2}
-          m_ObjectArgumentAssemblyTypeName: MenuType_SO, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Utils.CanvasNavigator.MenuType_SO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1668,12 +1669,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 504220829}
-        m_TargetAssemblyTypeName: GameLoader, Assembly-CSharp
+        m_TargetAssemblyTypeName: Features.Menues_Namespace.Scripts.GameLoadBehaviour,
+          Assembly-CSharp
         m_MethodName: UnloadGameScenes
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 7291ef442acf94970aaefc0f89117214, type: 2}
-          m_ObjectArgumentAssemblyTypeName: MenuType_SO, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Utils.CanvasNavigator.MenuType_SO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1799,12 +1801,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1664194535}
-        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: Utils.CanvasNavigator.CanvasManager, Assembly-CSharp
         m_MethodName: SwitchCanvas
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: f59fddf49e4fe450a90566c59fc48f5d, type: 2}
-          m_ObjectArgumentAssemblyTypeName: MenuType_SO, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Utils.CanvasNavigator.MenuType_SO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4992,6 +4994,10 @@ PrefabInstance:
       value: PlayOneShot
       objectReference: {fileID: 0}
     - target: {fileID: 1464124775461072262, guid: 2d397016469e19748ac9be85342ac3ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Utils.CanvasNavigator.CanvasManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1464124775461072262, guid: 2d397016469e19748ac9be85342ac3ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: UnityEngine.AudioSource, UnityEngine
       objectReference: {fileID: 0}
@@ -4999,6 +5005,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 8300000, guid: 8c258dca7e08fb1438113b0b75348f71, type: 3}
+    - target: {fileID: 1464124775461072262, guid: 2d397016469e19748ac9be85342ac3ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Utils.CanvasNavigator.MenuType_SO, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1464124775461072262, guid: 2d397016469e19748ac9be85342ac3ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.AudioClip, UnityEngine
@@ -5287,12 +5297,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1664194535}
-        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: Utils.CanvasNavigator.CanvasManager, Assembly-CSharp
         m_MethodName: SwitchCanvas
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: f59fddf49e4fe450a90566c59fc48f5d, type: 2}
-          m_ObjectArgumentAssemblyTypeName: MenuType_SO, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Utils.CanvasNavigator.MenuType_SO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6091,12 +6101,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1664194535}
-        m_TargetAssemblyTypeName: CanvasManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: Utils.CanvasNavigator.CanvasManager, Assembly-CSharp
         m_MethodName: SwitchCanvas
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 80a8566959ad84620a50220d5acc67a2, type: 2}
-          m_ObjectArgumentAssemblyTypeName: MenuType_SO, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Utils.CanvasNavigator.MenuType_SO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7011,6 +7021,10 @@ PrefabInstance:
       value: PlayOneShot
       objectReference: {fileID: 0}
     - target: {fileID: 1464124775461072262, guid: 2d397016469e19748ac9be85342ac3ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Utils.CanvasNavigator.CanvasManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1464124775461072262, guid: 2d397016469e19748ac9be85342ac3ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: UnityEngine.AudioSource, UnityEngine
       objectReference: {fileID: 0}
@@ -7018,6 +7032,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 8300000, guid: 8c258dca7e08fb1438113b0b75348f71, type: 3}
+    - target: {fileID: 1464124775461072262, guid: 2d397016469e19748ac9be85342ac3ad, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Utils.CanvasNavigator.MenuType_SO, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1464124775461072262, guid: 2d397016469e19748ac9be85342ac3ad, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.AudioClip, UnityEngine
