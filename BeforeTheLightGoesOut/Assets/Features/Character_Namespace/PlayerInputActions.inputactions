@@ -22,7 +22,15 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Hide",
+                    "name": "Open Map",
+                    "type": "Button",
+                    "id": "b5068150-f111-47ef-a692-11a74244d1ea",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Sprint Burst",
                     "type": "Button",
                     "id": "f288c0d2-6b47-4593-b37d-24200e02af30",
                     "expectedControlType": "Button",
@@ -30,9 +38,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Open Map",
+                    "name": "PauseGame",
                     "type": "Button",
-                    "id": "b5068150-f111-47ef-a692-11a74244d1ea",
+                    "id": "fe6b3b97-ea51-4551-80b0-4d5a528fe539",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -129,12 +137,23 @@
                 },
                 {
                     "name": "",
+                    "id": "04bbe5b0-1531-468b-a9b9-8b41415b8ba4",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Open Map",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f49cc3bc-2960-4d82-a50e-175f9b982bde",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Hide",
+                    "action": "Sprint Burst",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -145,18 +164,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Hide",
+                    "action": "Sprint Burst",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "04bbe5b0-1531-468b-a9b9-8b41415b8ba4",
-                    "path": "<Keyboard>/m",
+                    "id": "632422a3-1250-4c59-8f13-15f295691de1",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Open Map",
+                    "action": "PauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "63217875-58fb-4b93-9e25-e7e88f37f290",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

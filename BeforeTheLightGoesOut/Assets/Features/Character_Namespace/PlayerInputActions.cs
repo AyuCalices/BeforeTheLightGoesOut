@@ -35,7 +35,15 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Hide"",
+                    ""name"": ""Open Map"",
+                    ""type"": ""Button"",
+                    ""id"": ""b5068150-f111-47ef-a692-11a74244d1ea"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Sprint Burst"",
                     ""type"": ""Button"",
                     ""id"": ""f288c0d2-6b47-4593-b37d-24200e02af30"",
                     ""expectedControlType"": ""Button"",
@@ -43,9 +51,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Open Map"",
+                    ""name"": ""PauseGame"",
                     ""type"": ""Button"",
-                    ""id"": ""b5068150-f111-47ef-a692-11a74244d1ea"",
+                    ""id"": ""fe6b3b97-ea51-4551-80b0-4d5a528fe539"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -142,12 +150,23 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""04bbe5b0-1531-468b-a9b9-8b41415b8ba4"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Open Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""f49cc3bc-2960-4d82-a50e-175f9b982bde"",
                     ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Hide"",
+                    ""action"": ""Sprint Burst"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -158,18 +177,29 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Hide"",
+                    ""action"": ""Sprint Burst"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""04bbe5b0-1531-468b-a9b9-8b41415b8ba4"",
-                    ""path"": ""<Keyboard>/m"",
+                    ""id"": ""632422a3-1250-4c59-8f13-15f295691de1"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Open Map"",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""63217875-58fb-4b93-9e25-e7e88f37f290"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -182,8 +212,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
-        m_Player_Hide = m_Player.FindAction("Hide", throwIfNotFound: true);
         m_Player_OpenMap = m_Player.FindAction("Open Map", throwIfNotFound: true);
+        m_Player_SprintBurst = m_Player.FindAction("Sprint Burst", throwIfNotFound: true);
+        m_Player_PauseGame = m_Player.FindAction("PauseGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -235,16 +266,18 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Interact;
-    private readonly InputAction m_Player_Hide;
     private readonly InputAction m_Player_OpenMap;
+    private readonly InputAction m_Player_SprintBurst;
+    private readonly InputAction m_Player_PauseGame;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
-        public InputAction @Hide => m_Wrapper.m_Player_Hide;
         public InputAction @OpenMap => m_Wrapper.m_Player_OpenMap;
+        public InputAction @SprintBurst => m_Wrapper.m_Player_SprintBurst;
+        public InputAction @PauseGame => m_Wrapper.m_Player_PauseGame;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -260,12 +293,15 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Interact.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnInteract;
-                @Hide.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHide;
-                @Hide.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHide;
-                @Hide.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHide;
                 @OpenMap.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMap;
                 @OpenMap.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMap;
                 @OpenMap.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenMap;
+                @SprintBurst.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprintBurst;
+                @SprintBurst.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprintBurst;
+                @SprintBurst.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprintBurst;
+                @PauseGame.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseGame;
+                @PauseGame.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseGame;
+                @PauseGame.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseGame;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -276,12 +312,15 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
-                @Hide.started += instance.OnHide;
-                @Hide.performed += instance.OnHide;
-                @Hide.canceled += instance.OnHide;
                 @OpenMap.started += instance.OnOpenMap;
                 @OpenMap.performed += instance.OnOpenMap;
                 @OpenMap.canceled += instance.OnOpenMap;
+                @SprintBurst.started += instance.OnSprintBurst;
+                @SprintBurst.performed += instance.OnSprintBurst;
+                @SprintBurst.canceled += instance.OnSprintBurst;
+                @PauseGame.started += instance.OnPauseGame;
+                @PauseGame.performed += instance.OnPauseGame;
+                @PauseGame.canceled += instance.OnPauseGame;
             }
         }
     }
@@ -290,7 +329,8 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
-        void OnHide(InputAction.CallbackContext context);
         void OnOpenMap(InputAction.CallbackContext context);
+        void OnSprintBurst(InputAction.CallbackContext context);
+        void OnPauseGame(InputAction.CallbackContext context);
     }
 }
