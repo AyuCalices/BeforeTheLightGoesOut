@@ -1,6 +1,7 @@
 using Features.GameStates;
-using Features.GameStates.Scripts;
+using Features.GameStates_Namespace.Scripts.States;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Experimental.Rendering.Universal;
 using Utils.Event_Namespace;
 
@@ -11,7 +12,7 @@ namespace Features.Interactable_Namespace.Torch.Scripts
         [Header("References")]
         [SerializeField] private GameStateController_SO gameStateController;
         [SerializeField] private Light2D torchLight;
-        [SerializeField] private GameEvent onLoadLoseMenu;
+        [SerializeField] private UnityEvent onTorchLightGone;
     
         [Header("Balancing")]
         [SerializeField] private float startTorchDuration = 30f;
@@ -20,7 +21,6 @@ namespace Features.Interactable_Namespace.Torch.Scripts
         [SerializeField] private float torchBrightness = 1.3f;
     
         private float currentTorchDuration;
-        private bool gameIsLost;
     
         //The player picks up the torch.
         public void RefillTorch()
@@ -39,19 +39,16 @@ namespace Features.Interactable_Namespace.Torch.Scripts
             float torchDurabilityInPercent = currentTorchDuration / startTorchDuration;
             torchBrightness = Mathf.Max(lowestTorchBrightness, torchDurabilityInPercent * highestTorchBrightness);
             torchLight.intensity = torchBrightness;
-            if (currentTorchDuration <= 0 && !gameIsLost)
-            {
-                gameIsLost = true;
-                LoadLoseMenu();
-            }
+
+            CheckPlayerDeath();
         }
 
         //If the torch goes out the lose screen will be shown.
-        private void LoadLoseMenu()
+        private void CheckPlayerDeath()
         {
-            if (gameStateController.GetState() is PlayState_SO)
+            if (currentTorchDuration <= 0 && gameStateController.GetState() is PlayState_SO)
             {
-                onLoadLoseMenu.Raise();
+                onTorchLightGone.Invoke();
             }
         }
     }

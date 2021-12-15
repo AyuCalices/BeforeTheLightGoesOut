@@ -1,26 +1,20 @@
-using Features.GameStates.Scripts;
+using Features.GameStates_Namespace.Scripts;
 using UnityEngine;
 
 namespace Features.GameStates.Character
 {
     [CreateAssetMenu(fileName = "MovementDisabledState", menuName = "CharacterStates/MovementDisabled")]
-    public class MovementDisabledState_SO : State_SO
+    public class InputsDisabledState_SO : State_SO
     {
         [SerializeField] private CharacterStateController_SO characterStateController;
         
-        private PlayerInputActions PlayerInputActions => characterStateController.PlayerInputActions;
-        private Animator CharacterAnimator => characterStateController.Animator;
-        private Transform CharacterTransform => characterStateController.Transform;
         private AudioSource WalkSounds => characterStateController.AudioSource;
+        private PlayerInputActions PlayerInputActions => characterStateController.PlayerInputActions;
         
         public override void Enter()
         {
+            PlayerInputActions.Disable();
             WalkSounds.enabled = false;
-        }
-
-        public override void Exit()
-        {
-            WalkSounds.enabled = true;
         }
     }
 }

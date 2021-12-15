@@ -1,5 +1,5 @@
-using DataStructures.Variables;
 using Features.Character_Namespace.Scripts;
+using Features.GameStates.Character;
 using Features.Interactable_Namespace.Scripts;
 using Features.Simple_Sprite_Exploder_Without_Physics.Scripts;
 using UnityEngine;
@@ -10,7 +10,13 @@ namespace Features.Interactable_Namespace.Stone.Scripts
     [RequireComponent(typeof(Animator))]
     public class StoneBehaviour : InteractableBehaviour
     {
-        [SerializeField] private BoolVariable playerIsKillable;
+        [Header("Character State")]
+        [SerializeField] private CharacterStateController_SO characterStateController;
+        [SerializeField] private HideState_SO hideState;
+        [SerializeField] private InputsEnabledState_SO inputsEnabledState;
+        [SerializeField] private InputsDisabledState_SO inputsDisabledState;
+        
+        [Header("Asset References")]
         [SerializeField] private ExploderFocus_SO exploderFocusSo;
         [SerializeField] private SpriteExploderBehaviour stoneExploderPrefab;
     
@@ -20,7 +26,6 @@ namespace Features.Interactable_Namespace.Stone.Scripts
         private SpriteRenderer spriteRenderer;
         private SpriteExploderBehaviour spriteExploder;
 
-        private bool playerIsHidden;
         private bool isInteractable;
     
         private static readonly int Hide = Animator.StringToHash("Hide");
@@ -31,49 +36,49 @@ namespace Features.Interactable_Namespace.Stone.Scripts
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             isInteractable = true;
-            playerIsKillable.Set(true);
         }
 
         //used by an animator event
         public void ContinuePlayerMovement()
         {
             playerController.GetComponent<SpriteRenderer>().enabled = true;
-            //playerController.EnableWalk();
+
+            Destroy(spriteExploder);
+            playerController.SetAsSpriteExploder();
+            
+            characterStateController.RequestState(inputsEnabledState);
             isInteractable = true;
         }
 
         //used by an animator event
         public void OnPlayerIsHidden()
         {
+            characterStateController.RequestState(hideState);
             isInteractable = true;
-            playerIsKillable.Set(false);
         }
 
         public override void Interact(PlayerControllerBehaviour playerController)
         {
-            this.playerController = playerController;
-
             if (!isInteractable) return;
-        
             isInteractable = false;
-            spriteExploder = Instantiate(stoneExploderPrefab, transform);
-            exploderFocusSo.SetExploderFocus(spriteRenderer, spriteExploder);
-        
-            if (playerIsHidden)
+            
+            this.playerController = playerController;
+            
+            if (characterStateController.GetState() is HideState_SO)
             {
                 animator.SetTrigger(Unhide);
-                playerIsHidden = false;
-                playerIsKillable.Set(true);
-                Destroy(spriteExploder);
-                playerController.SetAsSpriteExploder();
             }
-            else
+            else if (characterStateController.GetState() is InputsEnabledState_SO)
             {
                 animator.SetTrigger(Hide);
-                playerIsHidden = true;
+                
+                spriteExploder = Instantiate(stoneExploderPrefab, transform);
+                exploderFocusSo.SetExploderFocus(spriteRenderer, spriteExploder);
+
                 playerController.GetComponent<SpriteRenderer>().enabled = false;
-                //playerController.DisableWalk();
             }
+            
+            characterStateController.RequestState(inputsDisabledState);
         }
     }
 }

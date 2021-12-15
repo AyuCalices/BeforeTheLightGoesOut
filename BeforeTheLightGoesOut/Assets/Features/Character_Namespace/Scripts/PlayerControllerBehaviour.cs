@@ -1,6 +1,5 @@
 using System;
 using Features.GameStates.Character;
-using Features.GameStates.Scripts;
 using Features.Interactable_Namespace.Scripts;
 using Features.Simple_Sprite_Exploder_Without_Physics.Scripts;
 using UnityEngine;
@@ -14,17 +13,15 @@ namespace Features.Character_Namespace.Scripts
     {
         [Header("References")] 
         [SerializeField] private CharacterStateController_SO characterStateController;
-        [SerializeField] private MovementEnabledState_SO movementEnabledState;
-        [SerializeField] private GameStateController_SO gameStateController;
+        [SerializeField] private InputsEnabledState_SO inputsEnabledState;
         [SerializeField] private Vector2IntVariable playerIntPosition;
         
         [SerializeField] private SpriteExploderBehaviour spriteExploder;
         [SerializeField] private ExploderFocus_SO exploderFocus;
         
-        [Header("Events")]
-        [SerializeField] private GameEvent onLoadLoseMenu;
         [SerializeField] private GameEvent onInteractableTriggerEnter;
         [SerializeField] private GameEvent onInteractableTriggerExit;
+        [SerializeField] private AudioSource walkSound;
         
 
         private PlayerInputActions playerInputActions;
@@ -39,39 +36,32 @@ namespace Features.Character_Namespace.Scripts
         public void InitializePlayer()
         {
             transform.position = (Vector2)playerIntPosition.Get();
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            
-            exploderFocus.SetExploderFocus(spriteRenderer, spriteExploder);
         }
-
+        
         public void SetAsSpriteExploder()
         {
             exploderFocus.SetExploderFocus(spriteRenderer, spriteExploder);
         }
-
+        
+        public void PerformInteraction()
+        {
+            currentInteractable.Interact(this);
+        }
+        
+        //used by an animator event
         public void RequestMovementEnabledState()
         {
-            Debug.Log("switcstate");
-            characterStateController.RequestState(movementEnabledState);
-        }
-
-        public void TriggerDeath()
-        {
-            if (gameStateController.GetState() is PlayState_SO)
-            {
-                exploderFocus.ExplodeSprite();
-                onLoadLoseMenu.Raise();
-            }
+            characterStateController.RequestState(inputsEnabledState);
         }
 
         private void Awake()
         {
-            AudioSource audioSource = GetComponent<AudioSource>();
-            audioSource.Pause();
-
             playerInputActions = new PlayerInputActions();
             
-            characterStateController.SetReferences(GetComponent<Animator>(), audioSource, playerInputActions, transform);
+            characterStateController.SetReferences(GetComponent<Animator>(), walkSound, playerInputActions, transform);
+            
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            SetAsSpriteExploder();
         }
 
         private void Update()
@@ -86,6 +76,7 @@ namespace Features.Character_Namespace.Scripts
             if (currentInteractable != null && currentInteractable.CanBeInteracted())
             {
                 onInteractableTriggerEnter.Raise();
+                playerInputActions.Player.Interact.Enable();
                 playerInputActions.Player.Interact.performed += OnPerformInteraction;
             }
         }
@@ -96,6 +87,7 @@ namespace Features.Character_Namespace.Scripts
             if (currentInteractable != null)
             {
                 onInteractableTriggerExit.Raise();
+                playerInputActions.Player.Interact.Disable();
                 playerInputActions.Player.Interact.performed -= OnPerformInteraction;
                 currentInteractable = null;
             }
@@ -103,11 +95,6 @@ namespace Features.Character_Namespace.Scripts
         
         //If E is pressed, player interacts with object.
         private void OnPerformInteraction(InputAction.CallbackContext context)
-        {
-            currentInteractable.Interact(this);
-        }
-        
-        public void PerformInteraction()
         {
             currentInteractable.Interact(this);
         }

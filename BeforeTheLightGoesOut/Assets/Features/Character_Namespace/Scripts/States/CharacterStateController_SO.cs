@@ -1,4 +1,4 @@
-using Features.GameStates.Scripts;
+using Features.GameStates_Namespace.Scripts;
 using UnityEngine;
 
 namespace Features.GameStates.Character

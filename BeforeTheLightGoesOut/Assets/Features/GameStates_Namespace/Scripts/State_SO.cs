@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Utils.StateMachine_Namespace;
 
-namespace Features.GameStates.Scripts
+namespace Features.GameStates_Namespace.Scripts
 {
     public abstract class State_SO : ScriptableObject, IState
     {
@@ -10,19 +10,16 @@ namespace Features.GameStates.Scripts
 
         public bool IsValidStateShift(State_SO requestedState)
         {
-            return validStateShifts.Contains(requestedState);
+            if (validStateShifts.Contains(requestedState)) return true;
+            
+            Debug.LogWarning($"Swapping to the state {requestedState} is not possible because it is not added to the {name} List!");
+            return false;
         }
         
         public abstract void Enter();
 
-        public virtual void Execute()
-        {
-            Debug.Log("Update on State: " + name);
-        }
+        public virtual void Execute() { }
 
-        public virtual void Exit()
-        {
-            Debug.Log("Exit on State: " + name);
-        }
+        public virtual void Exit() { }
     }
 }

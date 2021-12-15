@@ -48,7 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpTime: {fileID: 11400000, guid: bea9baa7f3f9b4d4ca69b48d6202a814, type: 2}
-  playerIsKillable: {fileID: 11400000, guid: fff1e96435702224b9f666ed82c6ba70, type: 2}
+  characterStateController: {fileID: 11400000, guid: 08a6522433cb7c4498f47fa89e7e5f57, type: 2}
+  hideState: {fileID: 11400000, guid: 8a8ae73414ad47648aa5befa6073bee0, type: 2}
+  inputsEnabledState: {fileID: 11400000, guid: a139249c689b24245bd9d49fa0e700a0, type: 2}
+  inputsDisabledState: {fileID: 11400000, guid: a68b3772070431d45aaf7bb44a6dd8f0, type: 2}
   exploderFocusSo: {fileID: 11400000, guid: ccbae5e6021f7b44397534aaafa46231, type: 2}
   stoneExploderPrefab: {fileID: 819974915978254952, guid: 88d00e60fd83bcb4e87caa25642e0a2d, type: 3}
 --- !u!212 &8010483759149821313

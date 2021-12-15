@@ -258,13 +258,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e301327158f9ab429510c064566edf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterStateController: {fileID: 11400000, guid: 08a6522433cb7c4498f47fa89e7e5f57, type: 2}
   hunterPos: {fileID: 11400000, guid: a9e6fc61002f0a343a31a393d080eecf, type: 2}
   playerIntPosition: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
   playerFloatPosition: {fileID: 11400000, guid: 119fe1922b673a74683c5e731ab70319, type: 2}
   tiles: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}
   posControl: {fileID: 11400000, guid: 8d4e9a1ecebcb0b4880ab439c106118e, type: 2}
-  killPlayerEvent: {fileID: 11400000, guid: bf58d2e2e7aebfd4da8bd2111e839c27, type: 2}
-  playerIsKillable: {fileID: 11400000, guid: fff1e96435702224b9f666ed82c6ba70, type: 2}
+  onPlayerDashComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 08a6522433cb7c4498f47fa89e7e5f57, type: 2}
+        m_TargetAssemblyTypeName: Features.GameStates.Scripts.StateController_SO,
+          Assembly-CSharp
+        m_MethodName: RequestState
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: bea0d1a0b32d9794d89bd7f2904d966f, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Features.GameStates.Scripts.State_SO,
+            Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   hunterBahviourUpdateTime: 5
   playerChasePathfindingDepth: 3
   walkSpeed: 1

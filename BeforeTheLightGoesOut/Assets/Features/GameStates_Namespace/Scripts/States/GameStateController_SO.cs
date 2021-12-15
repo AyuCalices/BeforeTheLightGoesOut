@@ -2,7 +2,7 @@ using Features.Music_Namespace.Scripts;
 using UnityEngine;
 using Utils.CanvasNavigator;
 
-namespace Features.GameStates.Scripts
+namespace Features.GameStates_Namespace.Scripts.States
 {
     [CreateAssetMenu(fileName = "StateController", menuName = "GameStates/StateController")]
     public class GameStateController_SO : StateController_SO

@@ -1,7 +1,8 @@
 using DataStructures.Variables;
 using Features.Character_Namespace.Scripts;
 using Features.GameStates;
-using Features.GameStates.Scripts;
+using Features.GameStates.Character;
+using Features.GameStates_Namespace.Scripts.States;
 using Features.Interactable_Namespace.Scripts;
 using Features.Maze_Namespace.Scripts;
 using Features.Simple_Sprite_Exploder_Without_Physics.Scripts;
@@ -13,11 +14,18 @@ namespace Features.Interactable_Namespace.Hatch.Scripts
 {
     public class HatchBehaviour : InteractableBehaviour
     {
+        [Header("States")]
+        [SerializeField] private CharacterStateController_SO characterStateController;
+        [SerializeField] private InputsDisabledState_SO inputsDisabledState;
         [SerializeField] private GameStateController_SO gameStateController;
+        
+        [Header("Asset References")]
         [SerializeField] private TileList_SO tileList;
         [SerializeField] private Vector2IntVariable hatchPosition;
         [SerializeField] private GameEvent onLoadWinMenu;
         [SerializeField] private ExploderFocus_SO exploderFocusSo;
+        
+        [Header("Scene References")]
         [SerializeField] private SpriteExploderBehaviour hatchExploder;
         [SerializeField] private SpriteRenderer spriteRenderer;
 
@@ -49,7 +57,7 @@ namespace Features.Interactable_Namespace.Hatch.Scripts
             animator = GetComponent<Animator>();
             animator.SetTrigger(JumpInHatch);
             playerController.GetComponent<SpriteRenderer>().enabled = false;
-            //playerController.DisableWalk();
+            characterStateController.RequestState(inputsDisabledState);
         
             exploderFocusSo.SetExploderFocus(spriteRenderer, hatchExploder);
         }

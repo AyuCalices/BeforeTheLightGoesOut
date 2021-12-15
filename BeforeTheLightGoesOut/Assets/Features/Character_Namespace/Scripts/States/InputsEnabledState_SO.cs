@@ -1,4 +1,5 @@
-using Features.GameStates.Scripts;
+using System.Linq;
+using Features.GameStates_Namespace.Scripts;
 using UnityEngine;
 using Utils.Variables;
 using UnityEngine.InputSystem;
@@ -6,7 +7,7 @@ using UnityEngine.InputSystem;
 namespace Features.GameStates.Character
 {
     [CreateAssetMenu(fileName = "MovementEnabledState", menuName = "CharacterStates/MovementEnabled")]
-    public class MovementEnabledState_SO : State_SO
+    public class InputsEnabledState_SO : State_SO
     {
         [SerializeField] private CharacterStateController_SO characterStateController;
         [SerializeField] private Vector2Variable playerFloatPosition;
@@ -32,19 +33,15 @@ namespace Features.GameStates.Character
         public override void Enter()
         {
             PlayerInputActions.Enable();
-            
             PlayerInputActions.Player.Movement.performed += OnMovement;
             PlayerInputActions.Player.Movement.started += OnMovement;
             PlayerInputActions.Player.Movement.canceled += OnMovement;
             
             WalkSounds.enabled = true;
-            
-            Debug.Log("o/");
         }
 
         public override void Execute()
         {
-            Debug.Log("o/2");
             CalculateMovementInputSmoothing();
             UpdatePlayerMovement();
 
@@ -55,13 +52,9 @@ namespace Features.GameStates.Character
 
         public override void Exit()
         {
-            PlayerInputActions.Disable();
-            
             PlayerInputActions.Player.Movement.performed -= OnMovement;
             PlayerInputActions.Player.Movement.started -= OnMovement;
             PlayerInputActions.Player.Movement.canceled -= OnMovement;
-            
-            WalkSounds.enabled = false;
         }
         
         //Input's Axes values are raw

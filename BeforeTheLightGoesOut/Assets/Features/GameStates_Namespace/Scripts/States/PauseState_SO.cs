@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Features.GameStates.Scripts
+namespace Features.GameStates_Namespace.Scripts.States
 {
     [CreateAssetMenu(fileName = "PauseState", menuName = "GameStates/Pause")]
     public class PauseState_SO : State_SO

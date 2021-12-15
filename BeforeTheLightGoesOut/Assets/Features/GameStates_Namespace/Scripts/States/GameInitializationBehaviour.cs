@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utils.CanvasNavigator;
 
-namespace Features.GameStates.Scripts
+namespace Features.GameStates_Namespace.Scripts.States
 {
     public class GameInitializationBehaviour : MonoBehaviour
     {
