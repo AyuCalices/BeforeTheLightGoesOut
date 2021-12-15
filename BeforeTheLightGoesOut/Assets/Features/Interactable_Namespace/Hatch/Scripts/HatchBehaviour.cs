@@ -1,5 +1,7 @@
 using DataStructures.Variables;
 using Features.Character_Namespace.Scripts;
+using Features.GameStates;
+using Features.GameStates.Scripts;
 using Features.Maze_Namespace.Scripts;
 using Features.Simple_Sprite_Exploder_Without_Physics.Scripts;
 using UnityEngine;
@@ -10,6 +12,7 @@ namespace Features.Interactable_Namespace.Hatch.Scripts
 {
     public class HatchBehaviour : InteractableBehaviour
     {
+        [SerializeField] private GameStateController_SO gameStateController;
         [SerializeField] private TileList_SO tileList;
         [SerializeField] private Vector2IntVariable hatchPosition;
         [SerializeField] private GameEvent onLoadWinMenu;
@@ -30,7 +33,10 @@ namespace Features.Interactable_Namespace.Hatch.Scripts
         //used by an animator event
         public void LoadWinMenu()
         {
-            onLoadWinMenu.Raise();
+            if (gameStateController.GetState() is PlayState_SO)
+            {
+                onLoadWinMenu.Raise();
+            }
         }
 
         public override void Interact(PlayerControllerBehaviour playerController)

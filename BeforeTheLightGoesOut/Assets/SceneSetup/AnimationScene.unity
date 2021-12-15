@@ -2073,10 +2073,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5b407fbba25b547afaf643691f4a9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStateController: {fileID: 11400000, guid: cbf3c7f9f813f3a41b593576cbb8c144, type: 2}
   playerIntPosition: {fileID: 11400000, guid: 20216524ae795974db5256a6c326c1d1, type: 2}
   playerFloatPosition: {fileID: 11400000, guid: 119fe1922b673a74683c5e731ab70319, type: 2}
   spriteExploder: {fileID: 1967547423}
-  exploderFocusSo: {fileID: 11400000, guid: ccbae5e6021f7b44397534aaafa46231, type: 2}
+  exploderFocus: {fileID: 11400000, guid: ccbae5e6021f7b44397534aaafa46231, type: 2}
   onLoadLoseMenu: {fileID: 11400000, guid: b91f0df70583c40ba94d8ea2c213ae9f, type: 2}
   onInteractableTriggerEnter: {fileID: 11400000, guid: 57dd84cfe4289c340b23ad912a408324, type: 2}
   onInteractableTriggerExit: {fileID: 11400000, guid: 8e79a2e497e51a24db9460acad5ddcae, type: 2}
@@ -2133,6 +2134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efa15223c2abc74ea176456593ac315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameStateController: {fileID: 0}
   torchLight: {fileID: 883852547}
   onLoadLoseMenu: {fileID: 11400000, guid: b91f0df70583c40ba94d8ea2c213ae9f, type: 2}
   startTorchDuration: 60

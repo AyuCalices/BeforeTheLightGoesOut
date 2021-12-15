@@ -1,4 +1,6 @@
 using DataStructures.Variables;
+using Features.GameStates;
+using Features.GameStates.Scripts;
 using Features.Simple_Sprite_Exploder_Without_Physics.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,10 +12,11 @@ namespace Features.Character_Namespace.Scripts
     public class PlayerControllerBehaviour : MonoBehaviour
     {
         [Header("References")]
+        [SerializeField] private GameStateController_SO gameStateController;
         [SerializeField] private Vector2IntVariable playerIntPosition;
         [SerializeField] private Vector2Variable playerFloatPosition;
         [SerializeField] private SpriteExploderBehaviour spriteExploder;
-        [SerializeField] private ExploderFocus_SO exploderFocusSo;
+        [SerializeField] private ExploderFocus_SO exploderFocus;
         
         [Header("Events")]
         [SerializeField] private GameEvent onLoadLoseMenu;
@@ -49,7 +52,7 @@ namespace Features.Character_Namespace.Scripts
             transform.position = (Vector2)playerIntPosition.Get();
             spriteRenderer = GetComponent<SpriteRenderer>();
             
-            exploderFocusSo.SetExploderFocus(spriteRenderer, spriteExploder);
+            exploderFocus.SetExploderFocus(spriteRenderer, spriteExploder);
         }
 
         //used by an animation event
@@ -66,14 +69,17 @@ namespace Features.Character_Namespace.Scripts
 
         public void SetAsSpriteExploder()
         {
-            exploderFocusSo.SetExploderFocus(spriteRenderer, spriteExploder);
+            exploderFocus.SetExploderFocus(spriteRenderer, spriteExploder);
         }
 
         public void TriggerDeath()
         {
-            DisableWalk();
-            exploderFocusSo.ExplodeSprite();
-            onLoadLoseMenu.Raise();
+            if (gameStateController.GetState() is PlayState_SO)
+            {
+                DisableWalk();
+                exploderFocus.ExplodeSprite();
+                onLoadLoseMenu.Raise();
+            }
         }
 
         private void Awake()

@@ -1,3 +1,5 @@
+using Features.GameStates;
+using Features.GameStates.Scripts;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 using Utils.Event_Namespace;
@@ -7,6 +9,7 @@ namespace Features.Interactable_Namespace.Torch.Scripts
     public class PlayerTorchBehaviour : MonoBehaviour
     {
         [Header("References")]
+        [SerializeField] private GameStateController_SO gameStateController;
         [SerializeField] private Light2D torchLight;
         [SerializeField] private GameEvent onLoadLoseMenu;
     
@@ -46,7 +49,10 @@ namespace Features.Interactable_Namespace.Torch.Scripts
         //If the torch goes out the lose screen will be shown.
         private void LoadLoseMenu()
         {
-            onLoadLoseMenu.Raise();
+            if (gameStateController.GetState() is PlayState_SO)
+            {
+                onLoadLoseMenu.Raise();
+            }
         }
     }
 }

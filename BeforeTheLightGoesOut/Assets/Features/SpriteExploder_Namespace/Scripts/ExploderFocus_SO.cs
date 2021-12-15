@@ -16,8 +16,8 @@ namespace Features.Simple_Sprite_Exploder_Without_Physics.Scripts
     
         public void ExplodeSprite()
         {
-            spriteExploder.ExplodeSprite();
             spriteExploderParent.enabled = false;
+            spriteExploder.ExplodeSprite();
         }
     }
 }

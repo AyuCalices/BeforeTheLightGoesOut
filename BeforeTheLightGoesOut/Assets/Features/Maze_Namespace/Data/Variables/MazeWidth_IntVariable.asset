@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d60f261b718a448d960f65fcea8d2f82, type: 3}
   m_Name: MazeWidth_IntVariable
   m_EditorClassIdentifier: 
-  storedValue: 10
+  storedValue: 2
   onValueChanged: {fileID: 0}

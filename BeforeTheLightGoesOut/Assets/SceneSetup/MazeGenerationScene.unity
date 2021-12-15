@@ -183,15 +183,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9780737292e0967449ec373debf88b16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  setSeed: 0
-  randomizeSeed: 1
+  setSeed: 2
+  randomizeSeed: 0
   tile: {fileID: 11400000, guid: 185c75ddc0f097245a4ab156dd76f587, type: 2}
   tileList: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}
   width: {fileID: 11400000, guid: 306648929f97aa3408cb9fdef1697e0e, type: 2}
   height: {fileID: 11400000, guid: a3e52cf95d2671542b5ca4005cb572ff, type: 2}
   mazeModifiers:
+  - {fileID: 11400000, guid: 30168b756f5bd774a8f5456939c312f8, type: 2}
   - {fileID: 11400000, guid: 1baeebda1130f704a9419094f03894f1, type: 2}
-  - {fileID: 11400000, guid: f569cdd70ad778b4d80611eac85660d1, type: 2}
   tileParentTransform: {fileID: 545921218}
   interactableParentTransform: {fileID: 678705236}
   north: {fileID: 11400000, guid: 8d775117d3b8cab4e88e7742f77c9d27, type: 2}

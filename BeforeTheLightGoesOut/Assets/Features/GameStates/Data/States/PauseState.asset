@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b61bf13e647c7e742a936c7d0bd7ee3f, type: 3}
-  m_Name: OnLoadGameScenesComplete
+  m_Script: {fileID: 11500000, guid: edd4bd67845e4524f88ab656e12ceabe, type: 3}
+  m_Name: PauseState
   m_EditorClassIdentifier: 
-  listeners: []
+  validStateShifts:
+  - {fileID: 11400000}
+  gameStateController: {fileID: 11400000, guid: cbf3c7f9f813f3a41b593576cbb8c144, type: 2}

@@ -19154,6 +19154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lerpTime: {fileID: 11400000, guid: bea9baa7f3f9b4d4ca69b48d6202a814, type: 2}
+  gameStateController: {fileID: 11400000, guid: cbf3c7f9f813f3a41b593576cbb8c144, type: 2}
   tileList: {fileID: 11400000, guid: 4559f6a7a1cc65a4eb69b4fe9f36ff70, type: 2}
   hatchPosition: {fileID: 11400000, guid: a84034803e3a5394986a52f13e3cbcaf, type: 2}
   onLoadWinMenu: {fileID: 11400000, guid: a25398a19a1664e4783964386a73a579, type: 2}

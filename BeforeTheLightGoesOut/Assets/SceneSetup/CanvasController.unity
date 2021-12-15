@@ -206,13 +206,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 504220829}
-        m_TargetAssemblyTypeName: GameLoader, Assembly-CSharp
-        m_MethodName: LoadGameScenes
-        m_Mode: 1
+      - m_Target: {fileID: 11400000, guid: cbf3c7f9f813f3a41b593576cbb8c144, type: 2}
+        m_TargetAssemblyTypeName: Features.GameStates.GameStateController_SO, Assembly-CSharp
+        m_MethodName: RequestState
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: feb9d728cfd193441914fefb558142da, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Features.GameStates.State_SO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1584,7 +1584,7 @@ GameObject:
   - component: {fileID: 504220832}
   - component: {fileID: 504220831}
   m_Layer: 0
-  m_Name: GameLoader
+  m_Name: GameInitialization
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1599,16 +1599,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 504220828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e891d329728404db79b59f6bcd3c4cd7, type: 3}
+  m_Script: {fileID: 11500000, guid: f2b91983f8a4a6140ba9c04fe4d0e22b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadScenes: 1
-  onFadeComplete: {fileID: 11400000, guid: 48684b487d3b08c48867f929348bb4ad, type: 2}
-  onLoadGameScenesComplete: {fileID: 11400000, guid: 24d8377e8ebb2de488e7ce24ecad8a1c, type: 2}
+  gameStateController: {fileID: 11400000, guid: cbf3c7f9f813f3a41b593576cbb8c144, type: 2}
   canvasManager: {fileID: 1664194535}
   fadeMenu: {fileID: 691079415}
   musicBehaviour: {fileID: 677210459}
-  fadeTime: 1
 --- !u!4 &504220830
 Transform:
   m_ObjectHideFlags: 0
@@ -1639,10 +1636,21 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 504220829}
-        m_TargetAssemblyTypeName: Features.Menues_Namespace.Scripts.GameLoadBehaviour,
-          Assembly-CSharp
-        m_MethodName: UnloadGameScenes
+      - m_Target: {fileID: 11400000, guid: cbf3c7f9f813f3a41b593576cbb8c144, type: 2}
+        m_TargetAssemblyTypeName: Features.GameStates.GameStateController_SO, Assembly-CSharp
+        m_MethodName: RequestState
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 0a8d3b2b9a207e047a01c6107ea66971, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Features.GameStates.State_SO, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 0a8d3b2b9a207e047a01c6107ea66971, type: 2}
+        m_TargetAssemblyTypeName: Features.GameStates.MenuState_SO, Assembly-CSharp
+        m_MethodName: SetEndScreen
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 1b7a6ce8e3fbe4ebfb782ac0bef0950f, type: 2}
@@ -1668,10 +1676,21 @@ MonoBehaviour:
   Response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 504220829}
-        m_TargetAssemblyTypeName: Features.Menues_Namespace.Scripts.GameLoadBehaviour,
-          Assembly-CSharp
-        m_MethodName: UnloadGameScenes
+      - m_Target: {fileID: 11400000, guid: cbf3c7f9f813f3a41b593576cbb8c144, type: 2}
+        m_TargetAssemblyTypeName: Features.GameStates.GameStateController_SO, Assembly-CSharp
+        m_MethodName: RequestState
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 0a8d3b2b9a207e047a01c6107ea66971, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Features.GameStates.State_SO, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 0a8d3b2b9a207e047a01c6107ea66971, type: 2}
+        m_TargetAssemblyTypeName: Features.GameStates.MenuState_SO, Assembly-CSharp
+        m_MethodName: SetEndScreen
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 7291ef442acf94970aaefc0f89117214, type: 2}
@@ -4097,13 +4116,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 504220829}
-        m_TargetAssemblyTypeName: GameLoader, Assembly-CSharp
-        m_MethodName: LoadGameScenes
-        m_Mode: 1
+      - m_Target: {fileID: 11400000, guid: cbf3c7f9f813f3a41b593576cbb8c144, type: 2}
+        m_TargetAssemblyTypeName: Features.GameStates.GameStateController_SO, Assembly-CSharp
+        m_MethodName: RequestState
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: feb9d728cfd193441914fefb558142da, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Features.GameStates.State_SO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5532,13 +5551,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 504220829}
-        m_TargetAssemblyTypeName: GameLoader, Assembly-CSharp
-        m_MethodName: LoadGameScenes
-        m_Mode: 1
+      - m_Target: {fileID: 11400000, guid: cbf3c7f9f813f3a41b593576cbb8c144, type: 2}
+        m_TargetAssemblyTypeName: Features.GameStates.GameStateController_SO, Assembly-CSharp
+        m_MethodName: RequestState
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 11400000, guid: feb9d728cfd193441914fefb558142da, type: 2}
+          m_ObjectArgumentAssemblyTypeName: Features.GameStates.State_SO, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
