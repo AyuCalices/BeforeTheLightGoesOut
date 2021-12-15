@@ -1,6 +1,7 @@
-using DataStructures.Variables;
-using Features.GameStates;
+using System;
+using Features.GameStates.Character;
 using Features.GameStates.Scripts;
+using Features.Interactable_Namespace.Scripts;
 using Features.Simple_Sprite_Exploder_Without_Physics.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,10 +12,12 @@ namespace Features.Character_Namespace.Scripts
 {
     public class PlayerControllerBehaviour : MonoBehaviour
     {
-        [Header("References")]
+        [Header("References")] 
+        [SerializeField] private CharacterStateController_SO characterStateController;
+        [SerializeField] private MovementEnabledState_SO movementEnabledState;
         [SerializeField] private GameStateController_SO gameStateController;
         [SerializeField] private Vector2IntVariable playerIntPosition;
-        [SerializeField] private Vector2Variable playerFloatPosition;
+        
         [SerializeField] private SpriteExploderBehaviour spriteExploder;
         [SerializeField] private ExploderFocus_SO exploderFocus;
         
@@ -23,30 +26,16 @@ namespace Features.Character_Namespace.Scripts
         [SerializeField] private GameEvent onInteractableTriggerEnter;
         [SerializeField] private GameEvent onInteractableTriggerExit;
         
-        [Header("Balancing")]
-        [SerializeField] private float speed = 0.01f;
-        [SerializeField] private float movementSmoothingSpeed = 1f;
 
+        private PlayerInputActions playerInputActions;
         private InteractableBehaviour currentInteractable;
         private bool playerCanWalk;
-        
-        //movement
-        private AudioSource audioSource;
-        private PlayerInputActions playerInputActions;
-        private InputAction movement;
-        private Vector2 smoothInputMovement;
-        private Vector2 inputMovement;
-        private Vector2 storedInputMovement;
 
         //animator
         private SpriteRenderer spriteRenderer;
         private Animator animator;
-        private static readonly int HorizontalMovement = Animator.StringToHash("Horizontal");
-        private static readonly int VerticalMovement = Animator.StringToHash("Vertical");
-        private static readonly int LastMoveX = Animator.StringToHash("LastMoveX");
-        private static readonly int LastMoveY = Animator.StringToHash("LastMoveY");
 
-        
+
         public void InitializePlayer()
         {
             transform.position = (Vector2)playerIntPosition.Get();
@@ -55,28 +44,21 @@ namespace Features.Character_Namespace.Scripts
             exploderFocus.SetExploderFocus(spriteRenderer, spriteExploder);
         }
 
-        //used by an animation event
-        public void EnableWalk()
-        {
-            playerCanWalk = true;
-        }
-
-        public void DisableWalk()
-        {
-            playerCanWalk = false;
-            audioSource.Pause();
-        }
-
         public void SetAsSpriteExploder()
         {
             exploderFocus.SetExploderFocus(spriteRenderer, spriteExploder);
+        }
+
+        public void RequestMovementEnabledState()
+        {
+            Debug.Log("switcstate");
+            characterStateController.RequestState(movementEnabledState);
         }
 
         public void TriggerDeath()
         {
             if (gameStateController.GetState() is PlayState_SO)
             {
-                DisableWalk();
                 exploderFocus.ExplodeSprite();
                 onLoadLoseMenu.Raise();
             }
@@ -84,78 +66,19 @@ namespace Features.Character_Namespace.Scripts
 
         private void Awake()
         {
-            audioSource = GetComponent<AudioSource>();
+            AudioSource audioSource = GetComponent<AudioSource>();
             audioSource.Pause();
-            
+
             playerInputActions = new PlayerInputActions();
-            playerInputActions.Enable();
-            animator = GetComponent<Animator>();
-
-            //walk
-            playerInputActions.Player.Movement.performed += OnMovement;
-            playerInputActions.Player.Movement.started += OnMovement;
-            playerInputActions.Player.Movement.canceled += OnMovement;
+            
+            characterStateController.SetReferences(GetComponent<Animator>(), audioSource, playerInputActions, transform);
         }
 
-        private void OnEnable()
-        {
-            //Move
-            movement = playerInputActions.Player.Movement;
-            movement.Enable();
-        }
-        
-        private void OnDisable()
-        {
-            movement.Disable();
-            playerInputActions.Player.Interact.Disable();
-        }
-    
-        //Update Loop - Used for calculating frame-based data
         private void Update()
         {
-            if (!playerCanWalk) return;
-            
-            CalculateMovementInputSmoothing();
-            UpdatePlayerMovement();
-
-            var position = transform.position;
-            playerIntPosition.Set(new Vector2Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y)));
-            playerFloatPosition.Set(position);
+            characterStateController.UpdateState();
         }
 
-        //Input's Axes values are raw
-        private void CalculateMovementInputSmoothing()
-        {
-            smoothInputMovement = Vector2.Lerp(smoothInputMovement, storedInputMovement, Time.deltaTime * movementSmoothingSpeed);
-        }
-
-        private void UpdatePlayerMovement()
-        {
-            Vector2 movement = smoothInputMovement * speed * Time.deltaTime;
-            Vector2 playerPosition = transform.position;
-            playerPosition += movement;
-            transform.position = playerPosition;
-        
-            //Set animation to movement
-            animator.SetFloat(HorizontalMovement, inputMovement.x);
-            animator.SetFloat(VerticalMovement, inputMovement.y);
-            audioSource.Pause();
-
-            //Get into idle position
-            if (inputMovement.x != 0  || inputMovement.y != 0)
-            {
-                animator.SetFloat(LastMoveX, inputMovement.x);
-                animator.SetFloat(LastMoveY, inputMovement.y);
-                audioSource.UnPause();
-            }
-        }
-
-        private void OnMovement(InputAction.CallbackContext context)
-        {
-            inputMovement = context.ReadValue<Vector2>();
-            storedInputMovement = new Vector2(inputMovement.x, inputMovement.y);
-        }
-        
         //Trigger event when player gets near the interactable object.
         private void OnTriggerEnter2D(Collider2D collider)
         {

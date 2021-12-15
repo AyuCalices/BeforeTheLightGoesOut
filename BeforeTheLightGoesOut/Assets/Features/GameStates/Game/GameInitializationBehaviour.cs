@@ -18,7 +18,7 @@ namespace Features.GameStates.Scripts
         private void Awake()
         {
             LeanTween.init(1000);
-            gameStateController.Initialize(canvasManager, fadeMenu, musicBehaviour);
+            gameStateController.SetReferences(canvasManager, fadeMenu, musicBehaviour);
         }
         
         private void Start()

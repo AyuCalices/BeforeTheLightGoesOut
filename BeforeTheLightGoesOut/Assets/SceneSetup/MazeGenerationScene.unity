@@ -190,7 +190,7 @@ MonoBehaviour:
   width: {fileID: 11400000, guid: 306648929f97aa3408cb9fdef1697e0e, type: 2}
   height: {fileID: 11400000, guid: a3e52cf95d2671542b5ca4005cb572ff, type: 2}
   mazeModifiers:
-  - {fileID: 11400000, guid: 30168b756f5bd774a8f5456939c312f8, type: 2}
+  - {fileID: 11400000, guid: f569cdd70ad778b4d80611eac85660d1, type: 2}
   - {fileID: 11400000, guid: 1baeebda1130f704a9419094f03894f1, type: 2}
   tileParentTransform: {fileID: 545921218}
   interactableParentTransform: {fileID: 678705236}

@@ -1,5 +1,6 @@
 using System.Collections;
 using Features.Character_Namespace.Scripts;
+using Features.Interactable_Namespace.Scripts;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 

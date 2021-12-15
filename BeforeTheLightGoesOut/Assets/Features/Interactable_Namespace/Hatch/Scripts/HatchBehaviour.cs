@@ -2,6 +2,7 @@ using DataStructures.Variables;
 using Features.Character_Namespace.Scripts;
 using Features.GameStates;
 using Features.GameStates.Scripts;
+using Features.Interactable_Namespace.Scripts;
 using Features.Maze_Namespace.Scripts;
 using Features.Simple_Sprite_Exploder_Without_Physics.Scripts;
 using UnityEngine;
@@ -48,7 +49,7 @@ namespace Features.Interactable_Namespace.Hatch.Scripts
             animator = GetComponent<Animator>();
             animator.SetTrigger(JumpInHatch);
             playerController.GetComponent<SpriteRenderer>().enabled = false;
-            playerController.DisableWalk();
+            //playerController.DisableWalk();
         
             exploderFocusSo.SetExploderFocus(spriteRenderer, hatchExploder);
         }

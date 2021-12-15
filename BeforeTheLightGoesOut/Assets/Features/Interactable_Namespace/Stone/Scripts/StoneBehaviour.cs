@@ -1,5 +1,6 @@
 using DataStructures.Variables;
 using Features.Character_Namespace.Scripts;
+using Features.Interactable_Namespace.Scripts;
 using Features.Simple_Sprite_Exploder_Without_Physics.Scripts;
 using UnityEngine;
 using Utils.Variables;
@@ -37,7 +38,7 @@ namespace Features.Interactable_Namespace.Stone.Scripts
         public void ContinuePlayerMovement()
         {
             playerController.GetComponent<SpriteRenderer>().enabled = true;
-            playerController.EnableWalk();
+            //playerController.EnableWalk();
             isInteractable = true;
         }
 
@@ -71,7 +72,7 @@ namespace Features.Interactable_Namespace.Stone.Scripts
                 animator.SetTrigger(Hide);
                 playerIsHidden = true;
                 playerController.GetComponent<SpriteRenderer>().enabled = false;
-                playerController.DisableWalk();
+                //playerController.DisableWalk();
             }
         }
     }

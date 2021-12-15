@@ -9,6 +9,7 @@ namespace Features.GameStates.Scripts
     [CreateAssetMenu(fileName = "MenuState", menuName = "GameStates/Menu")]
     public class MenuState_SO : State_SO
     {
+        [SerializeField] protected GameStateController_SO gameStateController;
         public float fadeTime = 1f;
         
         private List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();

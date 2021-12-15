@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DataStructures.Variables;
+using Features.Interactable_Namespace.Scripts;
 using Features.Maze_Namespace;
 using Features.Maze_Namespace.Scripts;
 using UnityEngine;

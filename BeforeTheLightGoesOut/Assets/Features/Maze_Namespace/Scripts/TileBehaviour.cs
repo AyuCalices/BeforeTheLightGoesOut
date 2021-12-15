@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using DataStructures.Variables;
+using Features.Interactable_Namespace.Scripts;
 using UnityEngine;
 using Utils.Variables;
 

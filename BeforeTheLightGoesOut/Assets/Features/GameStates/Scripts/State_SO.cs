@@ -7,7 +7,6 @@ namespace Features.GameStates.Scripts
     public abstract class State_SO : ScriptableObject, IState
     {
         [field: SerializeField] protected List<State_SO> validStateShifts;
-        [field: SerializeField] protected GameStateController_SO gameStateController;
 
         public bool IsValidStateShift(State_SO requestedState)
         {
