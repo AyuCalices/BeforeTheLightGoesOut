@@ -207,13 +207,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: cbf3c7f9f813f3a41b593576cbb8c144, type: 2}
-        m_TargetAssemblyTypeName: Features.GameStates.Scripts.GameStateController_SO,
+        m_TargetAssemblyTypeName: Features.GameStates_Namespace.Scripts.StateController_SO,
           Assembly-CSharp
         m_MethodName: RequestState
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: feb9d728cfd193441914fefb558142da, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Features.GameStates.Scripts.State_SO,
+          m_ObjectArgumentAssemblyTypeName: Features.GameStates_Namespace.Scripts.State_SO,
             Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1639,13 +1639,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: cbf3c7f9f813f3a41b593576cbb8c144, type: 2}
-        m_TargetAssemblyTypeName: Features.GameStates.Scripts.GameStateController_SO,
+        m_TargetAssemblyTypeName: Features.GameStates_Namespace.Scripts.StateController_SO,
           Assembly-CSharp
         m_MethodName: RequestState
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 0a8d3b2b9a207e047a01c6107ea66971, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Features.GameStates.Scripts.State_SO,
+          m_ObjectArgumentAssemblyTypeName: Features.GameStates_Namespace.Scripts.State_SO,
             Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1681,13 +1681,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: cbf3c7f9f813f3a41b593576cbb8c144, type: 2}
-        m_TargetAssemblyTypeName: Features.GameStates.Scripts.GameStateController_SO,
+        m_TargetAssemblyTypeName: Features.GameStates_Namespace.Scripts.StateController_SO,
           Assembly-CSharp
         m_MethodName: RequestState
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 0a8d3b2b9a207e047a01c6107ea66971, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Features.GameStates.Scripts.State_SO,
+          m_ObjectArgumentAssemblyTypeName: Features.GameStates_Namespace.Scripts.State_SO,
             Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -4123,13 +4123,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: cbf3c7f9f813f3a41b593576cbb8c144, type: 2}
-        m_TargetAssemblyTypeName: Features.GameStates.Scripts.GameStateController_SO,
+        m_TargetAssemblyTypeName: Features.GameStates_Namespace.Scripts.StateController_SO,
           Assembly-CSharp
         m_MethodName: RequestState
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: feb9d728cfd193441914fefb558142da, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Features.GameStates.Scripts.State_SO,
+          m_ObjectArgumentAssemblyTypeName: Features.GameStates_Namespace.Scripts.State_SO,
             Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -5548,13 +5548,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: cbf3c7f9f813f3a41b593576cbb8c144, type: 2}
-        m_TargetAssemblyTypeName: Features.GameStates.Scripts.GameStateController_SO,
+        m_TargetAssemblyTypeName: Features.GameStates_Namespace.Scripts.StateController_SO,
           Assembly-CSharp
         m_MethodName: RequestState
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: feb9d728cfd193441914fefb558142da, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Features.GameStates.Scripts.State_SO,
+          m_ObjectArgumentAssemblyTypeName: Features.GameStates_Namespace.Scripts.State_SO,
             Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
