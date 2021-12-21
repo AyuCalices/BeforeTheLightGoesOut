@@ -33,9 +33,8 @@ namespace Utils.CanvasNavigator
             else
             {
                 Debug.LogWarning("Desired canvas was not found");
-            }
-        
-        
+            } 
+
         }
 
         public void CloseCanvas()
