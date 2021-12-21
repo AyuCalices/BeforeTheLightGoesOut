@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6777e74b211f3b54d90c4c12f72e705e, type: 3}
+  m_Name: Torch_MazeModifier
+  m_EditorClassIdentifier: 
+  height: {fileID: 11400000, guid: a3e52cf95d2671542b5ca4005cb572ff, type: 2}
+  width: {fileID: 11400000, guid: 306648929f97aa3408cb9fdef1697e0e, type: 2}
+  interactablePrefab: {fileID: 3611683906383126892, guid: 4d101b51a86b6794bbebc121608b350e, type: 3}
+  spawnPercentage: 0.3

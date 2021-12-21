@@ -1,6 +1,7 @@
+using DataStructures.Variables;
 using UnityEngine;
 
-namespace DataStructures.Variables
+namespace Utils.Variables
 {
     [CreateAssetMenu(fileName = "NewBoolVariable", menuName = "Utils/Variables/BoolVariable")]
     public class BoolVariable : AbstractVariable<bool>
