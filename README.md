@@ -65,4 +65,3 @@ We are aMazed and we’ve teamed up to develop this 2D game for the course Game 
 * Ryan Hipple: [Unite2017](https://github.com/roboryantron/Unite2017)
 * Reckless Cowboys: [MultiScene: Save multi-scene configurations](https://github.com/RecklessCowboys/MultiScene)
 * EngiGames: [Best practices: Controlling buttons in Unity!](https://www.youtube.com/watch?v=U8XiDji23U0&list=PLetFbUN1HtXRd0ujDTo425RGp3iAFo4fY&index=3)
-*            [Best Practices: Controlling your game menus in Unity!](https://www.youtube.com/watch?v=vmKxLibGrMo)
